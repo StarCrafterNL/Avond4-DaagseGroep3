@@ -1,7 +1,22 @@
-node_modules/
+# === Visual Studio Code ===
 .vscode/
+.DS_Store
+*.log
+
+# === Frontend (JavaScript / Node) ===
+node_modules/
 dist/
 build/
 .env
-*.log
-.DS_Store
+.env.local
+
+# === Backend (C# / .NET) ===
+bin/
+obj/
+*.user
+*.suo
+*.sln.docuser
+
+# === Database & Geheimen ===
+appsettings.Development.json
+appsettings.local.json
