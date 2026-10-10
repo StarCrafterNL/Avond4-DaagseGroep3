@@ -1,0 +1,44 @@
+/* ==========================================================================
+   1. MOBIEL BASIS (Standaard layout - voor schermen tot 767px)
+   ========================================================================== */
+.navigatie {
+    display: flex;
+    justify-content: center;   /* netjes starten in het midden*/
+    flex-wrap: wrap;           
+    gap: 15px;                 
+    margin-top: 20px;          /* Afstand vanaf de mobiele sponsorbalk */
+    margin-bottom: 30px;       /* Afstand tot het formulier */
+    padding-bottom: 15px;      
+    border-bottom: 1px solid #334155; 
+    width: 100%;               
+}
+
+.navigatie a {
+    color: #ffffff;            
+    text-decoration: none;
+    font-size: 16px;           /* heb hier kleinere lettertype gegeven  */
+    font-weight: 500;          
+    letter-spacing: 0.5px;     
+    transition: color 0.2s;    
+}
+
+/* heb heir een effect toegevoeg word blauw als je met je muis over de navigatie gaat */
+.navigatie a:hover {
+    color: #38bdf8;            
+}
+
+/* ==========================================================================
+   2. 💻 TABLET & DESKTOP BREAKPOINT (Vanaf 768px en groter)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .navigatie {
+        justify-content: center; /* Jouw wens: houdt het menu ook op desktop in het midden */
+        gap: 35px;               /* Luxe, brede ademruimte tussen de links */
+        margin-top: 0;           /* Geen top-margin nodig, de zijbalk staat nu links */
+        margin-bottom: 60px;     /* Meer afstand tot het formulier op grote schermen */
+    }
+
+    .navigatie a {
+        font-size: 20px;         /* De grote letters (20px) voor computerschermen */
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inloggen</title>
+    <link rel="stylesheet" href="css/inlog.css">
+</head>
+<body>
+
+     <main class="formulier-container">
+        <h2>Inloggen</h2>
+        <p>Welkom terug! Log in met je gegevens.</p>
+
+        <!-- Het Inlogformulier -->
+        <form action="/verwerk-login" method="POST">
+            
+            <!-- E-mailadres -->
+            <div class="formulier-groep">
+                <label for="email">E-mailadres:</label>
+                <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl">
+            </div>
+
+            <!-- Wachtwoord -->
+            <div class="formulier-groep">
+                <label for="wachtwoord">Wachtwoord:</label>
+                <input type="password" id="wachtwoord" name="wachtwoord" required placeholder="Je wachtwoord">
+            </div>
+
+            <!-- Actieknop -->
+            <button type="submit">Inloggen</button>
+        </form>
+
+        <!-- De link naar de aanmeldpagina -->
+        <p class="formulier-wissel">
+            Nog geen account? <a href="aanmeldpagina.html">Meld je hier aan</a>.
+        </p>
+     </main>
+
+</body>
+</html>
