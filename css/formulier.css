@@ -141,7 +141,7 @@ button[type="submit"] {
     .form-container {
         display: grid; 
         grid-template-columns: 150px 1fr; /* eerste kolom is de zijbalk hier en 1fr vult de rest van de ruimte dan in. */
-        height: 100vh 
+        height: 100vh;
     }
 
     /* De balk wordt nu een verticale zijbalk */

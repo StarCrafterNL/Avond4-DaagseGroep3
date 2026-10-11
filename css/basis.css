@@ -1,6 +1,6 @@
-*  
-/* basis css bestand voor de aanmeldpagina.html */
-{ 
+ 
+/* basis css bestand voor de aanmeldpagina.html en de inlog voor nu*/
+*{ 
     box-sizing: border-box;
     margin: 0;
     padding: 0;

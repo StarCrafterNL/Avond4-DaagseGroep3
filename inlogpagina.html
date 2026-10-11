@@ -4,38 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inloggen</title>
-    <link rel="stylesheet" href="css/inlog.css">
+    <link rel="stylesheet" href="css/basis.css">
+    <link rel="stylesheet" href="css/formulier.css">
+    <link rel="stylesheet" href="css/navigatie.css">
 </head>
 <body>
 
-     <main class="formulier-container">
-        <h2>Inloggen</h2>
-        <p>Welkom terug! Log in met je gegevens.</p>
+     <main class="form-container">
 
-        <!-- Het Inlogformulier -->
-        <form action="/verwerk-login" method="POST">
+        <!-- LINKS: De Zijbalk voor de sponsooren -->
+        <aside class="zijbalk">
+            <!-- hier de hardloop foto geplaats -->
+            <div class="logo-sport"> 
+                <img src="img/hardloop.jpg" alt="Hardloop foto">
+            </div> 
             
-            <!-- E-mailadres -->
-            <div class="formulier-groep">
-                <label for="email">E-mailadres:</label>
-                <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl">
-            </div>
+            <!-- hier komen de sponsoren heb het alvast als placeholder gemaakt -->
+            <div class="sponsor-blokje">Sponsor</div>
+            <div class="sponsor-blokje">Sponsor</div>
+            <div class="sponsor-blokje">Sponsor</div>
+            <div class="sponsor-blokje">Sponsor</div>
+            <div class="sponsor-blokje">Sponsor</div>
+            <div class="sponsor-blokje">Sponsor</div>
+        </aside>
 
-            <!-- Wachtwoord -->
-            <div class="formulier-groep">
-                <label for="wachtwoord">Wachtwoord:</label>
-                <input type="password" id="wachtwoord" name="wachtwoord" required placeholder="Je wachtwoord">
-            </div>
+        <!-- RECHTS: hier komen de menu en het formulier -->
+        <section class="hoofd-inhoud">
+            
+            <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
+            <nav class="navigatie">
+                <a href="#">Routes</a>
+                <a href="#">Reglement</a>
+                <a href="#">Handboek</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+               
+            </nav>
 
-            <!-- Actieknop -->
-            <button type="submit">Inloggen</button>
-        </form>
+            <h2>Inloggen</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #94a3b8;">Welkom terug! Log in met je gegevens.</p>
 
-        <!-- De link naar de aanmeldpagina -->
-        <p class="formulier-wissel">
-            Nog geen account? <a href="aanmeldpagina.html">Meld je hier aan</a>.
-        </p>
+            <!-- Het Inlogformulier -->
+            <form action="/verwerk-login" method="POST">
+                
+                <!-- E-mailadres -->
+                <div class="form-groep">
+                    <label for="email">E-mailadres:</label>
+                    <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl">
+                </div>
+
+                <!-- Wachtwoord -->
+                <div class="form-groep">
+                    <label for="wachtwoord">Wachtwoord:</label>
+                    <input type="password" id="wachtwoord" name="wachtwoord" required placeholder="Je wachtwoord">
+                </div>
+
+                <!-- Actieknop -->
+                <button type="submit">Inloggen</button>
+            </form>
+
+            <!-- De link naar de aanmeldpagina -->
+            <p class="form-switch">
+                Nog geen account? <a href="aanmeldpagina.html">Meld je hier aan</a>.
+            </p>
+        </section>
      </main>
 
 </body>
 </html>
+
+            
