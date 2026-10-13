@@ -1,0 +1,179 @@
+/* Reglement & Privacy - zelfde basis als de aanmeldpagina van het team.
+   Arial, donkerblauwe achtergrond (#0f172a), witte tekst. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body.info-page {
+  background-color: #0f172a;
+  color: #ffffff;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.info-page a {
+  color: #93c5fd;
+}
+
+.info-page a:hover,
+.info-page a:focus-visible {
+  color: #bfdbfe;
+}
+
+.info-page .site-header {
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
+  padding: 20px;
+}
+
+.info-page .nav {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.info-page .logo {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.info-page nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.info-page nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.info-page nav a:hover,
+.info-page nav a:focus-visible,
+.info-page nav a[aria-current="page"] {
+  color: #93c5fd;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.info-page main {
+  max-width: 900px;
+  margin: 36px auto 56px;
+  padding: 0 20px;
+}
+
+.info-page h1 {
+  font-size: clamp(28px, 5vw, 36px);
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.info-page .intro {
+  background-color: #1e293b;
+  border-left: 4px solid #60a5fa;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+
+.info-page .intro p + p,
+.info-page section p + p {
+  margin-top: 12px;
+}
+
+.info-page section {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 22px 26px;
+  margin-bottom: 16px;
+}
+
+.info-page h2 {
+  color: #bfdbfe;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.info-page ul {
+  padding-left: 22px;
+  margin-top: 10px;
+}
+
+.info-page li {
+  margin-bottom: 7px;
+}
+
+.info-page footer {
+  border-top: 1px solid #334155;
+  padding: 24px 16px;
+  color: #cbd5e1;
+  text-align: center;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .info-page .site-header { padding: 16px; }
+  .info-page main { margin-top: 24px; padding: 0 14px; }
+  .info-page section { padding: 18px; }
+  .info-page .intro { padding: 16px; }
+  .info-page nav { gap: 12px; }
+}
+
+
+/* Tabellen en meldingen voor de praktische info en privacyverklaring */
+.info-page .concept-note {
+  margin-top: 12px;
+  color: #e2e8f0;
+}
+
+.info-page .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 12px 0 16px;
+}
+
+.info-page table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+  font-size: 15px;
+}
+
+.info-page th,
+.info-page td {
+  border: 1px solid #475569;
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-page th {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.info-page td {
+  background-color: #17253a;
+}
+
+.info-page section p + ul,
+.info-page section ul + p,
+.info-page section .table-wrap + p {
+  margin-top: 12px;
+}
+
+.info-page strong {
+  color: #f8fafc;
+}
+
+/* Zichtbare demo-waarschuwing */
+.info-page .demo-label { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: #334155; border: 1px solid #64748b; }
