@@ -3,10 +3,6 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-
-    h2 {
-        margin-bottom: 24px;
-    }
 }
 
 .routes-grid {
@@ -33,7 +29,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 240px;
     }
 
     .route-description {
@@ -44,7 +39,7 @@
         display: inline-block;
         padding: 6px 14px;
         text-decoration: none;
-        border-radius: 4px;
-        border: 1px solid #ccc;
+        background-color: $green;
+        color: white;
     }
 }

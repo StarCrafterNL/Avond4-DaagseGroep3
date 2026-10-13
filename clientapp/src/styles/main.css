@@ -13,9 +13,6 @@ html {
   align-items: center;
   padding: 20px;
 }
-.main-content h2 {
-  margin-bottom: 24px;
-}
 
 .routes-grid {
   display: grid;
@@ -41,7 +38,6 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 240px;
 }
 .route-card .route-description {
   font-weight: bold;
@@ -50,6 +46,6 @@ html {
   display: inline-block;
   padding: 6px 14px;
   text-decoration: none;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  background-color: #006600;
+  color: white;
 }/*# sourceMappingURL=main.css.map */
