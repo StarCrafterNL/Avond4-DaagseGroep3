@@ -1,0 +1,39 @@
+.sponsors {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 25px;
+}
+
+.sponsors h2 {
+  margin: 0 0 20px 0;
+  color: #2f6b45;
+  font-size: 21px;
+}
+
+/* Los sponsorvak */
+
+.sponsor {
+  min-height: 80px;
+
+  margin-bottom: 16px;
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background-color: #f8faf7;
+
+  border: 1px solid #d8dfd9;
+  border-radius: 8px;
+
+  color: #667069;
+  font-size: 14px;
+}
+
+.sponsor:last-child {
+  margin-bottom: 0;
+}

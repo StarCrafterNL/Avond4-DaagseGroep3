@@ -7,11 +7,100 @@ html {
   font-size: 18px;
 }
 
+header {
+  width: 100%;
+  background-color: #2f6b45;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+nav {
+  max-width: 1200px;
+  min-height: 75px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Navigatielinks */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 0;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+/* Actieve pagina */
+.nav-links a.active {
+  border-bottom: 3px solid #ffffff;
+}
+
+.sponsors {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 25px;
+}
+
+.sponsors h2 {
+  margin: 0 0 20px 0;
+  color: #2f6b45;
+  font-size: 21px;
+}
+
+/* Los sponsorvak */
+.sponsor {
+  min-height: 80px;
+  margin-bottom: 16px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f8faf7;
+  border: 1px solid #d8dfd9;
+  border-radius: 8px;
+  color: #667069;
+  font-size: 14px;
+}
+
+.sponsor:last-child {
+  margin-bottom: 0;
+}
+
 .main-content {
+  display: flex;
+}
+
+.routes-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  flex: 1;
 }
 
 .routes-grid {
@@ -48,4 +137,9 @@ html {
   text-decoration: none;
   background-color: #006600;
   color: white;
+}
+
+body {
+  padding: 0;
+  margin: 0;
 }/*# sourceMappingURL=main.css.map */

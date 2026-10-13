@@ -1,8 +1,12 @@
 .main-content {
     display: flex;
+}
+
+.routes-wrapper {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    align-items: center; // Centers everything inside horizontally
+    flex: 1;             // Takes up the remaining space on the right
 }
 
 .routes-grid {
