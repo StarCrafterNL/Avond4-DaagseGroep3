@@ -1,0 +1,481 @@
+/* =========================================
+   AVOND4DAAGSE - ALGEMENE STYLING
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7f3;
+    color: #26332b;
+}
+
+
+/* =========================================
+   HEADER EN NAVIGATIE
+   ========================================= */
+
+header {
+    width: 100%;
+    background-color: #2f6b45;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+nav {
+    max-width: 1200px;
+    min-height: 75px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.logo {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* Navigatielinks */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 8px 0;
+
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+
+/* Actieve pagina */
+
+.nav-links a.active {
+    border-bottom: 3px solid #ffffff;
+}
+
+
+/* =========================================
+   HOOFDINHOUD
+   ========================================= */
+
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 50px auto;
+    padding: 0 30px;
+
+    display: grid;
+
+    /* Sponsoren links + contact rechts */
+    grid-template-columns: 220px 1fr;
+
+    gap: 55px;
+    align-items: start;
+}
+
+
+/* =========================================
+   SPONSOREN
+   ========================================= */
+
+.sponsors {
+    background-color: #ffffff;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sponsors h2 {
+    margin: 0 0 20px 0;
+
+    color: #2f6b45;
+
+    font-size: 21px;
+}
+
+
+/* Los sponsorvak */
+
+.sponsor {
+    min-height: 80px;
+
+    margin-bottom: 16px;
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background-color: #f8faf7;
+
+    border: 1px solid #d8dfd9;
+    border-radius: 8px;
+
+    color: #667069;
+    font-size: 14px;
+}
+
+.sponsor:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   CONTACTGEDEELTE
+   ========================================= */
+
+.contact-section {
+    width: 100%;
+    max-width: 700px;
+}
+
+
+/* Titel */
+
+.contact-section h1 {
+    margin: 0 0 10px 0;
+
+    color: #2f6b45;
+
+    font-size: 38px;
+    line-height: 1.2;
+}
+
+
+/* Introductietekst */
+
+.contact-intro {
+    max-width: 620px;
+
+    margin: 0 0 30px 0;
+
+    color: #58645b;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CONTACTFORMULIER
+   ========================================= */
+
+.contact-form {
+    width: 100%;
+
+    padding: 35px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Elke inputgroep */
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+
+/* Labels */
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #26332b;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* Inputs en textarea */
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #b8c3ba;
+    border-radius: 7px;
+
+    color: #26332b;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8a948c;
+}
+
+
+/* Berichtvak */
+
+.form-group textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+
+/* Focus voor toegankelijkheid */
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    border-color: #2f6b45;
+
+    box-shadow: 0 0 0 3px rgba(47, 107, 69, 0.15);
+}
+
+
+/* =========================================
+   VERZENDKNOP
+   ========================================= */
+
+.submit-button {
+    min-width: 150px;
+
+    padding: 13px 26px;
+
+    background-color: #2f6b45;
+
+    border: none;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+}
+
+
+/* Hover */
+
+.submit-button:hover {
+    background-color: #245437;
+}
+
+
+/* Klik */
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+
+/* Toetsenbord toegankelijkheid */
+
+.submit-button:focus-visible,
+.nav-links a:focus-visible,
+.logo:focus-visible {
+    outline: 3px solid #f4c95d;
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    nav {
+        padding: 0 22px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .page-container {
+        grid-template-columns: 180px 1fr;
+
+        gap: 30px;
+
+        padding: 0 22px;
+    }
+
+}
+
+
+/* =========================================
+   MOBIEL
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    /* Navigatie */
+
+    nav {
+        padding: 20px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        gap: 12px 20px;
+    }
+
+
+    /* Pagina */
+
+    .page-container {
+        margin: 30px auto;
+
+        padding: 0 20px;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    /* Contact eerst op mobiel */
+
+    .contact-section {
+        order: 1;
+
+        max-width: 100%;
+    }
+
+
+    /* Sponsoren daarna */
+
+    .sponsors {
+        order: 2;
+    }
+
+
+    /* Titel */
+
+    .contact-section h1 {
+        font-size: 32px;
+    }
+
+
+    /* Formulier */
+
+    .contact-form {
+        padding: 25px 20px;
+    }
+
+
+    /* Knop */
+
+    .submit-button {
+        width: 100%;
+    }
+
+
+    /* Sponsoren naast elkaar indien mogelijk */
+
+    .sponsors {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .sponsors h2 {
+        grid-column: 1 / -1;
+    }
+
+    .sponsor {
+        margin: 0;
+    }
+
+}
+
+
+/* =========================================
+   KLEINE MOBIELE SCHERMEN
+   ========================================= */
+
+@media (max-width: 420px) {
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sponsors {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section h1 {
+        font-size: 28px;
+    }
+
+}
