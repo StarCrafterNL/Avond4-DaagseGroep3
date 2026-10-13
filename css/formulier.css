@@ -74,6 +74,12 @@ h2 {
     margin-bottom: 25px;
 }
 
+.form-welkom {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #94a3b8;
+}
+
 .form-groep {
     margin-bottom: 18px;
     display: flex;
@@ -180,7 +186,7 @@ button[type="submit"] {
 /*bij dit stuk code word de zijbalk iets brede en de sponsors iets groter en de inhoud krijgt iets meer padding zodat het wat moiern lijkt.*/
 @media (min-width: 1024px) {
     .form-container {
-        grid-template-columns: 180px 1fr; /* Zijbalk krijgt iets meer ruimte */
+        grid-template-columns: 180; /* Zijbalk krijgt iets meer ruimte */
     }
 
     .sponsor-blokje {
