@@ -1,7 +1,88 @@
 .handboek-wrapper {
+    flex: 1;
+    min-width: 0;
+    max-width: 28rem;
+
+    h1 {
+        margin: 0 0 0.25rem;
+        font-size: 1.8rem;
+        color: $brand;
+    }
+}
+
+.handboek-description {
+    margin: 0 0 1.5rem;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.handboek-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
-    min-width: 0;
+    gap: 1.25rem;
+    max-width: 21.5rem;
+    margin-inline: auto;
+    padding: 1.55rem;
+    background-color: $white;
+    border-radius: 16px;
+}
+
+.handboek-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 9rem;
+    aspect-ratio: 8 / 9;
+    background-color: #eef3ec;
+    border: 1px solid #d3ddd3;
+    text-align: center;
+
+    &__label {
+        color: $brand;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        color: #222;
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    &__type {
+        color: $muted;
+        font-size: 0.75rem;
+    }
+}
+
+.download-link {
+    width: 9rem;
+    padding: 0.65rem 0;
+    background-color: $brand;
+    color: $white;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken($brand, 6%);
+    }
+
+    &:focus-visible {
+        outline: 3px solid $brand;
+        outline-offset: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .handboek-wrapper {
+        max-width: none;
+    }
 }

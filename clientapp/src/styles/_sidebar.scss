@@ -1,39 +1,39 @@
 .sponsors {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  padding: 25px;
-}
+    flex: 0 0 9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem;
+    background-color: $white;
+    border-radius: 16px;
 
-.sponsors h2 {
-  margin: 0 0 20px 0;
-  color: #2f6b45;
-  font-size: 21px;
+    h2 {
+        margin: 0 0 0.15rem;
+        color: $brand;
+        font-size: 1rem;
+    }
 }
-
-/* Los sponsorvak */
 
 .sponsor {
-  min-height: 80px;
-
-  margin-bottom: 16px;
-  padding: 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  background-color: #f8faf7;
-
-  border: 1px solid #d8dfd9;
-  border-radius: 8px;
-
-  color: #667069;
-  font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    background-color: #fafbf9;
+    border: 1px solid #e1e6e1;
+    border-radius: 10px;
+    color: $muted;
+    font-size: 0.75rem;
 }
 
-.sponsor:last-child {
-  margin-bottom: 0;
+@media (max-width: 768px) {
+    .sponsors {
+        flex: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        h2 {
+            grid-column: 1 / -1;
+        }
+    }
 }

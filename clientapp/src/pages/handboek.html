@@ -21,21 +21,34 @@
       </nav>
     </header>
     <main class="main-content">
-      <aside class="sponsors">
-        <h2>Sponsoren</h2>
-
+      <aside class="sponsors" aria-labelledby="sponsors-title">
+        <h2 id="sponsors-title">Sponsoren</h2>
         <div class="sponsor">Sponsor</div>
-
         <div class="sponsor">Sponsor</div>
-
         <div class="sponsor">Sponsor</div>
-
+        <div class="sponsor">Sponsor</div>
         <div class="sponsor">Sponsor</div>
       </aside>
+
       <div class="handboek-wrapper">
         <h1>Handboek</h1>
-        <section class="handboek-content">
+        <p class="handboek-description">
+          Praktische informatie voor deelnemers en vrijwilligers.
+        </p>
 
+        <section class="handboek-card" aria-label="Handboek downloaden">
+          <div class="handboek-cover" aria-hidden="true">
+            <span class="handboek-cover__label">Handboek</span>
+            <span class="handboek-cover__title">Avond4daagse</span>
+            <span class="handboek-cover__type">PDF</span>
+          </div>
+          <a
+            href="../pdf/handboek.pdf"
+            class="download-link"
+            download
+            aria-label="Download het handboek (PDF)"
+            >Download PDF</a
+          >
         </section>
       </div>
     </main>

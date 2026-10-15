@@ -7,4 +7,20 @@
 body {
     padding: 0;
     margin: 0;
+    background-color: $gray;
+}
+
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+    }
 }
