@@ -181,30 +181,30 @@ nav {
 .handboek-wrapper {
   flex: 1;
   min-width: 0;
-  max-width: 28rem;
+  max-width: 760px;
 }
 .handboek-wrapper h1 {
-  margin: 0 0 0.25rem;
-  font-size: 1.8rem;
+  margin: 0 0 6px;
+  font-size: 40px;
   color: #2f6b45;
 }
 
 .handboek-description {
-  margin: 0 0 1.5rem;
+  margin: 0 0 28px;
   color: #666;
-  font-size: 0.8rem;
+  font-size: 17px;
 }
 
 .handboek-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
-  max-width: 21.5rem;
+  gap: 28px;
+  max-width: 520px;
   margin-inline: auto;
-  padding: 1.55rem;
+  padding: 40px;
   background-color: #FFF;
-  border-radius: 16px;
+  border-radius: 18px;
 }
 
 .handboek-cover {
@@ -212,8 +212,8 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  width: 9rem;
+  gap: 12px;
+  width: 220px;
   aspect-ratio: 8/9;
   background-color: #eef3ec;
   border: 1px solid #d3ddd3;
@@ -221,28 +221,28 @@ nav {
 }
 .handboek-cover__label {
   color: #2f6b45;
-  font-size: 1.1rem;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 .handboek-cover__title {
   color: #222;
-  font-size: 0.9rem;
+  font-size: 20px;
   font-weight: 700;
 }
 .handboek-cover__type {
   color: #667069;
-  font-size: 0.75rem;
+  font-size: 16px;
 }
 
 .download-link {
-  width: 9rem;
-  padding: 0.65rem 0;
+  width: 220px;
+  padding: 15px 0;
   background-color: #2f6b45;
   color: #FFF;
-  border-radius: 6px;
-  font-size: 0.8rem;
+  border-radius: 8px;
+  font-size: 17px;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -258,6 +258,68 @@ nav {
 @media (max-width: 768px) {
   .handboek-wrapper {
     max-width: none;
+  }
+}
+.draaiboek-wrapper {
+  flex: 1;
+  min-width: 0;
+  max-width: 760px;
+}
+.draaiboek-wrapper h1 {
+  margin: 0 0 6px;
+  font-size: 40px;
+  color: #2f6b45;
+}
+
+.draaiboek-description {
+  margin: 0 0 28px;
+  color: #666;
+  font-size: 17px;
+}
+
+.draaiboek-card {
+  padding: 40px 44px;
+  background-color: #FFF;
+  border-radius: 18px;
+}
+
+.draaiboek-section {
+  margin-bottom: 32px;
+}
+.draaiboek-section:last-child {
+  margin-bottom: 0;
+}
+.draaiboek-section h2 {
+  margin: 0 0 10px;
+  color: #2f6b45;
+  font-size: 21px;
+}
+
+.draaiboek-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.draaiboek-list li {
+  display: flex;
+  gap: 18px;
+  padding: 6px 0;
+  color: #222;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.draaiboek-list time {
+  flex: 0 0 52px;
+  color: #2f6b45;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .draaiboek-wrapper {
+    max-width: none;
+  }
+  .draaiboek-card {
+    padding: 28px 22px;
   }
 }
 body {

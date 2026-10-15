@@ -1,0 +1,68 @@
+.draaiboek-wrapper {
+    flex: 1;
+    min-width: 0;
+    max-width: 760px;
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: 40px;
+        color: $brand;
+    }
+}
+
+.draaiboek-description {
+    margin: 0 0 28px;
+    color: #666;
+    font-size: 17px;
+}
+
+.draaiboek-card {
+    padding: 40px 44px;
+    background-color: $white;
+    border-radius: 18px;
+}
+
+.draaiboek-section {
+    margin-bottom: 32px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        margin: 0 0 10px;
+        color: $brand;
+        font-size: 21px;
+    }
+}
+
+.draaiboek-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        gap: 18px;
+        padding: 6px 0;
+        color: #222;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    time {
+        flex: 0 0 52px;
+        color: $brand;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 768px) {
+    .draaiboek-wrapper {
+        max-width: none;
+    }
+
+    .draaiboek-card {
+        padding: 28px 22px;
+    }
+}
