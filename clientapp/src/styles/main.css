@@ -16,7 +16,7 @@ header {
 nav {
   max-width: 1200px;
   min-height: 75px;
-  margin: 0 auto;
+  margin: 0 36px;
   padding: 0 30px;
   display: flex;
   align-items: center;
@@ -96,57 +96,88 @@ nav {
     grid-column: 1/-1;
   }
 }
-.main-content {
-  display: flex;
-}
-
 .routes-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   flex: 1;
   min-width: 0;
+  max-width: 504px;
+}
+.routes-wrapper h1 {
+  margin: 0 0 5px;
+  font-size: 32px;
+  color: #2f6b45;
+}
+
+.routes-description {
+  margin: 0 0 27px;
+  color: #666;
+  font-size: 14px;
 }
 
 .routes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
-  justify-items: center;
-  width: 100%;
-  max-width: 800px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 34px;
 }
 
 .route-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 240px;
+  padding: 12px;
+  background-color: #FFF;
+  border-radius: 14px;
 }
-.route-card .route-image {
-  width: 240px;
-  height: 240px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.route-card__name {
+  margin: 0 0 20px;
+  padding: 14px 10px;
+  background-color: #edf2ec;
+  color: #2f6b45;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
 }
-.route-card .route-info {
+.route-card__info {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 0 2px 2px 10px;
 }
-.route-card .route-description {
-  font-weight: bold;
+.route-card__distance {
+  margin: 0;
+  color: #222;
+  font-size: 16px;
+  font-weight: 700;
 }
-.route-card .route-link {
-  display: inline-block;
-  padding: 6px 14px;
-  text-decoration: none;
-  background-color: #006600;
-  color: white;
+.route-card__start {
+  margin: 5px 0 0;
+  color: #667069;
+  font-size: 12px;
 }
 
+.route-link {
+  padding: 12px 8px;
+  background-color: #2f6b45;
+  color: #FFF;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+.route-link:hover {
+  background-color: rgb(37.661038961, 85.738961039, 55.2896103896);
+}
+.route-link:focus-visible {
+  outline: 3px solid #2f6b45;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .routes-wrapper {
+    max-width: none;
+  }
+  .routes-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .handboek-wrapper {
   flex: 1;
   min-width: 0;

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,102 +20,93 @@
         </ul>
       </nav>
     </header>
+
     <main class="main-content">
-      <aside class="sponsors">
-        <h2>Sponsoren</h2>
-
+      <aside class="sponsors" aria-labelledby="sponsors-title">
+        <h2 id="sponsors-title">Sponsoren</h2>
         <div class="sponsor">Sponsor</div>
-
         <div class="sponsor">Sponsor</div>
-
         <div class="sponsor">Sponsor</div>
-
+        <div class="sponsor">Sponsor</div>
         <div class="sponsor">Sponsor</div>
       </aside>
-      <div class="routes-wrapper">
-      <h1>Routes</h1>
 
-      <section class="routes-grid">
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 1"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 1</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-        </article>
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 2"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 2</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-        </article>
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 2"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 3</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-        </article>
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 2"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 4</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-        </article>
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 2"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 5</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-        </article>
-        <article class="route-card">
-          <img
-            src="../images/route__test.jpg"
-            alt="Route Map for Day 2"
-            class="route-image"
-          />
-          <div class="route-info">
-            <span class="route-description">Locatie 6</span>
-            <a href="https://www.google.com/maps" class="route-link" download
-              >Download</a
-            >
-          </div>
-          </div>
-        </article>
-      </section>
+      <div class="routes-wrapper">
+        <h1>Routes</h1>
+        <p class="routes-description">
+          Bekijk de beschikbare routes en download de route-informatie.
+        </p>
+
+        <section class="routes-grid" aria-label="Beschikbare routes">
+          <article class="route-card">
+            <h2 class="route-card__name">Korte route</h2>
+            <div class="route-card__info">
+              <div>
+                <p class="route-card__distance">2,5 km</p>
+                <p class="route-card__start">Start 17:30</p>
+              </div>
+              <a
+                href="../pdf/route-2-5km.pdf"
+                class="route-link"
+                download
+                aria-label="Download de korte route (PDF)"
+                >Download</a
+              >
+            </div>
+          </article>
+
+          <article class="route-card">
+            <h2 class="route-card__name">Standaardroute</h2>
+            <div class="route-card__info">
+              <div>
+                <p class="route-card__distance">5 km</p>
+                <p class="route-card__start">Start 18:00</p>
+              </div>
+              <a
+                href="../pdf/route-5km.pdf"
+                class="route-link"
+                download
+                aria-label="Download de standaardroute (PDF)"
+                >Download</a
+              >
+            </div>
+          </article>
+
+          <article class="route-card">
+            <h2 class="route-card__name">Lange route</h2>
+            <div class="route-card__info">
+              <div>
+                <p class="route-card__distance">10 km</p>
+                <p class="route-card__start">Start 18:00</p>
+              </div>
+              <a
+                href="../pdf/route-10km.pdf"
+                class="route-link"
+                download
+                aria-label="Download de lange route (PDF)"
+                >Download</a
+              >
+            </div>
+          </article>
+
+          <article class="route-card">
+            <h2 class="route-card__name">Uitdagende route</h2>
+            <div class="route-card__info">
+              <div>
+                <p class="route-card__distance">15 km</p>
+                <p class="route-card__start">Start 17:30</p>
+              </div>
+              <a
+                href="../pdf/route-15km.pdf"
+                class="route-link"
+                download
+                aria-label="Download de uitdagende route (PDF)"
+                >Download</a
+              >
+            </div>
+          </article>
+        </section>
+      </div>
     </main>
   </body>
 </html>

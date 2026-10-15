@@ -1,53 +1,90 @@
-.main-content {
-    display: flex;
-}
-
 .routes-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     flex: 1;
     min-width: 0;
+    max-width: 504px;
+
+    h1 {
+        margin: 0 0 5px;
+        font-size: 32px;
+        color: $brand;
+    }
+}
+
+.routes-description {
+    margin: 0 0 27px;
+    color: #666;
+    font-size: 14px;
 }
 
 .routes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
-    justify-items: center;
-    width: 100%;
-    max-width: 800px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 34px;
 }
 
 .route-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 240px;
+    padding: 12px;
+    background-color: $white;
+    border-radius: 14px;
 
-    .route-image {
-        width: 240px;
-        height: 240px;
-        object-fit: cover;
+    &__name {
+        margin: 0 0 20px;
+        padding: 14px 10px;
+        background-color: #edf2ec;
+        color: $brand;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.2;
     }
 
-    .route-info {
+    &__info {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        width: 100%;
+        justify-content: space-between;
+        gap: 9px;
+        padding: 0 2px 2px 10px;
     }
 
-    .route-description {
-        font-weight: bold;
+    &__distance {
+        margin: 0;
+        color: #222;
+        font-size: 16px;
+        font-weight: 700;
     }
 
-    .route-link {
-        display: inline-block;
-        padding: 6px 14px;
-        text-decoration: none;
-        background-color: $green;
-        color: white;
+    &__start {
+        margin: 5px 0 0;
+        color: $muted;
+        font-size: 12px;
+    }
+}
+
+.route-link {
+    padding: 12px 8px;
+    background-color: $brand;
+    color: $white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken($brand, 6%);
+    }
+
+    &:focus-visible {
+        outline: 3px solid $brand;
+        outline-offset: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .routes-wrapper {
+        max-width: none;
+    }
+
+    .routes-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
