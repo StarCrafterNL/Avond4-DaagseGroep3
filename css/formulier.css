@@ -4,32 +4,52 @@
 
 /* De container staat op mobiel onder elkaar  */
 .form-container { 
-    background-color: #1e293b; 
+    position: relative;         /* nodig zodat de groene balk, het logo en het menu bovenaan kunnen staan */
     width: 100%;
     min-height: 100vh;  /* dit zorgt ervoor dat het scherm altijd word gevuld. */
     display: flex; 
     flex-direction: column;     /* hier word alles onder elkaar gezet op mobiel */
+    gap: 20px;
+    padding: 150px 15px 40px;   /* de 150px bovenin is de ruimte voor de groene balk met logo en menu */
 }
 
-/* sponserbalk staat bovenaan op mobiel met een grid van 4 kollomen zodat het mooi past */
+/* de groene balk bovenaan (logo en menu staan hier bovenop) */
+.form-container::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 130px;
+    background-color: #1f5f3a;
+}
+
+/* sponserbalk is nu een witte kaart en staat op mobiel onder het formulier met een grid van 3 kollomen zodat het mooi past */
 .zijbalk {
-    background-color: #334155; 
-    border-bottom: 1px solid #475569;
-    padding: 15px;
+    order: 2;                   /* onder het formulier */
+    background-color: #ffffff; 
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+    padding: 18px;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 kolommen voor de sponsoren */
+    grid-template-columns: repeat(3, 1fr); /* 3 kolommen voor de sponsoren */
     gap: 10px;
     align-items: center;
     justify-items: center;
 }
 
+/* het logo staat bovenin de groene balk, in een ronde witte cirkel */
 .logo-sport {
-    width: 50px; 
-    height: 50px;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);   /* op mobiel in het midden */
+    width: 44px; 
+    height: 44px;
     background-color: #ffffff;
-    padding: 5px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,41 +63,67 @@
 }
 
 .sponsor-blokje {
+    position: relative;
     width: 100%;
-    max-width: 90px;
     height: 40px;
-    background-color: #475569;
-    border: 1px dashed #94a3b8;
+    background-color: #ffffff;
+    border: 1px solid #cfd6d0;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
-    color: #cbd5e1;
+    font-size: 13px;
+    color: #5b6b61;
 }
 
-/* De inhoudszijde onder de sponsorbalk */
+/* blaadje rechtsboven op elk sponsorblokje, puur met css */
+.sponsor-blokje::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    background-color: #6bbf59;
+    border-radius: 0 100% 0 100%;
+    transform: rotate(-10deg);
+}
+
+/* De inhoudszijde is nu een witte kaart onder de groene balk */
 .hoofd-inhoud {
+    order: 1;                   /* op mobiel staat het formulier bovenaan */
     display: flex;
     flex-direction: column;
-    padding: 20px 15px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+    padding-bottom: 26px;
 }
 
 form {
     max-width: 400px;
-    width: 100%;
+    width: calc(100% - 40px);   /* 20px ruimte aan beide kanten in de kaart */
     margin: 0 auto; /* hier word het dus gecentreertd */
 }
 
+/* de titel is de groene kop van de kaart */
 h2 {
+    background-color: #1f5f3a;
+    color: #ffffff;
+    border-radius: 14px 14px 0 0;
+    padding: 22px 15px;
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 25px;
 }
 
 .form-welkom {
     text-align: center;
-    margin-bottom: 20px;
-    color: #94a3b8;
+    margin: 0 20px 20px;
+    color: #5b6b61;
 }
 
 .form-groep {
@@ -89,23 +135,29 @@ h2 {
 
 .form-groep label {
     font-size: 14px;
+    font-weight: bold;
 }
 
 .form-groep input[type="text"], 
 .form-groep input[type="email"],
 .form-groep input[type="password"] {
-    background-color: #1e293b;
-    border: 1px solid #475569;
-    border-radius: 4px;
-    color: #ffffff;
+    background-color: #e6eae6;
+    border: 1px solid #cfd6d0;
+    border-radius: 6px;
+    color: #1b2b21;
     padding: 12px;
     font-size: 14px;
     width: 100%;
 }
 
-/* heb hier een focus gezet met een blauw randje zodra je op een input veld klikt. */
+.form-groep input::placeholder {
+    color: #7d8a82;
+}
+
+/* heb hier een focus gezet met een groen randje zodra je op een input veld klikt. */
 .form-groep input:focus {
-    outline: 2px solid #38bdf8;
+    outline: 2px solid #6bbf59;
+    background-color: #ffffff;
 }
 
 .nieuwsbrief-optie {
@@ -116,27 +168,36 @@ h2 {
     margin-bottom: 25px;
 }
 
+.nieuwsbrief-optie input {
+    accent-color: #1f5f3a;
+}
+
 button[type="submit"] {
-    background-color: #ffffff;
-    color: #0f172a;
+    background-color: #1f5f3a;
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 14px;
     width: 100%;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2a7a4b;
 }
 
 .form-switch {
     text-align: center;
-    margin-top: 25px;
+    margin: 25px 20px 0;
     font-size: 14px;
 }
 
 .form-switch a {
-    color: #38bdf8;
-    text-decoration: none;
+    color: #1f5f3a;
+    text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -146,36 +207,42 @@ button[type="submit"] {
     /* hier word dus omgfeschakeld naar de grid: zijbalk links , inhoud rechts */
     .form-container {
         display: grid; 
-        grid-template-columns: 150px 1fr; /* eerste kolom is de zijbalk hier en 1fr vult de rest van de ruimte dan in. */
-        height: 100vh;
+        grid-template-columns: 200px 1fr; /* eerste kolom is de zijbalk hier en 1fr vult de rest van de ruimte dan in. */
+        align-items: start;
+        gap: 30px;
+        padding: 130px max(30px, calc((100% - 1100px) / 2)) 40px; /* 130px = groene balk (90px) + ruimte, de max() houdt de inhoud netjes in het midden */
+    }
+
+    .form-container::before {
+        height: 90px;
     }
 
     /* De balk wordt nu een verticale zijbalk */
     .zijbalk {
-        border-bottom: none;
-        border-right: 1px solid #475569;
+        order: 1;
         display: flex;
         flex-direction: column; /*met dit word de sponsoren onder elkaar gezet inplaats van naaste lkaar zoals op mobiel */
         justify-content: flex-start;
-        padding: 20px 0;
-        gap: 0; /* Gap uitzetten, we gebruiken weer margin */
+        padding: 20px;
+        gap: 15px; /* de ruimte tussen de sponsoren */
     }
 
     .logo-sport {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 30px;
+        top: 18px;
+        left: max(30px, calc((100% - 1100px) / 2));  /* logo links in de groene balk */
+        transform: none;
+        width: 54px;
+        height: 54px;
     }
 
     .sponsor-blokje {
-        width: 110px;
+        width: 100%;
         height: 45px;
-        margin-bottom: 15px;
     }
 
     .hoofd-inhoud {
-        padding: 40px;
-        overflow-y: auto;
+        order: 2;
+        margin: 0;              /* formulier staat naast de zijbalk */
     }
 }
 
@@ -186,16 +253,19 @@ button[type="submit"] {
 /*bij dit stuk code word de zijbalk iets brede en de sponsors iets groter en de inhoud krijgt iets meer padding zodat het wat moiern lijkt.*/
 @media (min-width: 1024px) {
     .form-container {
-        grid-template-columns: 180; /* Zijbalk krijgt iets meer ruimte */
+        grid-template-columns: 220px 1fr; /* Zijbalk krijgt iets meer ruimte */
+        gap: 100px;
+        padding-top: 140px;
+    }
+
+    .logo-sport {
+        width: 60px;
+        height: 60px;
+        top: 15px;
     }
 
     .sponsor-blokje {
-        width: 130px;
         height: 50px;
-    }
-
-    .hoofd-inhoud {
-        padding: 60px 80px; 
     }
 
     h2 {

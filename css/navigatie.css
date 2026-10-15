@@ -1,16 +1,17 @@
 /* ==========================================================================
    1. MOBIEL BASIS (Standaard layout - voor schermen tot 767px)
    ========================================================================== */
+
+/* het menu staat in de groene balk bovenaan, onder het logo */
 .navigatie {
+    position: absolute;
+    top: 68px;
+    left: 15px;
+    right: 15px;
     display: flex;
     justify-content: center;   /* netjes starten in het midden*/
     flex-wrap: wrap;           
-    gap: 15px;                 
-    margin-top: 20px;          /* Afstand vanaf de mobiele sponsorbalk */
-    margin-bottom: 30px;       /* Afstand tot het formulier */
-    padding-bottom: 15px;      
-    border-bottom: 1px solid #334155; 
-    width: 100%;               
+    gap: 6px 15px;             
 }
 
 .navigatie a {
@@ -22,20 +23,34 @@
     transition: color 0.2s;    
 }
 
-/* heb heir een effect toegevoeg word blauw als je met je muis over de navigatie gaat */
+/* heb heir een effect toegevoeg word licht groen als je met je muis over de navigatie gaat */
 .navigatie a:hover {
-    color: #38bdf8;            
+    color: #6bbf59;            
 }
 
 /* ==========================================================================
-   2. 💻 TABLET & DESKTOP BREAKPOINT (Vanaf 768px en groter)
+   2. TABLET & DESKTOP BREAKPOINT (Vanaf 768px en groter)
    ========================================================================== */
 @media (min-width: 768px) {
+    /* het menu staat nu rechts in de groene balk, naast het logo */
     .navigatie {
-        justify-content: center; /* Jouw wens: houdt het menu ook op desktop in het midden */
-        gap: 35px;               /* Luxe, brede ademruimte tussen de links */
-        margin-top: 0;           /* Geen top-margin nodig, de zijbalk staat nu links */
-        margin-bottom: 60px;     /* Meer afstand tot het formulier op grote schermen */
+        top: 0;
+        left: auto;
+        right: max(390px, calc((100% - 1100px) / 2));
+        height: 90px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 25px;               
+    }
+
+    .navigatie a {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navigatie {
+        gap: 35px;
     }
 
     .navigatie a {
