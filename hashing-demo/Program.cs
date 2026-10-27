@@ -1,26 +1,23 @@
 ﻿using System;
+using Avond4Daagse.Services;
 
 class Program
 {
     static void Main()
     {
-        Console.WriteLine("=== DEMO: WACHTWOORD HASHING (BCRYPT) ===");
+        Console.WriteLine("=== TEST PASSWORD SERVICE ===");
 
-        string pass = "Welkom123!";
-        Console.WriteLine($"Wachtwoord: {pass}");
+        string wachtwoord = "Welkom123!";
 
-        // Twee keer hashen toont automatische salt aan
-        string hash1 = BCrypt.Net.BCrypt.HashPassword(pass);
-        string hash2 = BCrypt.Net.BCrypt.HashPassword(pass);
+        // 1. Hashen via de service
+        string hash = PasswordService.Hash(wachtwoord);
+        Console.WriteLine($"Gegenereerde Hash: {hash}");
 
-        Console.WriteLine($"Hash 1: {hash1}");
-        Console.WriteLine($"Hash 2: {hash2}");
+        // 2. Verifiëren via de service
+        bool checkGoed = PasswordService.Verify("Welkom123!", hash);
+        bool checkFout = PasswordService.Verify("FoutWachtwoord", hash);
 
-        // Verificatie
-        bool kloptWel = BCrypt.Net.BCrypt.Verify("Welkom123!", hash1);
-        bool kloptNiet = BCrypt.Net.BCrypt.Verify("FoutWachtwoord", hash1);
-
-        Console.WriteLine($"Check 'Welkom123!': {kloptWel}");
-        Console.WriteLine($"Check 'FoutWachtwoord': {kloptNiet}");
+        Console.WriteLine($"Check correct: {checkGoed}"); // Moet True zijn
+        Console.WriteLine($"Check incorrect: {checkFout}"); // Moet False zijn
     }
 }
