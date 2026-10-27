@@ -1,0 +1,31 @@
+@model Avond4Daagse.Models.RegisterViewModel
+
+<h2>Registreren</h2>
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" style="color: red;"></div>
+
+    <div>
+        <label asp-for="Name">Naam</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email">E-mailadres</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" style="color: red;"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password">Wachtwoord</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password" style="color: red;"></span>
+    </div>
+
+    <button type="submit">Account aanmaken</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

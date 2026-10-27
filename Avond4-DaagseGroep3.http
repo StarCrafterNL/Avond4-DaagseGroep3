@@ -1,0 +1,6 @@
+@Avond4_DaagseGroep3_HostAddress = http://localhost:5095
+
+GET {{Avond4_DaagseGroep3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
