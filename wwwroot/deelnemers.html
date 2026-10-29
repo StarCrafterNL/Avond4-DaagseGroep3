@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avond 4-daagse - Deelnemerslijst</title>
+    <link rel="stylesheet" href="/dbteststyle.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/testdata.html">📝 Terug naar Inschrijven</a>
+        <a href="/deelnemers.html">👥 Deelnemerslijst verversen</a>
+    </nav>
+
+    <div class="card">
+        <div class="header-bar">
+            <h1>Ingeschreven Wandelaars</h1>
+            <button class="btn-refresh" onclick="laadDeelnemers()">🔄 Verversen</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Naam</th>
+                    <th>E-mail</th>
+                    <th>Afstand</th>
+                    <th>Inschrijfdatum</th>
+                </tr>
+            </thead>
+            <tbody id="deelnemersTbody">
+                <tr><td colspan="5">Deelnemers ophalen uit SQL Server...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    const tbody = document.getElementById('deelnemersTbody');
+
+    async function laadDeelnemers() {
+        tbody.innerHTML = '<tr><td colspan="5">Deelnemers ophalen...</td></tr>';
+        try {
+            const res = await fetch('/api/deelnemers');
+            const data = await res.json();
+
+            // Tip: bekijk in de F12 console hoe de data er precies uitziet
+            console.log('Ontvangen data:', data);
+
+            tbody.innerHTML = '';
+            if (!data || data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5">Er zijn nog geen inschrijvingen in de database.</td></tr>';
+                return;
+            }
+
+            data.forEach(d => {
+                const tr = document.createElement('tr');
+                
+                // Ondersteunt zowel kleine letters (C# JSON default) als hoofdletters
+                const id = d.id ?? d.Id ?? '';
+                const naam = d.naam ?? d.Naam ?? '';
+                const email = d.email ?? d.Email ?? '';
+                const afstand = d.afstandKm ?? d.AfstandKm ?? '';
+                const datumRaw = d.inschrijfDatum ?? d.InschrijfDatum;
+                const datum = datumRaw ? new Date(datumRaw).toLocaleDateString('nl-NL') : '-';
+
+                tr.innerHTML = `
+                    <td>${id}</td>
+                    <td>${naam}</td>
+                    <td>${email}</td>
+                    <td>${afstand} km</td>
+                    <td>${datum}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error('Fout bij ophalen:', err);
+            tbody.innerHTML = '<tr><td colspan="5" style="color:red;">Fout bij het ophalen van data.</td></tr>';
+        }
+    }
+
+    // Direct laden bij openen
+    laadDeelnemers();
+</script>
+</body>
+</html>
