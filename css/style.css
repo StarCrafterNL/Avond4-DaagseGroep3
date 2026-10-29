@@ -1537,3 +1537,176 @@ a.home-info-card:hover {
     font-style: normal;
     letter-spacing: -1px;
 }
+
+/* EVENT SEARCH RESULTS */
+
+.event-results {
+    margin-top: 32px;
+}
+
+.event-results h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.event-card {
+    background-color: #ffffff;
+    border: 1px solid #dfe5df;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.event-card h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+.event-card p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.event-details-button {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 18px;
+    background-color: #476f4d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.event-details-button:hover {
+    background-color: #365a3c;
+}
+/* EVENT DETAIL PAGE */
+
+.event-detail-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 30px 80px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #476f4d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.event-detail-card {
+    background-color: #ffffff;
+    border: 1px solid #dfe5df;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.event-detail-card h1 {
+    font-size: 40px;
+    margin: 8px 0 15px;
+}
+
+.event-intro {
+    max-width: 650px;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.event-detail-info {
+    padding: 25px 0;
+    border-top: 1px solid #dfe5df;
+    border-bottom: 1px solid #dfe5df;
+}
+
+.event-detail-info h2,
+.event-detail-section h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.event-detail-info p {
+    margin: 12px 0;
+    font-size: 17px;
+}
+
+.event-detail-section {
+    padding-top: 30px;
+}
+
+.event-detail-section p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* TABLET / MOBILE */
+
+@media (max-width: 768px) {
+
+    .event-detail-main {
+        padding: 30px 20px 60px;
+    }
+
+    .event-detail-card {
+        padding: 25px;
+    }
+
+    .event-detail-card h1 {
+        font-size: 30px;
+    }
+
+    .event-intro {
+        font-size: 16px;
+    }
+}
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+select,
+input,
+button {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow: hidden;
+    }
+
+    .hero-content,
+    .hero-visual,
+    .event-search,
+    .event-results {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero-content h1,
+    .hero-description,
+    .hero-text {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
