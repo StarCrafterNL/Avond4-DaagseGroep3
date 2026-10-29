@@ -35,25 +35,26 @@
     /* het menu staat nu rechts in de groene balk, naast het logo */
     .navigatie {
         top: 0;
-        left: auto;
-        right: max(390px, calc((100% - 1100px) / 2));
         height: 90px;
+        left: calc(max(30px, (100% - 1100px) / 2) + 54px + 25px);  /* logo-positie + logobreedte + ruimte */
+        right: max(30px, calc((100% - 1100px) / 2));
         align-items: center;
         justify-content: flex-end;
-        gap: 25px;               
+        gap: 6px 18px;
     }
 
     .navigatie a {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
 @media (min-width: 1024px) {
     .navigatie {
         gap: 35px;
+        left: calc(max(30px, (100% - 1100px) / 2) + 60px + 25px);  /* logo is hier 60px breed */
     }
 
     .navigatie a {
-        font-size: 20px;         /* De grote letters (20px) voor computerschermen */
+        font-size: 20px;
     }
 }
