@@ -1,15 +1,8 @@
 @import "variables";
-@import "sidebar";
 @import "routes";
 @import "handboek";
 @import "draaiboek";
-@import "navigatie";
-
-body {
-    padding: 0;
-    margin: 0;
-    background-color: $gray;
-}
+@import "../clientapp/src/pages/info-pages";
 
 .main-content {
     display: flex;

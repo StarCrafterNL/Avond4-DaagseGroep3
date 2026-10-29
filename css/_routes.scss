@@ -62,7 +62,7 @@
 .route-link {
     padding: 16px 20px;
     background-color: $brand;
-    color: $white;
+    color: $white !important;
     border-radius: 8px;
     font-size: 17px;
     font-weight: 700;
