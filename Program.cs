@@ -1,40 +1,51 @@
-using Avond4DaagseEfCore.Data;
 using Microsoft.EntityFrameworkCore;
+using Avond4DaagseEfCore.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registreer DbContext met de SQL Server connection string
+// 1. Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// 2. Database context (lokaal in-memory)
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase("Avond4DaagseDb"));
+
+// 3. Beveiligde cookie-configuratie 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+});
+
+// Cookie policy voor algemene sessies/cookies
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
+    options.Secure = CookieSecurePolicy.Always;
+});
 
 var app = builder.Build();
 
-// Serveer HTML/CSS vanuit wwwroot
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-// GET: Alle deelnemers ophalen
-app.MapGet("/api/deelnemers", async (AppDbContext db) =>
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
 {
-    var deelnemers = await db.Deelnemers
-        .OrderByDescending(d => d.Id)
-        .ToListAsync();
-    return Results.Ok(deelnemers);
-});
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
-// POST: Deelnemer opslaan
-app.MapPost("/api/deelnemers", async (AppDbContext db, Deelnemer deelnemer) =>
-{
-    if (string.IsNullOrWhiteSpace(deelnemer.Naam) || string.IsNullOrWhiteSpace(deelnemer.Email))
-    {
-        return Results.BadRequest(new { error = "Vul alle velden in." });
-    }
+// 4. Forceer HTTPS voor veilige dataoverdracht 
+app.UseHttpsRedirection();
+app.UseCookiePolicy();
 
-    deelnemer.InschrijfDatum = DateTime.Now;
-    db.Deelnemers.Add(deelnemer);
-    await db.SaveChangesAsync();
+app.UseRouting();
+app.UseAuthorization();
 
-    return Results.Created($"/api/deelnemers/{deelnemer.Id}", deelnemer);
-});
+app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
 
 app.Run();
