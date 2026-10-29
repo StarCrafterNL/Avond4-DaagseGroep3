@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aanmelden | Avond4daagse</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigatie -->
+    <header>
+        <nav>
+            <a href="/index.html" class="logo">
+                Avond4daagse
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#">Routes</a></li>
+                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
+                <li><a href="#">Handboek</a></li>
+                <li><a href="/clientapp/src/pages/contact.html">Contact</a></li>
+                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
+                <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
+                <li><a href="/clientapp/src/pages/aanmeldpagina.html" class="active">Aanmelden</a></li>
+                <li><a href="/index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="home-main">
+
+
+        <!-- HERO / HEADER SECTION -->
+        <section class="home-hero">
+
+            <div class="hero-content">
+
+                <p class="hero-label">
+                    Aanmelden
+                </p>
+
+                <h1>
+                    Meld je aan voor de <span class="avond4daagse-title">Avond4daagse</span>
+                </h1>
+
+                <p class="hero-description">
+                    Vul het onderstaande formulier in om een account aan te maken en je aan te melden.
+                </p>
+
+            </div>
+
+            <!-- HERO IMAGE -->
+            <div class="hero-visual">
+                <img
+                    src="/image/homepage.jpg"
+                    alt="Hardloop foto"
+                    class="hero-image"
+                >
+            </div>
+
+        </section>
+
+
+        <!-- FORMULIER SECTION -->
+        <section class="home-section">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    Formulier
+                </p>
+
+                <h2>
+                    Aanmeldingsformulier
+                </h2>
+
+            </div>
+
+            <div class="form-wrapper">
+
+                <form action="/verwerk-registratie" method="POST" class="event-form">
+
+                    <div class="search-field">
+                        <label for="naam">Volledige naam:</label>
+                        <input type="text" id="naam" name="naam" required placeholder="Jan Jansen">
+                    </div>
+
+                    <div class="search-field">
+                        <label for="email">E-mailadres:</label>
+                        <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl">
+                    </div>
+
+                    <div class="search-field">
+                        <label for="toelichting">Toelichting voor vrijwilligers (waarom ben je geschikt?):</label>
+                        <textarea id="toelichting" name="toelichting" rows="4" placeholder="Typ hier je toelichting..."></textarea>
+                    </div>
+
+                    <div class="checkbox-field">
+                        <input type="checkbox" id="nieuwsbrief" name="nieuwsbrief">
+                        <label for="nieuwsbrief">Ja, ik wil mijzelf aanmelden voor de nieuwsbrief.</label>
+                    </div>
+
+                    <button type="submit" class="search-button">
+                        Account aanmaken →
+                    </button>
+
+                </form>
+
+                <p class="form-switch">
+                    Heb je al een account? <a href="/clientapp/src/pages/inlogpagina.html">Log hier in</a>.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SPONSOREN -->
+        <section class="home-sponsors">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    Met dank aan
+                </p>
+
+                <h2>
+                    Sponsoren
+                </h2>
+
+                <p>
+                    De Avond4daagse wordt mede mogelijk gemaakt door onze sponsoren.
+                </p>
+
+            </div>
+
+            <div class="home-sponsor-grid">
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+                <div class="home-sponsor">
+                    Sponsor
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>
+                    Avond4daagse
+                </h3>
+
+                <p>
+                    Samen wandelen, bewegen en genieten.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="/index.html">Home</a>
+                <a href="#">Routes</a>
+                <a href="/clientapp/src/pages/aanmeldpagina.html">Inschrijven</a>
+                <a href="#">Handboek</a>
+                <a href="/clientapp/src/pages/reglement.html">Reglement</a>
+                <a href="/clientapp/src/pages/contact.html">Contact</a>
+                <a href="/clientapp/src/pages/privacy.html">Privacy</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Avond4daagse
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
