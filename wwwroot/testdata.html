@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avond 4-daagse - Inschrijven</title>
+    <link rel="stylesheet" href="dbteststyle.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/wwwroot/testdata.html">📝 Inschrijven</a>
+        <a href="/wwwroot/deelnemers.html">👥 Bekijk Deelnemerslijst</a>
+    </nav>
+
+    <div class="card">
+        <h1>Inschrijven Avond 4-daagse</h1>
+        <form id="inschrijfForm">
+            <label for="naam">Naam:</label>
+            <input type="text" id="naam" placeholder="Bijv. Jan Jansen" required>
+
+            <label for="email">E-mailadres:</label>
+            <input type="email" id="email" placeholder="jan@example.com" required>
+
+            <label for="afstand">Afstand:</label>
+            <select id="afstand">
+                <option value="5">5 km</option>
+                <option value="10">10 km</option>
+                <option value="15">15 km</option>
+            </select>
+
+            <button type="submit">Inschrijving Versturen</button>
+            <div id="status" class="status-msg"></div>
+        </form>
+    </div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+
+        document.getElementById('inschrijfForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            statusDiv.textContent = 'Bezig met opslaan...';
+            statusDiv.style.color = '#555';
+
+            const payload = {
+                naam: document.getElementById('naam').value,
+                email: document.getElementById('email').value,
+                afstandKm: parseInt(document.getElementById('afstand').value)
+            };
+
+            try {
+                const res = await fetch('/api/deelnemers', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    statusDiv.textContent = 'Succesvol opgeslagen in de database!';
+                    statusDiv.style.color = 'green';
+                    document.getElementById('inschrijfForm').reset();
+                } else {
+                    statusDiv.textContent = 'Er ging iets mis bij het opslaan.';
+                    statusDiv.style.color = 'red';
+                }
+            } catch (err) {
+                statusDiv.textContent = 'Kan geen verbinding maken met de server.';
+                statusDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

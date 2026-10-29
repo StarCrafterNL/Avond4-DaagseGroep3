@@ -1,0 +1,1712 @@
+/* =========================================================
+   AVOND4DAAGSE - COMPLETE STYLESHEET
+   ========================================================= */
+
+
+/* =========================================================
+   1. ALGEMENE STYLING
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f5f7f3;
+    color: #26332b;
+}
+
+a {
+    transition: 0.2s;
+}
+
+
+/* =========================================================
+   2. HEADER EN NAVIGATIE
+   ========================================================= */
+
+.site-header,
+header {
+    width: 100%;
+
+    background-color: #2f6b45;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.main-nav,
+nav {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 75px;
+
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.logo {
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+/* Navigatie */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    display: inline-block;
+
+    padding: 9px 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+
+/* Actieve pagina */
+
+.nav-links a.active {
+    border-bottom: 3px solid #ffffff;
+}
+
+
+/* =========================================================
+   3. HOMEPAGE BASIS
+   ========================================================= */
+
+.home-main {
+    width: 100%;
+
+    background-color: #f5f7f3;
+}
+
+
+/* =========================================================
+   4. HOMEPAGE HERO
+   ========================================================= */
+
+.home-hero {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 65px 30px 70px 30px;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+
+.hero-content {
+    width: 100%;
+    max-width: 650px;
+}
+
+
+.hero-label {
+    margin: 0 0 10px 0;
+
+    color: #2f6b45;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.hero-content h1 {
+    margin: 0 0 22px 0;
+
+    color: #26332b;
+
+    font-size: 58px;
+    line-height: 1.05;
+}
+
+
+.hero-content h1 span {
+    display: block;
+
+    color: #2f6b45;
+}
+
+
+.hero-description {
+    max-width: 580px;
+
+    margin: 0 0 30px 0;
+
+    color: #58645b;
+
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   5. HOMEPAGE KNOPPEN
+   ========================================================= */
+
+.hero-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 38px;
+}
+
+
+.home-button {
+    display: inline-block;
+
+    padding: 14px 25px;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.primary-button {
+    background-color: #2f6b45;
+
+    color: #ffffff;
+}
+
+
+.primary-button:hover {
+    background-color: #245437;
+}
+
+
+.secondary-button {
+    background-color: #ffffff;
+
+    border: 2px solid #2f6b45;
+
+    color: #2f6b45;
+}
+
+
+.secondary-button:hover {
+    background-color: #e8efe9;
+}
+
+
+/* =========================================================
+   6. EVENEMENTINFORMATIE
+   ========================================================= */
+
+.event-information {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+
+.event-info-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.event-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #e5eee7;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+}
+
+
+.event-info-item strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #26332b;
+
+    font-size: 15px;
+}
+
+
+.event-info-item p {
+    margin: 0;
+
+    color: #667069;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   7. HERO AFBEELDING / PLACEHOLDER
+   ========================================================= */
+
+.hero-visual {
+    width: 100%;
+}
+
+
+.hero-image-placeholder {
+    width: 100%;
+    min-height: 420px;
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f8160,
+            #2f6b45
+        );
+
+    border-radius: 18px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+.hero-image-placeholder span {
+    margin-bottom: 10px;
+
+    font-size: 32px;
+    font-weight: bold;
+}
+
+
+.hero-image-placeholder p {
+    margin: 0;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   8. ALGEMENE HOMEPAGE SECTIES
+   ========================================================= */
+
+.home-section,
+.important-section,
+.home-sponsors {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 30px;
+}
+
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 35px;
+}
+
+
+.section-label {
+    margin: 0 0 8px 0;
+
+    color: #2f6b45;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.section-heading h2,
+.about-home-content h2 {
+    margin: 0 0 12px 0;
+
+    color: #26332b;
+
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+
+.section-heading > p:last-child {
+    margin: 0;
+
+    color: #667069;
+
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   9. HOMEPAGE INFORMATIEKAARTEN
+   ========================================================= */
+
+.home-info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.home-info-card {
+    min-height: 265px;
+
+    padding: 28px;
+
+    display: block;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e0e5e1;
+    border-radius: 12px;
+
+    color: #26332b;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+
+a.home-info-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #b9cbbd;
+
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.home-card-icon {
+    width: 52px;
+    height: 52px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #e5eee7;
+
+    border-radius: 10px;
+
+    font-size: 24px;
+}
+
+
+.home-info-card h3 {
+    margin: 0 0 12px 0;
+
+    color: #2f6b45;
+
+    font-size: 20px;
+}
+
+
+.home-info-card p {
+    margin: 0;
+
+    color: #667069;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+.card-link {
+    display: block;
+
+    margin-top: 20px;
+
+    color: #2f6b45;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   10. OVER DE AVOND4DAAGSE
+   ========================================================= */
+
+.about-home-section {
+    width: calc(100% - 60px);
+    max-width: 1140px;
+
+    margin: 40px auto;
+
+    padding: 55px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 0.8fr;
+
+    gap: 60px;
+
+    align-items: center;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e5e9e6;
+    border-radius: 16px;
+
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+}
+
+
+.about-home-content p:not(.section-label) {
+    color: #667069;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+.about-home-content .home-button {
+    margin-top: 15px;
+}
+
+
+.about-home-visual {
+    width: 100%;
+}
+
+
+.about-image-placeholder {
+    width: 100%;
+    min-height: 330px;
+
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dfe9e1,
+            #c8d9cc
+        );
+
+    border-radius: 14px;
+
+    color: #2f6b45;
+
+    font-size: 25px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   11. BELANGRIJKE DATA
+   ========================================================= */
+
+.important-section {
+    padding-top: 80px;
+}
+
+
+.important-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+.important-card {
+    padding: 28px;
+
+    display: flex;
+
+    gap: 20px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e0e5e1;
+    border-radius: 12px;
+}
+
+
+.important-number {
+    min-width: 52px;
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #2f6b45;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.important-card h3 {
+    margin: 3px 0 8px 0;
+
+    color: #26332b;
+
+    font-size: 19px;
+}
+
+
+.important-card p {
+    margin: 0;
+
+    color: #667069;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   12. CALL TO ACTION
+   ========================================================= */
+
+.home-cta {
+    width: calc(100% - 60px);
+    max-width: 1140px;
+
+    margin: 40px auto 20px auto;
+
+    padding: 45px 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    background-color: #2f6b45;
+
+    border-radius: 16px;
+
+    color: #ffffff;
+}
+
+
+.cta-small {
+    margin: 0 0 5px 0;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    opacity: 0.8;
+}
+
+
+.home-cta h2 {
+    margin: 0 0 8px 0;
+
+    font-size: 31px;
+}
+
+
+.home-cta p {
+    margin: 0;
+
+    line-height: 1.6;
+}
+
+
+.cta-button {
+    flex-shrink: 0;
+
+    padding: 14px 28px;
+
+    background-color: #ffffff;
+
+    border-radius: 7px;
+
+    color: #2f6b45;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+.cta-button:hover {
+    background-color: #eef3ee;
+}
+
+
+/* =========================================================
+   13. HOMEPAGE SPONSOREN
+   ========================================================= */
+
+.home-sponsors {
+    padding-bottom: 80px;
+}
+
+
+.home-sponsor-grid {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 18px;
+}
+
+
+.home-sponsor {
+    min-height: 100px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffffff;
+
+    border: 1px solid #d8dfd9;
+    border-radius: 10px;
+
+    color: #667069;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   14. FOOTER
+   ========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    margin-top: 20px;
+
+    background-color: #26332b;
+
+    color: #ffffff;
+}
+
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 30px 35px 30px;
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 40px;
+}
+
+
+.footer-container h3 {
+    margin: 0 0 8px 0;
+
+    font-size: 23px;
+}
+
+
+.footer-container p {
+    margin: 0;
+
+    color: #cbd4cd;
+}
+
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 22px;
+}
+
+
+.footer-links a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+
+.footer-bottom {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px 30px;
+
+    border-top: 1px solid #46534a;
+}
+
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #aeb9b1;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   15. CONTACTPAGINA
+   ========================================================= */
+
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 50px auto;
+
+    padding: 0 30px;
+
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    gap: 55px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   16. SPONSOREN SIDEBAR
+   ========================================================= */
+
+.sponsors {
+    padding: 25px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.sponsors h2 {
+    margin: 0 0 20px 0;
+
+    color: #2f6b45;
+
+    font-size: 21px;
+}
+
+
+.sponsor {
+    min-height: 80px;
+
+    margin-bottom: 16px;
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f8faf7;
+
+    border: 1px solid #d8dfd9;
+    border-radius: 8px;
+
+    color: #667069;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+.sponsor:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   17. CONTACTGEDEELTE
+   ========================================================= */
+
+.contact-section {
+    width: 100%;
+    max-width: 700px;
+}
+
+
+.contact-section h1 {
+    margin: 0 0 10px 0;
+
+    color: #2f6b45;
+
+    font-size: 38px;
+    line-height: 1.2;
+}
+
+
+.contact-intro {
+    max-width: 620px;
+
+    margin: 0 0 30px 0;
+
+    color: #58645b;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   18. CONTACTFORMULIER
+   ========================================================= */
+
+.contact-form {
+    width: 100%;
+
+    padding: 35px;
+
+    background-color: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #26332b;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #b8c3ba;
+    border-radius: 7px;
+
+    color: #26332b;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #8a948c;
+}
+
+
+.form-group textarea {
+    min-height: 160px;
+
+    resize: vertical;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    border-color: #2f6b45;
+
+    box-shadow: 0 0 0 3px rgba(47, 107, 69, 0.15);
+}
+
+
+/* =========================================================
+   19. CONTACT VERZENDKNOP
+   ========================================================= */
+
+.submit-button {
+    min-width: 150px;
+
+    padding: 13px 26px;
+
+    background-color: #2f6b45;
+
+    border: none;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+}
+
+
+.submit-button:hover {
+    background-color: #245437;
+}
+
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   20. TOEGANKELIJKHEID / FOCUS
+   ========================================================= */
+
+.submit-button:focus-visible,
+.nav-links a:focus-visible,
+.logo:focus-visible,
+.home-button:focus-visible,
+.cta-button:focus-visible,
+.home-info-card:focus-visible {
+    outline: 3px solid #f4c95d;
+
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   21. TABLET - MAX 1000PX
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .home-hero {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+
+    .hero-image-placeholder {
+        min-height: 320px;
+    }
+
+
+    .home-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .about-home-section {
+        grid-template-columns: 1fr;
+    }
+
+
+    .important-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-sponsor-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   22. TABLET / KLEINE LAPTOP - MAX 900PX
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .main-nav,
+    nav {
+        padding: 0 22px;
+    }
+
+
+    .nav-links {
+        gap: 16px;
+
+        flex-wrap: wrap;
+
+        justify-content: flex-end;
+    }
+
+
+    .page-container {
+        grid-template-columns: 180px 1fr;
+
+        gap: 30px;
+
+        padding: 0 22px;
+    }
+
+}
+
+
+/* =========================================================
+   23. MOBIEL - MAX 700PX
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Navigatie */
+
+    .main-nav,
+    nav {
+        padding: 20px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+
+    .nav-links {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        justify-content: flex-start;
+
+        gap: 12px 20px;
+    }
+
+
+    /* Homepage hero */
+
+    .home-hero {
+        padding: 45px 20px;
+    }
+
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+
+    .hero-description {
+        font-size: 17px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+
+    .home-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .event-information {
+        flex-direction: column;
+    }
+
+
+    /* Homepage sections */
+
+    .home-section,
+    .important-section,
+    .home-sponsors {
+        padding: 50px 20px;
+    }
+
+
+    .section-heading h2,
+    .about-home-content h2 {
+        font-size: 29px;
+    }
+
+
+    .home-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* About */
+
+    .about-home-section {
+        width: auto;
+
+        margin: 20px;
+
+        padding: 30px 22px;
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-image-placeholder {
+        min-height: 230px;
+    }
+
+
+    /* Belangrijke data */
+
+    .important-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CTA */
+
+    .home-cta {
+        width: auto;
+
+        margin: 20px;
+
+        padding: 35px 25px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .cta-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    /* Sponsors */
+
+    .home-sponsor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* Contact */
+
+    .page-container {
+        margin: 30px auto;
+
+        padding: 0 20px;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .contact-section {
+        order: 1;
+
+        max-width: 100%;
+    }
+
+
+    .sponsors {
+        order: 2;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .sponsors h2 {
+        grid-column: 1 / -1;
+    }
+
+
+    .sponsor {
+        margin: 0;
+    }
+
+
+    .contact-section h1 {
+        font-size: 32px;
+    }
+
+
+    .contact-form {
+        padding: 25px 20px;
+    }
+
+
+    .submit-button {
+        width: 100%;
+    }
+
+
+    /* Footer */
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   24. KLEINE MOBIELE SCHERMEN
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .nav-links {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+
+    .home-sponsor-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .important-card {
+        flex-direction: column;
+    }
+
+
+    .sponsors {
+        grid-template-columns: 1fr;
+    }
+
+
+    .contact-section h1 {
+        font-size: 28px;
+    }
+
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+/* Homepage - event zoeken */
+
+.home-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    margin-bottom: 12px;
+}
+
+.hero-text {
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.event-search {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.search-field label {
+    font-weight: 600;
+    color: #26332b;
+}
+
+.search-field select,
+.search-field input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d8dfd9;
+    border-radius: 8px;
+    background: white;
+    font: inherit;
+    color: #26332b;
+    box-sizing: border-box;
+}
+
+.search-field select:focus,
+.search-field input:focus {
+    outline: 2px solid #2f6b45;
+    outline-offset: 2px;
+}
+
+.search-button {
+    grid-column: 1 / -1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2f6b45;
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.search-button:hover {
+    opacity: 0.9;
+}
+
+.hero-visual {
+    min-height: 300px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .home-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .event-search {
+        grid-template-columns: 1fr;
+    }
+
+    .search-button {
+        grid-column: auto;
+    }
+
+    .hero-visual {
+        min-height: 220px;
+    }
+}
+.avond4daagse-title {
+    display: block;
+    color: #2f6b45;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: -1px;
+}
+
+/* EVENT SEARCH RESULTS */
+
+.event-results {
+    margin-top: 32px;
+}
+
+.event-results h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.event-card {
+    background-color: #ffffff;
+    border: 1px solid #dfe5df;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.event-card h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+.event-card p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.event-details-button {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 18px;
+    background-color: #476f4d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.event-details-button:hover {
+    background-color: #365a3c;
+}
+/* EVENT DETAIL PAGE */
+
+.event-detail-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 30px 80px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #476f4d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.event-detail-card {
+    background-color: #ffffff;
+    border: 1px solid #dfe5df;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.event-detail-card h1 {
+    font-size: 40px;
+    margin: 8px 0 15px;
+}
+
+.event-intro {
+    max-width: 650px;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.event-detail-info {
+    padding: 25px 0;
+    border-top: 1px solid #dfe5df;
+    border-bottom: 1px solid #dfe5df;
+}
+
+.event-detail-info h2,
+.event-detail-section h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.event-detail-info p {
+    margin: 12px 0;
+    font-size: 17px;
+}
+
+.event-detail-section {
+    padding-top: 30px;
+}
+
+.event-detail-section p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* TABLET / MOBILE */
+
+@media (max-width: 768px) {
+
+    .event-detail-main {
+        padding: 30px 20px 60px;
+    }
+
+    .event-detail-card {
+        padding: 25px;
+    }
+
+    .event-detail-card h1 {
+        font-size: 30px;
+    }
+
+    .event-intro {
+        font-size: 16px;
+    }
+}
+
+/* Prevent horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+select,
+input,
+button {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow: hidden;
+    }
+
+    .hero-content,
+    .hero-visual,
+    .event-search,
+    .event-results {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero-content h1,
+    .hero-description,
+    .hero-text {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}

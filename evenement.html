@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evenement | Avond4daagse</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="main-nav">
+
+            <a href="index.html" class="logo">
+                Avond4daagse
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Routes</a></li>
+                <li><a href="#">Inschrijven</a></li>
+                <li><a href="#">Handboek</a></li>
+                <li><a href="#">Reglement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <main class="event-detail-main">
+
+        <a href="index.html" class="back-link">
+            ← Terug naar evenementen
+        </a>
+
+        <section class="event-detail-card">
+
+    <p class="section-label">Evenement</p>
+
+    <h1 id="event-name">Avond4daagse</h1>
+
+    <p class="event-intro">
+        Bekijk alle informatie over dit Avond4daagse-evenement
+        en schrijf je in om mee te doen.
+    </p>
+
+    <div class="event-detail-info">
+
+        <h2>Evenementinformatie</h2>
+
+        <p>
+            <strong>Organisatie:</strong>
+            <span id="event-organisation"></span>
+        </p>
+
+        <p>
+            <strong>Datum:</strong>
+            <span id="event-date"></span>
+        </p>
+
+        <p>
+            <strong>Locatie:</strong>
+            <span id="event-location"></span>
+        </p>
+
+    </div>
+
+    <div class="event-detail-section">
+
+        <h2>Meedoen?</h2>
+
+        <p>
+            Wil je deelnemen aan deze Avond4daagse?
+            Schrijf je dan in voor het evenement.
+        </p>
+
+        <a href="clientapp/src/pages/aanmeldpagina.html" class="event-details-button">
+    Inschrijven →
+</a>
+
+    </div>
+
+</section>
+    </main>
+<script>
+    const events = {
+        "den-haag": {
+            name: "Avond4daagse Den Haag",
+            organisation: "Stichting Avond4daagse Den Haag",
+            date: "2 t/m 5 juni 2027",
+            location: "Den Haag"
+        },
+
+        "leiden": {
+            name: "Avond4daagse Leiden",
+            organisation: "Stichting Avond4daagse Leiden",
+            date: "8 t/m 11 juni 2027",
+            location: "Leiden"
+        },
+
+        "rotterdam": {
+            name: "Avond4daagse Rotterdam",
+            organisation: "Avond4daagse Rotterdam",
+            date: "15 t/m 18 juni 2027",
+            location: "Rotterdam"
+        },
+
+        "delft": {
+            name: "Avond4daagse Delft",
+            organisation: "Stichting Avond4daagse Delft",
+            date: "21 t/m 24 juni 2027",
+            location: "Delft"
+        }
+    };
+
+    const parameters = new URLSearchParams(window.location.search);
+    const locationName = parameters.get("location");
+
+    const selectedEvent = events[locationName];
+
+    if (selectedEvent) {
+        document.getElementById("event-name").textContent =
+            selectedEvent.name;
+
+        document.getElementById("event-organisation").textContent =
+            selectedEvent.organisation;
+
+        document.getElementById("event-date").textContent =
+            selectedEvent.date;
+
+        document.getElementById("event-location").textContent =
+            selectedEvent.location;
+    }
+</script>
+</body>
+
+</html>
