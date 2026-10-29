@@ -12,26 +12,23 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <nav class="main-nav">
-
-            <a href="homepage.html" class="logo">
+    <!-- Navigatie -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
                 Avond4daagse
             </a>
 
             <ul class="nav-links">
-                <li><a href="homepage.html" class="active">Home</a></li>
                 <li><a href="#">Routes</a></li>
-                <li><a href="#">Inschrijven</a></li>
+                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
                 <li><a href="#">Handboek</a></li>
-                <li><a href="#">Reglement</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="#">Privacy</a></li>
-                <a href="aanmeldpagina.html">Aanmelden</a> 
-                <a href="inlogpagina.html">Login</a>  
+                <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
+                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
+                <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
+                <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
             </ul>
-
         </nav>
     </header>
 
@@ -80,7 +77,16 @@
     </button>
 
 </form>
+<!-- ZOEKRESULTATEN -->
+<div id="event-results" class="event-results" hidden>
 
+    <h2>Beschikbare evenementen</h2>
+
+    <div id="event-list">
+        <!-- Evenementen worden hier getoond -->
+    </div>
+
+</div>
             </div>
 
 
@@ -350,12 +356,12 @@
 
             <div class="footer-links">
 
-                <a href="homepage.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="#">Routes</a>
                 <a href="#">Inschrijven</a>
                 <a href="#">Handboek</a>
                 <a href="#">Reglement</a>
-                <a href="contact.html">Contact</a>
+                <a href="#">Contact</a>
                 <a href="#">Privacy</a>
 
             </div>
@@ -372,7 +378,77 @@
         </div>
 
     </footer>
+<script>
+    const events = [
+        {
+            location: "den-haag",
+            name: "Avond4daagse Den Haag",
+            organisation: "Stichting Avond4daagse Den Haag",
+            date: "2 t/m 5 juni 2027",
+            place: "Den Haag"
+        },
+        {
+            location: "leiden",
+            name: "Avond4daagse Leiden",
+            organisation: "Stichting Avond4daagse Leiden",
+            date: "8 t/m 11 juni 2027",
+            place: "Leiden"
+        },
+        {
+            location: "rotterdam",
+            name: "Avond4daagse Rotterdam",
+            organisation: "Avond4daagse Rotterdam",
+            date: "15 t/m 18 juni 2027",
+            place: "Rotterdam"
+        },
+        {
+            location: "delft",
+            name: "Avond4daagse Delft",
+            organisation: "Stichting Avond4daagse Delft",
+            date: "21 t/m 24 juni 2027",
+            place: "Delft"
+        }
+    ];
 
+    const searchForm = document.querySelector(".event-search");
+    const locationSelect = document.getElementById("location");
+    const resultsSection = document.getElementById("event-results");
+    const eventList = document.getElementById("event-list");
+
+    searchForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const selectedLocation = locationSelect.value;
+
+        if (selectedLocation === "") {
+            alert("Selecteer eerst een locatie.");
+            return;
+        }
+
+        const matchingEvents = events.filter(function(eventItem) {
+            return eventItem.location === selectedLocation;
+        });
+
+        eventList.innerHTML = "";
+
+        matchingEvents.forEach(function(eventItem) {
+            eventList.innerHTML += `
+                <div class="event-card">
+                    <h3>${eventItem.name}</h3>
+                    <p><strong>Organisatie:</strong> ${eventItem.organisation}</p>
+                    <p><strong>Datum:</strong> ${eventItem.date}</p>
+                    <p><strong>Locatie:</strong> ${eventItem.place}</p>
+
+                    <a href="evenement.html?location=${eventItem.location}" class="event-details-button">
+    Bekijk evenement →
+</a>
+                </div>
+            `;
+        });
+
+        resultsSection.hidden = false;
+    });
+</script>
 </body>
 
 </html>
