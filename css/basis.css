@@ -1,15 +1,145 @@
  
 /* basis css bestand voor de aanmeldpagina.html en de inlog voor nu*/
-*{ 
+:root {
+    --groen: #2f6b45;
+    --groen-donker: #245437;
+    --groen-licht: #e5eee7;
+    --achtergrond: #f5f7f3;
+    --tekst: #26332b;
+    --tekst-zacht: #667069;
+    --rand: #e0e5e1;
+    --rand-input: #b8c3ba;
+}
+
+* {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background: linear-gradient(180deg, #fdfcf5 0%, #f4f1dc 100%); /* crème achtergrond */
-    background-attachment: fixed;
-    color: #1b2b21; 
+    margin: 0;
+    padding: 0;
+
     min-height: 100vh;
+
+    /* footer blijft onderaan, ook op korte pagina's */
+    display: flex;
+    flex-direction: column;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--achtergrond);
+    color: var(--tekst);
+}
+
+a {
+    transition: 0.2s;
+}
+
+/* formulierelementen nemen het lettertype van de pagina over */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =========================================================
+   FOOTER (zelfde als homepage zodaat alles een layout heeft.) - mobiel first
+   ========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    margin-top: 20px;
+
+    background-color: #26332b;
+
+    color: #ffffff;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 35px 20px 30px 20px;
+
+    /* mobiel: onder elkaar */
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+.footer-container h3 {
+    margin: 0 0 8px 0;
+
+    font-size: 23px;
+}
+
+.footer-container p {
+    margin: 0;
+
+    color: #cbd4cd;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 22px;
+}
+
+.footer-links a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+    border-top: 1px solid #46534a;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #aeb9b1;
+
+    font-size: 13px;
+}
+
+/* Tablet en groter (vanaf 768px) */
+@media (min-width: 768px) {
+
+    .footer-container {
+        padding: 45px 30px 35px 30px;
+
+        flex-direction: row;
+        justify-content: space-between;
+
+        gap: 40px;
+    }
+
+    .footer-bottom {
+        padding: 20px 30px;
+    }
 }

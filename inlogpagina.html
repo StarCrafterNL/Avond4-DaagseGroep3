@@ -3,23 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inloggen</title>
+    <title>Inloggen - Avond4daagse</title>
     <link rel="stylesheet" href="css/basis.css">
-    <link rel="stylesheet" href="css/formulier.css">
     <link rel="stylesheet" href="css/navigatie.css">
+    <link rel="stylesheet" href="css/formulier.css">
 </head>
 <body>
 
-     <main class="form-container">
+    <!-- HEADER -->
+    <header class="site-header">
+        <nav class="main-nav">
 
-        <!-- LINKS: De Zijbalk voor de sponsooren -->
+            <a href="homepage.html" class="logo">
+                Avond4daagse
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#">Routes</a></li>
+                <li><a href="#">Inschrijven</a></li>
+                <li><a href="#">Handboek</a></li>
+                <li><a href="reglement.html">Reglement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="aanmeldpagina.html">Aanmelden</a></li>
+                <li><a href="inlogpagina.html" class="active">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="form-container">
+
+        <!-- LINKS: sponsors -->
         <aside class="zijbalk">
-            <!-- hier de hardloop foto geplaats -->
-            <div class="logo-sport"> 
-                <img src="img/hardloop.jpg" alt="Hardloop foto">
-            </div> 
-            
-            <!-- hier komen de sponsoren heb het alvast als placeholder gemaakt -->
+            <h2>Sponsoren</h2>
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
@@ -28,51 +48,78 @@
             <div class="sponsor-blokje">Sponsor</div>
         </aside>
 
-        <!-- RECHTS: hier komen de menu en het formulier -->
+        <!-- RECHTS: formulier -->
         <section class="hoofd-inhoud">
-            
-            <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
-            <nav class="navigatie">
-                <a href="#">Routes</a>
-                <a href="reglement.html" aria-current="page">Reglement</a>
-                <a href="#">Handboek</a>
-                <li><a href="contact.html" class="active">Contact</a></li>
-                <a href="privacy.html" aria-current="page">Privacy</a>
-                <a href="aanmeldpagina.html">Aanmelden</a>  <!-- deze erin gezet maar even besprken of dit nodig is -->
-                <li><a href="homepage.html" class="active">Home</a></li>
-               
-            </nav>
 
-            <h2>Inloggen</h2>
+            <p class="form-label">Account</p>
+            <h1>Inloggen</h1>
             <p class="form-welkom">Welkom terug! Log in met je gegevens.</p>
 
-            <!-- Het Inlogformulier -->
-            <form action="/verwerk-login" method="POST"> 
-                
-                <!-- E-mailadres -->
+            <form action="/verwerk-login" method="POST">
+
                 <div class="form-groep">
                     <label for="email">E-mailadres:</label>
                     <input type="email" id="email" name="email" required placeholder="naam@voorbeeld.nl">
                 </div>
 
-                <!-- Wachtwoord -->
                 <div class="form-groep">
                     <label for="wachtwoord">Wachtwoord:</label>
                     <input type="password" id="wachtwoord" name="wachtwoord" required placeholder="Je wachtwoord">
                 </div>
 
-                <!-- Actieknop -->
                 <button type="submit">Inloggen</button>
             </form>
 
-            <!-- De link naar de aanmeldpagina -->
             <p class="form-switch">
                 Nog geen account? <a href="aanmeldpagina.html">Meld je hier aan</a>.
             </p>
         </section>
-     </main>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>
+                    Avond4daagse
+                </h3>
+
+                <p>
+                    Samen wandelen, bewegen en genieten.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="homepage.html">Home</a>
+                <a href="#">Routes</a>
+                <a href="#">Inschrijven</a>
+                <a href="#">Handboek</a>
+                <a href="#">Reglement</a>
+                <a href="contact.html">Contact</a>
+                <a href="#">Privacy</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Avond4daagse
+            </p>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
-
-            

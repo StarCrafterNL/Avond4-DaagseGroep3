@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aanmeldpagina</title>
+    <title>Aanmelden - Avond4daagse</title>
     <link rel="stylesheet" href="css/basis.css">
-    <link rel="stylesheet" href="css/formulier.css">
     <link rel="stylesheet" href="css/navigatie.css">
+    <link rel="stylesheet" href="css/formulier.css">
 </head>
 <body>
 
-    <!-- hier een container gemaakt, links de zijbalk waar sponsers komen en recht het formulier -->
+    <!-- HEADER -->
+    <header class="site-header">
+        <nav class="main-nav">
+
+            <a href="homepage.html" class="logo">
+                Avond4daagse
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#">Routes</a></li>
+                <li><a href="#">Inschrijven</a></li>
+                <li><a href="#">Handboek</a></li>
+                <li><a href="reglement.html">Reglement</a></li>
+                <li><a href="clientapp/src/pages/privacy.html">Privacy</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="aanmeldpagina.html" class="active">Aanmelden</a></li>
+                <li><a href="inlogpagina.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- MAIN -->
     <main class="form-container">
-        
-        <!-- LINKS: De Zijbalk voor de sponsooren -->
+
+        <!-- LINKS: sponsors -->
         <aside class="zijbalk">
-            <!-- hier de hardloop foto geplaats -->
-            <div class="logo-sport"> 
-                <img src="img/hardloop.jpg" alt="Hardloop foto">
-            </div> 
-            
-            <!-- hier komen de sponsoren heb het alvast als placeholder gemaakt -->
+            <h2>Sponsoren</h2>
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
@@ -29,25 +48,15 @@
             <div class="sponsor-blokje">Sponsor</div>
         </aside>
 
-        <!-- RECHTS: hier komen de menu en het formulier -->
+        <!-- RECHTS: formulier -->
         <section class="hoofd-inhoud">
-            
-            <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
-            <nav class="navigatie">
-                <a href="#">Routes</a>
-                <a href="reglement.html" aria-current="page">Reglement</a>
-                <a href="#">Handboek</a>
-                <li><a href="contact.html" class="active">Contact</a></li>
-                <a href="privacy.html" aria-current="page">Privacy</a>
-                <a href="inlogpagina.html">Login</a>  <!-- deze erin gezet maar even besprken of dit nodig is -->
-                <li><a href="homepage.html" class="active">Home</a></li>
-            </nav>
 
-            <h2>Aanmeldingsformulier:</h2>
+            <p class="form-label">Aanmelden</p>
+            <h1>Aanmeldingsformulier</h1>
+            <p class="form-welkom">Maak een account aan om je aan te melden voor de Avond4daagse.</p>
 
-            <!-- hier dus het formulier aangemaaktt  -->
             <form action="/verwerk-registratie" method="POST">
-                
+
                 <div class="form-groep">
                     <label for="naam">Volledige naam:</label>
                     <input type="text" id="naam" name="naam" required placeholder="Jan Jansen">
@@ -63,21 +72,64 @@
                     <textarea id="toelichting" name="toelichting" rows="4" placeholder="Typ hier je toelichting..."></textarea>
                 </div>
 
-                <!-- Checkbox voor de nieuwsbrief uit het voorbeeld -->
                 <div class="nieuwsbrief-optie">
                     <input type="checkbox" id="nieuwsbrief" name="nieuwsbrief">
                     <label for="nieuwsbrief">Ja, ik wil mijzelf aanmelden voor een nieuwsbrief.</label>
                 </div>
 
-                <button type="submit">Account aanmaken</button>
+                <button type="submit">Verstuur</button>
             </form>
 
-            <!-- hier word dus de switch gemaakt van aanmaak naar inlogpagian als je erop klikt -->
-            <p class="form-switch">  Heb je al een account? <a href="inlogpagina.html">Log hier in</a>.
+            <p class="form-switch">
+                Heb je al een account? <a href="inlogpagina.html">Log hier in</a>.
             </p>
         </section>
 
     </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>
+                    Avond4daagse
+                </h3>
+
+                <p>
+                    Samen wandelen, bewegen en genieten.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="homepage.html">Home</a>
+                <a href="#">Routes</a>
+                <a href="#">Inschrijven</a>
+                <a href="#">Handboek</a>
+                <a href="#">Reglement</a>
+                <a href="contact.html">Contact</a>
+                <a href="#">Privacy</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Avond4daagse
+            </p>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
