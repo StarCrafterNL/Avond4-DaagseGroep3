@@ -1,0 +1,345 @@
+// alleen voor schermlezers
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.draaiboek-wrapper {
+    flex: 1;
+    min-width: 0;
+    max-width: 1300px;
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: 40px;
+        color: $brand;
+    }
+}
+
+.board-intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-bottom: 12px;
+}
+
+.draaiboek-description {
+    margin: 0;
+    color: #666;
+    font-size: 17px;
+}
+
+.board-status {
+    min-height: 22px;
+    margin: 0 0 12px;
+    color: $brand;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+// bord en kolommen
+.board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+.column {
+    padding: 22px 18px 18px;
+    background-color: $white;
+    border-radius: 18px;
+
+    &__head {
+        margin: 0;
+        color: $brand;
+        font-size: 21px;
+    }
+
+    &__count {
+        margin: 2px 0 16px;
+        color: $muted-strong;
+        font-size: 14px;
+    }
+
+    &__empty {
+        margin: 0 0 14px;
+        padding: 16px;
+        border: 1px dashed $border;
+        border-radius: 12px;
+        color: $muted-strong;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    &__add {
+        width: 100%;
+        padding: 12px;
+        background: transparent;
+        border: 1px dashed $brand;
+        border-radius: 12px;
+        color: $brand;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $tint;
+        }
+    }
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+}
+
+// taakkaart
+.task {
+    padding: 14px 16px;
+    background-color: $tint;
+    border-radius: 12px;
+
+    &__deadline {
+        color: $brand;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    &__title {
+        margin: 4px 0 6px;
+        color: #222;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.35;
+    }
+
+    &__description {
+        margin: 0 0 10px;
+        color: $muted-strong;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    &__event {
+        display: inline-block;
+        margin: 0 0 10px;
+        padding: 2px 10px;
+        background-color: $white;
+        border: 1px solid $border;
+        border-radius: 999px;
+        color: $muted-strong;
+        font-size: 13px;
+    }
+
+    &__member {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $muted-strong;
+        font-size: 14px;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 12px;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid $border;
+    }
+
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-right: auto;
+        color: #222;
+        font-size: 14px;
+        font-weight: 700;
+
+        select {
+            padding: 4px 8px;
+            background-color: $white;
+            border: 1px solid #a9b8ad;
+            border-radius: 6px;
+            color: #222;
+            font: inherit;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    &--done &__title {
+        color: $muted-strong;
+        text-decoration: line-through;
+    }
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: $brand;
+    color: $white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+// knoppen
+.button {
+    padding: 12px 20px;
+    background-color: $brand;
+    border: 2px solid $brand;
+    border-radius: 8px;
+    color: $white;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($brand, 6%);
+        border-color: darken($brand, 6%);
+    }
+
+    &--light {
+        background-color: $white;
+        color: $brand;
+
+        &:hover {
+            background-color: $tint;
+            border-color: $brand;
+        }
+    }
+
+    &--danger {
+        background-color: $danger;
+        border-color: $danger;
+
+        &:hover {
+            background-color: darken($danger, 6%);
+            border-color: darken($danger, 6%);
+        }
+    }
+}
+
+.text-button {
+    padding: 4px 2px;
+    background: none;
+    border: 0;
+    color: $brand;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+        color: darken($brand, 10%);
+    }
+
+    &--danger {
+        color: $danger;
+
+        &:hover {
+            color: darken($danger, 8%);
+        }
+    }
+}
+
+.button:focus-visible,
+.text-button:focus-visible,
+.column__add:focus-visible,
+.task__status select:focus-visible {
+    outline: 3px solid $brand;
+    outline-offset: 3px;
+}
+
+// dialogen
+.dialog {
+    width: min(480px, calc(100% - 32px));
+    padding: 32px;
+    background-color: $white;
+    border: 0;
+    border-radius: 18px;
+    color: #222;
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    h2 {
+        margin: 0 0 20px;
+        color: $brand;
+        font-size: 24px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.4;
+    }
+}
+
+.field {
+    margin-bottom: 16px;
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        color: #222;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    input,
+    select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        background-color: $white;
+        border: 1px solid #a9b8ad;
+        border-radius: 8px;
+        color: #222;
+        font: inherit;
+        font-size: 16px;
+
+        &:focus-visible {
+            outline: 3px solid $brand;
+            outline-offset: 2px;
+        }
+    }
+}
+
+.field-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .draaiboek-wrapper {
+        max-width: none;
+    }
+
+    .dialog {
+        padding: 24px 20px;
+    }
+}
