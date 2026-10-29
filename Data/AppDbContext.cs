@@ -16,4 +16,5 @@ public class AppDbContext : DbContext //deze class is de database context, deze 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Deelnemer> Deelnemers => Set<Deelnemer>();
+    public DbSet<Gebruiker> Gebruikers => Set<Gebruiker>();
 }
