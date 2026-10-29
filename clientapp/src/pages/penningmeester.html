@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Financieel overzicht voor de Avond4daagse - schooldemo.">
+  <title>Financiën | Avond4daagse</title>
+  <link rel="stylesheet" href="info-pages.css">
+  <script src="penningmeester.js" defer></script>
+</head>
+<body class="info-page finance-page">
+  <header class="site-header">
+    <div class="nav">
+      <div class="logo">Avond4daagse</div>
+      <nav class="main-nav" aria-label="Hoofdnavigatie">
+        <a href="index.html#routes">Routes</a>
+        <a href="reglement.html">Reglement</a>
+        <a href="index.html#handboek">Handboek</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="index.html#login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="finance-container">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">Penningmeester · Overzicht</p>
+        <h1>Financiën</h1>
+        <p class="subheading">Bekijk inkomsten, uitgaven, transacties en facturen per jaar.</p>
+      </div>
+      <div class="heading-actions">
+        <button type="button" class="btn btn-primary" id="addTransactionBtn">+ Transactie toevoegen</button>
+        <button type="button" class="btn btn-secondary" id="uploadInvoiceBtn">↑ Factuur uploaden</button>
+      </div>
+    </div>
+
+    <p class="demo-note"><strong>Schooldemo:</strong> alle bedragen en transacties bij het eerste bezoek zijn fictieve voorbeelden. Je wijzigingen worden alleen in deze browser opgeslagen, niet op een server.</p>
+
+    <section class="overview-grid" aria-label="Financieel overzicht">
+      <article class="card balance-card">
+        <h2>Totaal in kas</h2>
+        <p class="balance-amount" id="balanceAmount">€ 8.150,00</p>
+        <p class="small-muted">Inkomsten min uitgaven</p>
+      </article>
+      <article class="card event-card">
+        <div class="event-title-row">
+          <h2>Evenement</h2>
+          <label for="yearSelect">Jaar kiezen</label>
+        </div>
+        <div class="select-wrap">
+          <select id="yearSelect" aria-label="Selecteer een evenementjaar">
+            <option value="2027">Avond4daagse 2027</option>
+            <option value="2026">Avond4daagse 2026</option>
+            <option value="2025">Avond4daagse 2025</option>
+            <option value="2024">Avond4daagse 2024</option>
+          </select>
+        </div>
+        <p class="small-muted">Kies een jaar om de gegevens te bekijken.</p>
+      </article>
+    </section>
+
+    <section class="finance-stack" aria-label="Inkomsten en uitgaven">
+      <article class="card">
+        <div class="section-heading">
+          <div>
+            <h2>Inkomsten</h2>
+            <p>Overzicht van de opbrengsten voor <span class="selected-year">2027</span></p>
+          </div>
+          <strong class="section-total positive" id="incomeTotal">€ 12.450,00</strong>
+        </div>
+        <div class="summary-list" id="incomeList" aria-live="polite"></div>
+      </article>
+
+      <article class="card">
+        <div class="section-heading">
+          <div>
+            <h2>Uitgaven</h2>
+            <p>Waar het geld aan is uitgegeven</p>
+          </div>
+          <strong class="section-total" id="expenseTotal">€ 4.300,00</strong>
+        </div>
+        <div class="expense-list" id="expenseList" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="card transactions-card" id="transacties">
+      <div class="section-heading">
+        <div>
+          <h2>Transacties</h2>
+          <p>Bekijk, wijzig of verwijder inkomsten en uitgaven.</p>
+        </div>
+        <button class="btn btn-secondary" type="button" id="exportCsvBtn">↓ Download CSV</button>
+      </div>
+      <div class="filters">
+        <label class="field filter-field">Zoeken
+          <input id="searchInput" type="search" placeholder="Bijv. vergunningen" autocomplete="off">
+        </label>
+        <label class="field filter-field">Soort
+          <select id="typeFilter">
+            <option value="all">Alles</option>
+            <option value="inkomst">Inkomsten</option>
+            <option value="uitgave">Uitgaven</option>
+          </select>
+        </label>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Datum</th><th scope="col">Omschrijving</th><th scope="col">Categorie</th><th scope="col">Soort</th><th scope="col" class="right">Bedrag</th><th scope="col">Acties</th></tr></thead>
+          <tbody id="transactionsBody"></tbody>
+        </table>
+      </div>
+      <p id="noTransactions" class="empty-state" hidden>Geen transacties gevonden voor deze selectie.</p>
+    </section>
+
+    <section class="card invoices-card" id="facturen">
+      <div class="section-heading">
+        <div>
+          <h2>Facturen</h2>
+          <p>Voeg een PDF of afbeelding toe en bekijk je geüploade bestanden.</p>
+        </div>
+        <button class="btn btn-secondary" type="button" id="uploadInvoiceBtnBottom">+ Factuur toevoegen</button>
+      </div>
+      <input id="invoiceFileInput" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp" hidden>
+      <ul id="invoiceList" class="invoice-list"></ul>
+      <p id="noInvoices" class="empty-state">Nog geen facturen toegevoegd voor dit jaar.</p>
+      <p class="small-muted">Facturen worden lokaal in je browser opgeslagen. Gebruik alleen fictieve documenten voor het schoolproject.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2027 Avond4daagse · Schoolproject · <a href="reglement.html">Reglement</a> · <a href="privacy.html">Privacy</a></footer>
+
+  <dialog id="transactionDialog" class="transaction-dialog" aria-labelledby="dialogTitle">
+    <form id="transactionForm" class="dialog-form">
+      <div class="dialog-heading">
+        <h2 id="dialogTitle">Transactie toevoegen</h2>
+        <button type="button" class="close-btn" id="closeDialogBtn" aria-label="Sluiten">×</button>
+      </div>
+      <input type="hidden" id="transactionId">
+      <div class="form-grid">
+        <label class="field">Soort
+          <select id="transactionType" required>
+            <option value="inkomst">Inkomst</option>
+            <option value="uitgave">Uitgave</option>
+          </select>
+        </label>
+        <label class="field">Datum
+          <input id="transactionDate" type="date" required>
+        </label>
+        <label class="field full">Omschrijving
+          <input id="transactionDescription" type="text" maxlength="100" placeholder="Bijv. inschrijfgeld" required>
+        </label>
+        <label class="field">Categorie
+          <select id="transactionCategory" required></select>
+        </label>
+        <label class="field">Bedrag (€)
+          <input id="transactionAmount" type="number" min="0.01" max="99999999" step="0.01" placeholder="0,00" required>
+        </label>
+      </div>
+      <p id="formError" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-secondary" id="cancelDialogBtn">Annuleren</button>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

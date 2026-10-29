@@ -1,0 +1,59 @@
+/* ==========================================================================
+   1. MOBIEL BASIS (Standaard layout - voor schermen tot 767px)
+   ========================================================================== */
+
+/* het menu staat in de groene balk bovenaan, onder het logo */
+.navigatie {
+    position: absolute;
+    top: 68px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: center;   /* netjes starten in het midden*/
+    flex-wrap: wrap;           
+    gap: 6px 15px;             
+}
+
+.navigatie a {
+    color: #ffffff;            
+    text-decoration: none;
+    font-size: 16px;           /* heb hier kleinere lettertype gegeven  */
+    font-weight: 500;          
+    letter-spacing: 0.5px;     
+    transition: color 0.2s;    
+}
+
+/* heb heir een effect toegevoeg word licht groen als je met je muis over de navigatie gaat */
+.navigatie a:hover {
+    color: #6bbf59;            
+}
+
+/* ==========================================================================
+   2. TABLET & DESKTOP BREAKPOINT (Vanaf 768px en groter)
+   ========================================================================== */
+@media (min-width: 768px) {
+    /* het menu staat nu rechts in de groene balk, naast het logo */
+    .navigatie {
+        top: 0;
+        left: auto;
+        right: max(390px, calc((100% - 1100px) / 2));
+        height: 90px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 25px;               
+    }
+
+    .navigatie a {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navigatie {
+        gap: 35px;
+    }
+
+    .navigatie a {
+        font-size: 20px;         /* De grote letters (20px) voor computerschermen */
+    }
+}
