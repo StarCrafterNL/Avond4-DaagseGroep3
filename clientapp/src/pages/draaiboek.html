@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draaiboek</title>
     <link rel="stylesheet" href="../../../css/main.css" />
+    <script src="draaiboek.js" defer></script>
   </head>
   <body class="info-page">
     <header class="site-header">
@@ -35,97 +36,87 @@
 
       <div class="draaiboek-wrapper">
         <h1>Draaiboek</h1>
-        <p class="draaiboek-description">
-          De planning van de Avond4daagse, van opbouw tot afbouw.
-        </p>
 
-        <div class="draaiboek-card">
-          <section class="draaiboek-section" aria-labelledby="fase-1">
-            <h2 id="fase-1">1. Opbouw</h2>
-            <ol class="draaiboek-list">
-              <li>
-                <time datetime="15:30">15:30</time>
-                <span>Vrijwilligers melden zich bij de organisatie.</span>
-              </li>
-              <li>
-                <time datetime="16:00">16:00</time>
-                <span
-                  >Start- en finishpoort plaatsen en routebordjes
-                  controleren.</span
-                >
-              </li>
-              <li>
-                <time datetime="16:45">16:45</time>
-                <span>Inschrijfbalie en EHBO-post inrichten.</span>
-              </li>
-            </ol>
-          </section>
-
-          <section class="draaiboek-section" aria-labelledby="fase-2">
-            <h2 id="fase-2">2. Start</h2>
-            <ol class="draaiboek-list">
-              <li>
-                <time datetime="17:00">17:00</time>
-                <span
-                  >Inschrijfbalie opent, deelnemers ontvangen hun
-                  startkaart.</span
-                >
-              </li>
-              <li>
-                <time datetime="17:30">17:30</time>
-                <span>Start van de korte en de uitdagende route.</span>
-              </li>
-              <li>
-                <time datetime="18:00">18:00</time>
-                <span>Start van de standaard- en de lange route.</span>
-              </li>
-            </ol>
-          </section>
-
-          <section class="draaiboek-section" aria-labelledby="fase-3">
-            <h2 id="fase-3">3. Onderweg</h2>
-            <ol class="draaiboek-list">
-              <li>
-                <time datetime="18:00">18:00</time>
-                <span
-                  >Rustposten bij 5 en 10 km zijn bemand met water en
-                  fruit.</span
-                >
-              </li>
-              <li>
-                <time datetime="18:00">18:00</time>
-                <span>Verkeersregelaars staan bij alle oversteekplaatsen.</span>
-              </li>
-              <li>
-                <time datetime="19:00">19:00</time>
-                <span
-                  >De bezemwagen vertrekt achter de laatste deelnemers.</span
-                >
-              </li>
-            </ol>
-          </section>
-
-          <section class="draaiboek-section" aria-labelledby="fase-4">
-            <h2 id="fase-4">4. Finish en afbouw</h2>
-            <ol class="draaiboek-list">
-              <li>
-                <time datetime="18:30">18:30</time>
-                <span>De finish opent voor de eerste deelnemers.</span>
-              </li>
-              <li>
-                <time datetime="21:00">21:00</time>
-                <span
-                  >De finish sluit, alle deelnemers worden uitgeschreven.</span
-                >
-              </li>
-              <li>
-                <time datetime="21:30">21:30</time>
-                <span>Afbouw en korte evaluatie met de vrijwilligers.</span>
-              </li>
-            </ol>
-          </section>
+        <div class="board-intro">
+          <p class="draaiboek-description">
+            Het takenbord van de Avond4daagse: voeg taken toe, wijs ze toe aan
+            bestuursleden en vink ze af.
+          </p>
+          <button type="button" class="button button--light" id="reset-template">
+            Template herstellen
+          </button>
         </div>
+
+        <p class="board-status" id="board-status" role="status"></p>
+
+        <div class="board" id="board"></div>
+        <noscript>
+          <p>Voor het takenbord is JavaScript nodig.</p>
+        </noscript>
       </div>
     </main>
+
+    <dialog class="dialog" id="taak-dialog" aria-labelledby="taak-dialog-titel">
+      <form id="taak-form">
+        <h2 id="taak-dialog-titel">Taak toevoegen</h2>
+        <input type="hidden" id="taak-id" />
+
+        <div class="field">
+          <label for="taak-titel">Titel</label>
+          <input type="text" id="taak-titel" maxlength="80" required />
+        </div>
+        <div class="field">
+          <label for="taak-omschrijving">Omschrijving</label>
+          <input type="text" id="taak-omschrijving" maxlength="80" required />
+        </div>
+        <div class="field">
+          <label for="taak-deadline">Deadline</label>
+          <input type="date" id="taak-deadline" required />
+        </div>
+        <div class="field">
+          <label for="taak-lid">Verantwoordelijke</label>
+          <select id="taak-lid"></select>
+        </div>
+        <div class="field">
+          <label for="taak-event">Evenement</label>
+          <select id="taak-event"></select>
+        </div>
+        <div class="field">
+          <label for="taak-status">Status</label>
+          <select id="taak-status"></select>
+        </div>
+        
+
+        <div class="field-actions">
+          <button type="button" class="button button--light" id="taak-annuleer">
+            Annuleren
+          </button>
+          <button type="submit" class="button">Opslaan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog
+      class="dialog"
+      id="bevestig-dialog"
+      aria-labelledby="bevestig-tekst"
+    >
+      <form method="dialog">
+        <p id="bevestig-tekst"></p>
+        <div class="field-actions">
+          <button type="submit" value="nee" class="button button--light">
+            Annuleren
+          </button>
+          <button
+            type="submit"
+            value="ja"
+            class="button button--danger"
+            id="bevestig-ja"
+          >
+            Verwijderen
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
