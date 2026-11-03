@@ -379,74 +379,101 @@
 
     </footer>
 <script>
-    const events = [
+    const evenementen = [
         {
-            location: "den-haag",
-            name: "Avond4daagse Den Haag",
-            organisation: "Stichting Avond4daagse Den Haag",
-            date: "2 t/m 5 juni 2027",
-            place: "Den Haag"
+            id: 1,
+            locatie: "den-haag",
+            naam: "Avond4daagse Den Haag Centrum",
+            organisatie: "Stichting Avond4daagse Den Haag Centrum",
+            datum: "2 t/m 5 juni 2027",
+            plaats: "Den Haag"
         },
         {
-            location: "leiden",
-            name: "Avond4daagse Leiden",
-            organisation: "Stichting Avond4daagse Leiden",
-            date: "8 t/m 11 juni 2027",
-            place: "Leiden"
+            id: 2,
+            locatie: "den-haag",
+            naam: "Avond4daagse Scheveningen",
+            organisatie: "Stichting Avond4daagse Scheveningen",
+            datum: "15 t/m 18 juni 2027",
+            plaats: "Den Haag"
         },
         {
-            location: "rotterdam",
-            name: "Avond4daagse Rotterdam",
-            organisation: "Avond4daagse Rotterdam",
-            date: "15 t/m 18 juni 2027",
-            place: "Rotterdam"
+            id: 3,
+            locatie: "leiden",
+            naam: "Avond4daagse Leiden",
+            organisatie: "Stichting Avond4daagse Leiden",
+            datum: "8 t/m 11 juni 2027",
+            plaats: "Leiden"
         },
         {
-            location: "delft",
-            name: "Avond4daagse Delft",
-            organisation: "Stichting Avond4daagse Delft",
-            date: "21 t/m 24 juni 2027",
-            place: "Delft"
+            id: 4,
+            locatie: "rotterdam",
+            naam: "Avond4daagse Rotterdam",
+            organisatie: "Avond4daagse Rotterdam",
+            datum: "15 t/m 18 juni 2027",
+            plaats: "Rotterdam"
+        },
+        {
+            id: 5,
+            locatie: "delft",
+            naam: "Avond4daagse Delft",
+            organisatie: "Stichting Avond4daagse Delft",
+            datum: "21 t/m 24 juni 2027",
+            plaats: "Delft"
         }
     ];
 
-    const searchForm = document.querySelector(".event-search");
-    const locationSelect = document.getElementById("location");
-    const resultsSection = document.getElementById("event-results");
-    const eventList = document.getElementById("event-list");
+    const zoekFormulier = document.querySelector(".event-search");
+    const locatieSelectie = document.getElementById("location");
+    const resultatenSectie = document.getElementById("event-results");
+    const evenementenLijst = document.getElementById("event-list");
 
-    searchForm.addEventListener("submit", function(event) {
+    zoekFormulier.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        const selectedLocation = locationSelect.value;
+        const geselecteerdeLocatie = locatieSelectie.value;
 
-        if (selectedLocation === "") {
+        if (geselecteerdeLocatie === "") {
             alert("Selecteer eerst een locatie.");
             return;
         }
 
-        const matchingEvents = events.filter(function(eventItem) {
-            return eventItem.location === selectedLocation;
+        const overeenkomendeEvenementen = evenementen.filter(function(evenement) {
+            return evenement.locatie === geselecteerdeLocatie;
         });
 
-        eventList.innerHTML = "";
+        evenementenLijst.innerHTML = "";
 
-        matchingEvents.forEach(function(eventItem) {
-            eventList.innerHTML += `
+        overeenkomendeEvenementen.forEach(function(evenement) {
+            evenementenLijst.innerHTML += `
                 <div class="event-card">
-                    <h3>${eventItem.name}</h3>
-                    <p><strong>Organisatie:</strong> ${eventItem.organisation}</p>
-                    <p><strong>Datum:</strong> ${eventItem.date}</p>
-                    <p><strong>Locatie:</strong> ${eventItem.place}</p>
+                    <h3>${evenement.naam}</h3>
 
-                    <a href="evenement.html?location=${eventItem.location}" class="event-details-button">
-    Bekijk evenement →
-</a>
+                    <p>
+                        <strong>Organisatie:</strong>
+                        ${evenement.organisatie}
+                    </p>
+
+                    <p>
+                        <strong>Datum:</strong>
+                        ${evenement.datum}
+                    </p>
+
+                    <p>
+                        <strong>Locatie:</strong>
+                        ${evenement.plaats}
+                    </p>
+
+                    <a
+                        href="evenement.html?id=${evenement.id}"
+                        class="event-details-button"
+                    >
+                        Bekijk evenement →
+                    </a>
                 </div>
             `;
         });
 
-        resultsSection.hidden = false;
+        resultatenSectie.hidden = false;
     });
 </script>
 </body>

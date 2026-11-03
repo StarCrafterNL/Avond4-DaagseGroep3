@@ -89,53 +89,63 @@
 </section>
     </main>
 <script>
-    const events = {
-        "den-haag": {
-            name: "Avond4daagse Den Haag",
-            organisation: "Stichting Avond4daagse Den Haag",
-            date: "2 t/m 5 juni 2027",
-            location: "Den Haag"
+    const evenementen = [
+        {
+            id: 1,
+            naam: "Avond4daagse Den Haag Centrum",
+            organisatie: "Stichting Avond4daagse Den Haag Centrum",
+            datum: "2 t/m 5 juni 2027",
+            locatie: "Den Haag"
         },
-
-        "leiden": {
-            name: "Avond4daagse Leiden",
-            organisation: "Stichting Avond4daagse Leiden",
-            date: "8 t/m 11 juni 2027",
-            location: "Leiden"
+        {
+            id: 2,
+            naam: "Avond4daagse Scheveningen",
+            organisatie: "Stichting Avond4daagse Scheveningen",
+            datum: "15 t/m 18 juni 2027",
+            locatie: "Den Haag"
         },
-
-        "rotterdam": {
-            name: "Avond4daagse Rotterdam",
-            organisation: "Avond4daagse Rotterdam",
-            date: "15 t/m 18 juni 2027",
-            location: "Rotterdam"
+        {
+            id: 3,
+            naam: "Avond4daagse Leiden",
+            organisatie: "Stichting Avond4daagse Leiden",
+            datum: "8 t/m 11 juni 2027",
+            locatie: "Leiden"
         },
-
-        "delft": {
-            name: "Avond4daagse Delft",
-            organisation: "Stichting Avond4daagse Delft",
-            date: "21 t/m 24 juni 2027",
-            location: "Delft"
+        {
+            id: 4,
+            naam: "Avond4daagse Rotterdam",
+            organisatie: "Avond4daagse Rotterdam",
+            datum: "15 t/m 18 juni 2027",
+            locatie: "Rotterdam"
+        },
+        {
+            id: 5,
+            naam: "Avond4daagse Delft",
+            organisatie: "Stichting Avond4daagse Delft",
+            datum: "21 t/m 24 juni 2027",
+            locatie: "Delft"
         }
-    };
+    ];
 
     const parameters = new URLSearchParams(window.location.search);
-    const locationName = parameters.get("location");
+    const evenementId = Number(parameters.get("id"));
 
-    const selectedEvent = events[locationName];
+    const geselecteerdEvenement = evenementen.find(function(evenement) {
+        return evenement.id === evenementId;
+    });
 
-    if (selectedEvent) {
+    if (geselecteerdEvenement) {
         document.getElementById("event-name").textContent =
-            selectedEvent.name;
+            geselecteerdEvenement.naam;
 
         document.getElementById("event-organisation").textContent =
-            selectedEvent.organisation;
+            geselecteerdEvenement.organisatie;
 
         document.getElementById("event-date").textContent =
-            selectedEvent.date;
+            geselecteerdEvenement.datum;
 
         document.getElementById("event-location").textContent =
-            selectedEvent.location;
+            geselecteerdEvenement.locatie;
     }
 </script>
 </body>
