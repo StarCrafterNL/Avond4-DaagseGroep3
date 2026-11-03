@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draaiboek</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <script src="draaiboek.js" defer></script>
+  </head>
+  <body class="info-page">
+    <header class="site-header">
+      <div class="nav">
+        <div class="logo">Avond4daagse</div>
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
+          <a href="routes.html">Routes</a>
+          <a href="reglement.html">Reglement</a>
+          <a href="handboek.html">Handboek</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="inlogpagina.html">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <aside class="sponsor-sidebar" aria-label="Sponsoren">
+        <h2>Sponsoren</h2>
+        <div class="sponsor-list">
+          <div class="sponsor-item">Sponsor</div>
+          <div class="sponsor-item">Sponsor</div>
+          <div class="sponsor-item">Sponsor</div>
+          <div class="sponsor-item">Sponsor</div>
+          <div class="sponsor-item">Sponsor</div>
+        </div>
+      </aside>
+
+      <div class="draaiboek-wrapper">
+        <h1>Draaiboek</h1>
+
+        <div class="board-intro">
+          <p class="draaiboek-description">
+            Het takenbord van de Avond4daagse: voeg taken toe, wijs ze toe aan
+            bestuursleden en vink ze af.
+          </p>
+          <button type="button" class="button button--light" id="reset-template">
+            Template herstellen
+          </button>
+        </div>
+
+        <p class="board-status" id="board-status" role="status"></p>
+
+        <div class="board" id="board"></div>
+        <noscript>
+          <p>Voor het takenbord is JavaScript nodig.</p>
+        </noscript>
+      </div>
+    </main>
+
+    <dialog class="dialog" id="taak-dialog" aria-labelledby="taak-dialog-titel">
+      <form id="taak-form">
+        <h2 id="taak-dialog-titel">Taak toevoegen</h2>
+        <input type="hidden" id="taak-id" />
+
+        <div class="field">
+          <label for="taak-titel">Titel</label>
+          <input type="text" id="taak-titel" maxlength="80" required />
+        </div>
+        <div class="field">
+          <label for="taak-omschrijving">Omschrijving</label>
+          <input type="text" id="taak-omschrijving" maxlength="80" required />
+        </div>
+        <div class="field">
+          <label for="taak-deadline">Deadline</label>
+          <input type="date" id="taak-deadline" required />
+        </div>
+        <div class="field">
+          <label for="taak-lid">Verantwoordelijke</label>
+          <select id="taak-lid"></select>
+        </div>
+        <div class="field">
+          <label for="taak-event">Evenement</label>
+          <select id="taak-event"></select>
+        </div>
+        <div class="field">
+          <label for="taak-status">Status</label>
+          <select id="taak-status"></select>
+        </div>
+        
+
+        <div class="field-actions">
+          <button type="button" class="button button--light" id="taak-annuleer">
+            Annuleren
+          </button>
+          <button type="submit" class="button">Opslaan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog
+      class="dialog"
+      id="bevestig-dialog"
+      aria-labelledby="bevestig-tekst"
+    >
+      <form method="dialog">
+        <p id="bevestig-tekst"></p>
+        <div class="field-actions">
+          <button type="submit" value="nee" class="button button--light">
+            Annuleren
+          </button>
+          <button
+            type="submit"
+            value="ja"
+            class="button button--danger"
+            id="bevestig-ja"
+          >
+            Verwijderen
+          </button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
