@@ -7,7 +7,7 @@
 
     <title>Avond4daagse</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -15,19 +15,19 @@
     <!-- Navigatie -->
     <header>
         <nav>
-            <a href="index.html" class="logo">
+            <a href="/index.html" class="logo">
                 Avond4daagse
             </a>
 
             <ul class="nav-links">
-                <li><a href="#">Routes</a></li>
+                <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
                 <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="#">Handboek</a></li>
+                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
                 <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
                 <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
                 <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
                 <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="/index.html" class="active">Home</a></li>
             </ul>
         </nav>
     </header>
@@ -94,7 +94,7 @@
             <div class="hero-visual">
 
                 <img
-                    src="image/homepage.jpg"
+                    src="/image/homepage.jpg"
                     alt="Deelnemers tijdens een Avond4daagse"
                     class="hero-image"
                 >
@@ -356,13 +356,13 @@
 
             <div class="footer-links">
 
-                <a href="index.html">Home</a>
-                <a href="#">Routes</a>
-                <a href="#">Inschrijven</a>
-                <a href="#">Handboek</a>
-                <a href="#">Reglement</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy</a>
+                <a href="/index.html">Home</a>
+                <a href="/clientapp/src/pages/routes.html">Routes</a>
+                <a href="/clientapp/src/pages/aanmeldpagina.html">Inschrijven</a>
+                <a href="/clientapp/src/pages/handboek.html">Handboek</a>
+                <a href="/clientapp/src/pages/reglement.html">Reglement</a>
+                <a href="/clientapp/src/pages/contact.html">Contact</a>
+                <a href="/clientapp/src/pages/privacy.html">Privacy</a>
 
             </div>
 
@@ -439,7 +439,7 @@
                     <p><strong>Datum:</strong> ${eventItem.date}</p>
                     <p><strong>Locatie:</strong> ${eventItem.place}</p>
 
-                    <a href="evenement.html?location=${eventItem.location}" class="event-details-button">
+                    <a href="/clientapp/src/pages/evenement.html?location=${eventItem.location}" class="event-details-button">
     Bekijk evenement →
 </a>
                 </div>
