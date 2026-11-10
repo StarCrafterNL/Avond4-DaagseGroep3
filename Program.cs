@@ -6,9 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // 1. Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// 2. Database context (lokaal in-memory)
+// 2. Database context (SQL Server)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("Avond4DaagseDb"));
+    options.UseSqlServer(connectionString));
 
 // 3. Beveiligde cookie-configuratie 
 builder.Services.ConfigureApplicationCookie(options =>
