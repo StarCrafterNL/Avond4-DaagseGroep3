@@ -18,7 +18,13 @@
             <a href="/index.html" class="logo">
                 Avond4daagse
             </a>
-
+<select id="active-event">
+    <option value="1">Den Haag Centrum</option>
+    <option value="2">Den Haag Scheveningen</option>
+    <option value="3">Leiden</option>
+    <option value="4">Rotterdam</option>
+    <option value="5">Delft</option>
+</select>
             <ul class="nav-links">
                 <li><a href="/index.html">Home</a></li>
                 <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
@@ -129,10 +135,19 @@
 
     const parameters = new URLSearchParams(window.location.search);
     const evenementId = Number(parameters.get("id"));
-
     const geselecteerdEvenement = evenementen.find(function(evenement) {
-        return evenement.id === evenementId;
-    });
+    return evenement.id === evenementId;
+});
+
+    const actieveEvenementSelectie = document.getElementById("active-event");
+
+actieveEvenementSelectie.value = evenementId;
+actieveEvenementSelectie.addEventListener("change", function() {
+    const nieuwEvenementId = actieveEvenementSelectie.value;
+
+    window.location.href =
+        `/clientapp/src/pages/evenement.html?id=${nieuwEvenementId}`;
+});
 
     if (geselecteerdEvenement) {
         document.getElementById("event-name").textContent =

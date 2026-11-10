@@ -20,15 +20,9 @@
             </a>
 
             <ul class="nav-links">
-                <li><a href="#">Routes</a></li>
-                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="#">Handboek</a></li>
-                <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
-                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
-                <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
-                <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
-                <li><a href="index.html" class="active">Home</a></li>
-            </ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
+</ul>
         </nav>
     </header>
 
@@ -64,17 +58,17 @@
         <label for="location">Locatie</label>
 
         <select id="location" name="location">
-            <option value="">Selecteer een locatie</option>
-            <option value="den-haag">Den Haag</option>
-            <option value="rotterdam">Rotterdam</option>
-            <option value="leiden">Leiden</option>
-            <option value="delft">Delft</option>
-        </select>
+    <option value="">Selecteer een Avond4daagse</option>
+    <option value="1">Den Haag Centrum</option>
+    <option value="2">Den Haag Scheveningen</option>
+    <option value="3">Leiden</option>
+    <option value="4">Rotterdam</option>
+    <option value="5">Delft</option>
+</select> 
+
     </div>
 
-    <button type="submit" class="search-button">
-        Zoeken →
-    </button>
+    
 
 </form>
 <!-- ZOEKRESULTATEN -->
@@ -427,7 +421,7 @@
     const resultatenSectie = document.getElementById("event-results");
     const evenementenLijst = document.getElementById("event-list");
 
-    zoekFormulier.addEventListener("submit", function(event) {
+    locatieSelectie.addEventListener("change", function(event) {
         event.preventDefault();
 
         const geselecteerdeLocatie = locatieSelectie.value;
@@ -438,7 +432,7 @@
         }
 
         const overeenkomendeEvenementen = evenementen.filter(function(evenement) {
-            return evenement.locatie === geselecteerdeLocatie;
+            return evenement.id === Number(geselecteerdeLocatie);
         });
 
         evenementenLijst.innerHTML = "";

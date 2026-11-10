@@ -70,6 +70,29 @@ nav {
 }
 
 
+
+
+/* Actief evenement */
+
+#active-event {
+    padding: 9px 12px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    color: #2f6b45;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#active-event:focus {
+    outline: 3px solid #f4c95d;
+    outline-offset: 2px;
+}
+
+
+
 /* Navigatie */
 
 .nav-links {
