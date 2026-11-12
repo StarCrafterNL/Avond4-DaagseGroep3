@@ -126,11 +126,16 @@ namespace Avond4_DaagseGroep3.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EvenementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Naam")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EvenementId");
 
                     b.ToTable("ContactVragen");
                 });
@@ -234,6 +239,17 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Routes");
+                });
+
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.ContactVraag", b =>
+                {
+                    b.HasOne("Avond4DaagseEfCore.Models.Evenement", "Evenement")
+                        .WithMany()
+                        .HasForeignKey("EvenementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Evenement");
                 });
 #pragma warning restore 612, 618
         }

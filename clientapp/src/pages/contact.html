@@ -23,7 +23,7 @@
             <ul class="nav-links">
                 <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
                 <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="/clientapp/src/pages/draaiboek.html">Handboek</a></li>
+                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
                 <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
                 <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
                 <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
@@ -74,7 +74,7 @@
 
 
             <!-- Contactformulier -->
-            <form class="contact-form">
+            <form class="contact-form" id="contact-form">
 
                 <!-- Naam -->
                 <div class="form-group">
@@ -146,3 +146,36 @@
 </body>
 
 </html>
+
+<script>
+    const parameters = new URLSearchParams(window.location.search);
+    const evenementId = Number(parameters.get("id"));
+
+    const contactForm = document.getElementById("contact-form");
+
+    contactForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const contactVraag = {
+            naam: document.getElementById("naam").value,
+            email: document.getElementById("email").value,
+            bericht: document.getElementById("bericht").value,
+            evenementId: evenementId
+        };
+
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(contactVraag)
+        });
+
+        if (response.ok) {
+            alert("Je bericht is succesvol verzonden.");
+            contactForm.reset();
+        } else {
+            alert("Er is iets misgegaan bij het verzenden.");
+        }
+    });
+</script>

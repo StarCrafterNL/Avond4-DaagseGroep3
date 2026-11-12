@@ -31,7 +31,7 @@
                 <li><a href="/clientapp/src/pages/aanmeldpagina.html">Inschrijven</a></li>
                 <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
                 <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="/clientapp/src/pages/contact.html">Contact</a></li>
+                <li><a id="contact-link" href="/clientapp/src/pages/contact.html">Contact</a></li>
                 <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
             </ul>
 
@@ -150,6 +150,10 @@ actieveEvenementSelectie.addEventListener("change", function() {
 });
 
     if (geselecteerdEvenement) {
+
+        document.getElementById("contact-link").href =
+    `/clientapp/src/pages/contact.html?id=${evenementId}`;
+    
         document.getElementById("event-name").textContent =
             geselecteerdEvenement.naam;
 
