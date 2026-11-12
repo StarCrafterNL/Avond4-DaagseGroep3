@@ -2104,3 +2104,409 @@ button {
         width: 100%;
     }
 }
+
+/* ==========================================
+   DASHBOARD RESPONSIVE - GRAIGE
+   Tablet and mobile layouts
+   ========================================== */
+
+/* Prevent content from overflowing */
+.a4d-dashboard-page,
+.a4d-dashboard-page * {
+    box-sizing: border-box;
+}
+
+.a4d-dashboard-page {
+    overflow-x: hidden;
+}
+
+.a4d-dashboard-page .a4d-dashboard {
+    width: 100%;
+    min-width: 0;
+}
+
+.a4d-dashboard-page .a4d-stat-card,
+.a4d-dashboard-page .a4d-panel,
+.a4d-dashboard-page .a4d-event-info {
+    min-width: 0;
+}
+
+/* TABLET - 1100px and smaller */
+@media (max-width: 1100px) {
+
+    .a4d-dashboard-page .a4d-dashboard {
+        padding: 28px 22px 48px;
+    }
+
+    /* Navigation can wrap instead of overflowing */
+    .a4d-dashboard-page .site-header .main-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px 22px;
+        height: auto;
+    }
+
+    .a4d-dashboard-page .site-header .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+
+    /* Statistics: 3 columns */
+    .a4d-dashboard-page .a4d-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    /* Website settings and history stack */
+    .a4d-dashboard-page .a4d-content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    /* Event card */
+    .a4d-dashboard-page .a4d-event-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .a4d-dashboard-page .a4d-event-image {
+        min-height: 210px;
+    }
+
+    .a4d-dashboard-page .a4d-event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* MOBILE - 700px and smaller */
+@media (max-width: 700px) {
+
+    .a4d-dashboard-page .a4d-dashboard {
+        padding: 22px 16px 36px;
+    }
+
+    /* Header and navigation */
+    .a4d-dashboard-page .site-header .main-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 12px;
+    }
+
+    .a4d-dashboard-page .site-header .logo {
+        text-align: center;
+        font-size: 21px;
+    }
+
+    .a4d-dashboard-page .site-header .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 16px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .a4d-dashboard-page .site-header .nav-links a {
+        font-size: 13px;
+        padding: 7px 0;
+    }
+
+    /* Dashboard heading */
+    .a4d-dashboard-page .a4d-page-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .a4d-dashboard-page .a4d-page-heading h1 {
+        font-size: 29px;
+    }
+
+    .a4d-dashboard-page .a4d-year-picker {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .a4d-dashboard-page .a4d-year-picker select {
+        max-width: 100%;
+    }
+
+    /* Event card: photo below text */
+    .a4d-dashboard-page .a4d-event-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .a4d-dashboard-page .a4d-event-info {
+        width: 100%;
+        padding: 22px;
+    }
+
+    .a4d-dashboard-page .a4d-event-info h2 {
+        font-size: 23px;
+        line-height: 1.3;
+    }
+
+    .a4d-dashboard-page .a4d-event-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .a4d-dashboard-page .a4d-event-image {
+        width: 100%;
+        height: 190px;
+        min-height: 190px;
+    }
+
+    .a4d-dashboard-page .a4d-event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Statistics: 2 columns */
+    .a4d-dashboard-page .a4d-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .a4d-dashboard-page .a4d-stat-card {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .a4d-dashboard-page .a4d-stat-card strong {
+        font-size: 23px;
+    }
+
+    /* Panels */
+    .a4d-dashboard-page .a4d-content-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .a4d-dashboard-page .a4d-panel {
+        padding: 18px;
+    }
+
+    .a4d-dashboard-page .a4d-panel h2 {
+        font-size: 21px;
+    }
+
+    /* Website settings */
+    .a4d-dashboard-page .a4d-setting-row {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+    }
+
+    .a4d-dashboard-page .a4d-setting-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 25px;
+    }
+
+    .a4d-dashboard-page .a4d-outline-button {
+        grid-column: 2;
+        justify-self: start;
+        min-width: 120px;
+    }
+
+    /* History table */
+    .a4d-dashboard-page .a4d-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .a4d-dashboard-page .a4d-history-table {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    .a4d-dashboard-page .a4d-history-table th,
+    .a4d-dashboard-page .a4d-history-table td {
+        padding: 10px 8px;
+    }
+
+    /* Bottom action panel */
+    .a4d-dashboard-page .a4d-copy-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .a4d-dashboard-page .a4d-primary-button {
+        width: 100%;
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* SMALL PHONES - 420px and smaller */
+@media (max-width: 420px) {
+
+    .a4d-dashboard-page .a4d-dashboard {
+        padding: 18px 12px 30px;
+    }
+
+    .a4d-dashboard-page .a4d-stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .a4d-dashboard-page .a4d-stat-card {
+        padding: 16px;
+    }
+
+    .a4d-dashboard-page .a4d-event-info h2 {
+        font-size: 21px;
+    }
+
+    .a4d-dashboard-page .a4d-panel {
+        padding: 15px;
+    }
+
+    .a4d-dashboard-page .a4d-setting-row {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .a4d-dashboard-page .a4d-setting-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .a4d-dashboard-page .a4d-outline-button {
+        width: 100%;
+    }
+}
+
+/* Dashboard event actions */
+.a4d-dashboard-page .a4d-event-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.a4d-dashboard-page .a4d-new-event-btn {
+    background: #286540;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.a4d-dashboard-page .a4d-new-event-btn:hover {
+    background: #1d4d30;
+}
+
+/* New event popup */
+.a4d-event-dialog {
+    width: min(440px, calc(100% - 32px));
+    max-height: 90vh;
+    overflow-y: auto;
+    border: none;
+    border-radius: 16px;
+    padding: 28px;
+    background: white;
+    color: #26332b;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.2);
+}
+
+.a4d-event-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.a4d-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.a4d-event-form h2 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.a4d-event-form p {
+    margin: 0 0 10px;
+    color: #647568;
+}
+
+.a4d-event-form label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.a4d-event-form input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cddbd0;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.a4d-event-form .a4d-form-error {
+    color: #b42318;
+    font-size: 13px;
+    margin: 0;
+}
+
+.a4d-form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.a4d-form-buttons button {
+    border: 1px solid #cddbd0;
+    border-radius: 8px;
+    padding: 11px 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.a4d-form-buttons .a4d-save-event {
+    background: #286540;
+    color: white;
+    border-color: #286540;
+}
+
+@media (max-width: 700px) {
+    .a4d-dashboard-page .a4d-event-actions {
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .a4d-dashboard-page .a4d-new-event-btn {
+        width: 100%;
+    }
+
+    .a4d-event-dialog {
+        padding: 20px;
+    }
+}
