@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Avond4daagse</title>
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="css/style.css">
+=======
+    <link rel="stylesheet" href="/css/style.css">
+>>>>>>> Feature-Vigo
 </head>
 
 <body>
@@ -15,6 +19,7 @@
     <!-- Navigatie -->
     <header>
         <nav>
+<<<<<<< HEAD
             <a href="index.html" class="logo">
                 Avond4daagse
             </a>
@@ -23,8 +28,30 @@
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
 </ul>
+=======
+            <div class="nav-top">
+                <a href="/index.html" class="logo">
+                    Avond4daagse
+                </a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="info-main-menu" aria-label="Menu openen">
+                    ☰
+                </button>
+            </div>
+
+            <ul class="nav-links" id="main-menu">
+                <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
+                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
+                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
+                <li><a href="/clientapp/src/pages/contact.html">Contact</a></li>
+                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
+                <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
+                <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
+                <li><a href="/index.html" class="active">Home</a></li>
+            </ul>
+>>>>>>> Feature-Vigo
         </nav>
     </header>
+
 
 
     <!-- MAIN -->
@@ -469,6 +496,20 @@
 
         resultatenSectie.hidden = false;
     });
+</script>
+
+<script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+            navToggle.setAttribute("aria-expanded", isOpen);
+            navToggle.textContent = isOpen ? "✕" : "☰";
+            navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+        });
+    }
 </script>
 </body>
 
