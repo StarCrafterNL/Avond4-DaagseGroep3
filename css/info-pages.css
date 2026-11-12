@@ -13,7 +13,14 @@ body.info-page {
   font-size: 14px;
   line-height: 1.65;
 }
-
+.info-page .logo {
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .1px;
+  white-space: nowrap;
+}
 .info-page a { color: #2f704a; }
 .info-page a:hover { color: #194b2e; }
 .info-page a:focus-visible { outline: 3px solid #85b69a; outline-offset: 3px; }
@@ -37,6 +44,29 @@ body.info-page {
   font-weight: 700;
   letter-spacing: .1px;
   white-space: nowrap;
+}
+
+.info-page .nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-page .nav-toggle {
+  display: none !important;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  padding: 5px 9px;
+  cursor: pointer;
+}
+
+.info-page .nav-toggle:focus-visible {
+  outline: 3px solid #85b69a;
+  outline-offset: 3px;
 }
 
 .info-page .main-nav {
@@ -631,4 +661,44 @@ body.info-page {
 
 @media (max-width: 600px) {
   .finance-page .finance-container { padding: 24px 16px 36px; }
+}
+
+@media (max-width: 420px) {
+  .info-page .nav {
+    padding: 14px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .info-page .nav-top {
+    width: 100%;
+  }
+
+  .info-page .nav-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-page .main-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .info-page .main-nav.open {
+    display: flex;
+  }
+
+  .info-page .main-nav a {
+    width: 100%;
+    min-height: 38px;
+    padding: 6px 0;
+  }
 }

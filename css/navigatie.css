@@ -57,3 +57,99 @@
         font-size: 20px;         /* De grote letters (20px) voor computerschermen */
     }
 }
+
+/* Standaard verborgen boven 420px */
+.nav-top {
+    display: none;
+}
+
+.nav-toggle {
+    display: none !important;
+    background: #2f6b45;
+    border: 2px solid #2f6b45;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    padding: 5px 9px;
+    cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+    outline: 3px solid #85b69a;
+    outline-offset: 3px;
+}
+
+/* Standaard verborgen boven 420px */
+.nav-toggle {
+    display: none !important;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    padding: 5px 9px;
+    cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+    outline: 3px solid #6bbf59;
+    outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+    /* Groene balk bovenaan compacter maken en mee laten groeien als menu opent */
+    .form-container {
+        padding-top: 85px;
+    }
+
+    .form-container::before {
+        height: 68px;
+    }
+
+    /* Ronde logo links in de balk zodat knop rechts past */
+    .logo-sport {
+        left: 15px;
+        transform: none;
+    }
+
+    /* Menuknop helemaal aan de rechterkant in de groene balk */
+    .nav-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 14px;
+        right: 15px;
+        z-index: 10;
+    }
+
+    /* Menu standaard verbergen en bij openen netjes onder de balk plaatsen */
+    .navigatie {
+        display: none !important;
+        position: static;
+        width: 100%;
+        background-color: #1f5f3a;
+        border-radius: 10px;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+
+    .navigatie.open {
+        display: flex !important;
+    }
+
+    .navigatie a {
+        width: 100%;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .navigatie a:last-child {
+        border-bottom: none;
+    }
+}

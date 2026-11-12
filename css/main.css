@@ -220,6 +220,71 @@ html {
   gap: 24px;
   align-items: start;
 }
+/* Inklapbare kolom-kop */
+/* Standaard: kop-knop opmaak */
+.column__toggle {
+  width: 100%;
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: default;
+}
+
+.column__title {
+  margin: 0;
+  color: #2f6b45;
+  font-size: 21px;
+}
+
+/* Boven 420px: kolommen zijn ALTIJD open en er is geen pijltje */
+@media (min-width: 421px) {
+  .column.is-collapsed .tasks,
+  .column.is-collapsed .column__empty {
+    display: flex;
+  }
+
+  .column.is-collapsed .column__empty,
+  .column.is-collapsed .column__add {
+    display: block;
+  }
+
+  .column.is-collapsed .column__count {
+    margin-bottom: 16px;
+  }
+}
+
+/* Op 420px of smaller: standaard dichtgeklapt en klikbaar met pijltje */
+@media (max-width: 420px) {
+  .column__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .column__toggle::after {
+    content: "▼";
+    font-size: 13px;
+    color: #2f6b45;
+    transition: transform 0.2s ease;
+  }
+
+  .column.is-collapsed .column__toggle::after {
+    transform: rotate(-90deg);
+  }
+
+  .column.is-collapsed .tasks,
+  .column.is-collapsed .column__empty,
+  .column.is-collapsed .column__add {
+    display: none;
+  }
+
+  .column.is-collapsed .column__count {
+    margin-bottom: 0;
+  }
+}
 
 .column {
   padding: 22px 18px 18px;
@@ -529,6 +594,43 @@ body.info-page {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+}
+.info-page .site-header {
+  background: #2e6746;
+  color: #fff;
+}
+
+.info-page .nav {
+  max-width: 1120px;
+  min-height: 66px;
+  margin: 0 auto;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.info-page .nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-page .nav-toggle {
+  display: none !important;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  padding: 5px 9px;
+  cursor: pointer;
+}
+
+.info-page .nav-toggle:focus-visible {
+  outline: 3px solid #85b69a;
+  outline-offset: 3px;
 }
 
 .info-page .logo {
@@ -1316,3 +1418,84 @@ body.info-page {
     padding: 1rem;
   }
 }/*# sourceMappingURL=main.css.map */
+
+@media (max-width: 600px) {
+  .info-page .nav {
+    padding: 14px 18px;
+  }
+  .info-page .logo {
+    font-size: 21px;
+  }
+  .info-page .main-nav {
+    gap: 7px 16px;
+  }
+  .info-page .main-nav a {
+    min-height: 36px;
+    font-size: 13px;
+  }
+  .info-page .page-layout {
+    grid-template-columns: 1fr;
+    padding: 24px 16px 36px;
+    gap: 24px;
+  }
+  .info-page .page-main {
+    max-width: none;
+    grid-row: 1;
+  }
+  .info-page .sponsor-sidebar {
+    grid-row: 2;
+  }
+  .info-page .sponsor-list {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .info-page h1 {
+    font-size: 29px;
+  }
+  .info-page .content-card {
+    padding: 22px 18px;
+  }
+  .info-page footer {
+    padding: 12px 16px 24px;
+  }
+}
+
+/* ✅ HIER PLAKKEN (nu overschrijft het wel .info-page .main-nav) */
+@media (max-width: 420px) {
+  .info-page .nav {
+    padding: 14px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .info-page .nav-top {
+    width: 100%;
+  }
+
+  .info-page .nav-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-page .main-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .info-page .main-nav.open {
+    display: flex;
+  }
+
+  .info-page .main-nav a {
+    width: 100%;
+    min-height: 38px;
+    padding: 6px 0;
+  }
+}
