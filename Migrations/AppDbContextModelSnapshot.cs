@@ -135,6 +135,37 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.ToTable("ContactVragen");
                 });
 
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.Evenement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EindDatum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Locatie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organisatie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDatum")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Evenementen");
+                });
+
             modelBuilder.Entity("Avond4DaagseEfCore.Models.Inschrijving", b =>
                 {
                     b.Property<int>("Id")

@@ -24,4 +24,5 @@ public class AppDbContext : DbContext
     public DbSet<Inschrijving> Inschrijvingen => Set<Inschrijving>();
     public DbSet<Betaling> Betalingen => Set<Betaling>();
     public DbSet<ContactVraag> ContactVragen => Set<ContactVraag>();
+    public DbSet<Evenement> Evenementen => Set<Evenement>();
 }
