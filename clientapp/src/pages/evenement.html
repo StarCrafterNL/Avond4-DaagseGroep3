@@ -14,12 +14,16 @@
 
     <header class="site-header">
         <nav class="main-nav">
+            <div class="nav-top">
+                <a href="/index.html" class="logo">
+                    Avond4daagse
+                </a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="evenement-main-menu" aria-label="Menu openen">
+                    ☰
+                </button>
+            </div>
 
-            <a href="/index.html" class="logo">
-                Avond4daagse
-            </a>
-
-            <ul class="nav-links">
+            <ul class="nav-links" id="evenement-main-menu">
                 <li><a href="/index.html">Home</a></li>
                 <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
                 <li><a href="/clientapp/src/pages/aanmeldpagina.html">Inschrijven</a></li>
@@ -28,7 +32,6 @@
                 <li><a href="/clientapp/src/pages/contact.html">Contact</a></li>
                 <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
             </ul>
-
         </nav>
     </header>
 
@@ -137,7 +140,19 @@
         document.getElementById("event-location").textContent =
             selectedEvent.location;
     }
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+            navToggle.setAttribute("aria-expanded", isOpen);
+            navToggle.textContent = isOpen ? "✕" : "☰";
+            navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+        });
+    }
 </script>
+
 </body>
 
 </html>

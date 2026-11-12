@@ -10,14 +10,20 @@
   <body class="info-page">
     <header class="site-header">
       <div class="nav">
-        <div class="logo">Avond4daagse</div>
-        <nav class="main-nav" aria-label="Hoofdnavigatie">
+        <div class="nav-top">
+          <div class="logo">Avond4daagse</div>
+          <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="draaiboek-main-menu" aria-label="Menu openen">
+            ☰
+          </button>
+        </div>
+        <nav class="main-nav" id="draaiboek-main-menu" aria-label="Hoofdnavigatie">
           <a href="routes.html">Routes</a>
           <a href="reglement.html">Reglement</a>
           <a href="handboek.html">Handboek</a>
           <a href="contact.html">Contact</a>
           <a href="privacy.html">Privacy</a>
           <a href="inlogpagina.html">Login</a>
+          <a href="/index.html">Home</a>
         </nav>
       </div>
     </header>
@@ -85,7 +91,6 @@
           <label for="taak-status">Status</label>
           <select id="taak-status"></select>
         </div>
-        
 
         <div class="field-actions">
           <button type="button" class="button button--light" id="taak-annuleer">
@@ -118,5 +123,56 @@
         </div>
       </form>
     </dialog>
+
+    <script>
+      // 1. Inklapbare navigatie voor schermen <= 420px
+      const navToggle = document.querySelector(".nav-toggle");
+      const mainNav = document.querySelector(".main-nav");
+
+      if (navToggle && mainNav) {
+        navToggle.addEventListener("click", function () {
+          const isOpen = mainNav.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", isOpen);
+          navToggle.textContent = isOpen ? "✕" : "☰";
+          navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+        });
+      }
+
+      // 2. Takenkolommen inklapbaar maken (met teller zichtbaar)
+      const board = document.getElementById("board");
+
+      function maakKolommenInklapbaar() {
+        if (!board) return;
+        const kolommen = board.querySelectorAll(".column");
+
+        kolommen.forEach(function (kolom) {
+          const kop = kolom.querySelector(".column__head");
+          if (!kop || kop.parentElement.classList.contains("column__toggle")) return;
+
+          const toggleBtn = document.createElement("button");
+          toggleBtn.type = "button";
+          toggleBtn.className = "column__toggle";
+          toggleBtn.setAttribute("aria-expanded", "false");
+
+          kop.parentNode.insertBefore(toggleBtn, kop);
+          toggleBtn.appendChild(kop);
+
+          // Standaard dichtgeklapt voor overzicht
+          kolom.classList.add("is-collapsed");
+
+          toggleBtn.addEventListener("click", function () {
+            const isDicht = kolom.classList.toggle("is-collapsed");
+            toggleBtn.setAttribute("aria-expanded", String(!isDicht));
+          });
+        });
+      }
+
+      maakKolommenInklapbaar();
+      if (board) {
+        const observer = new MutationObserver(maakKolommenInklapbaar);
+        observer.observe(board, { childList: true });
+      }
+    </script>
+    
   </body>
 </html>
