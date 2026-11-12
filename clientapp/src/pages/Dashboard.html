@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Avond4daagse Den Haag</title>
+
+    <!-- Bestaande stylesheet -->
+    <link rel="stylesheet" href="../../../css/style.css">
+
+</head>
+
+<body class="a4d-dashboard-page">
+
+    <!-- Navigatie -->
+    <header class="site-header">
+        <nav class="main-nav a4d-mobile-nav"
+             aria-label="Hoofdnavigatie">
+
+            <a href="index.html" class="logo">
+                Avond4daagse Den Haag
+            </a>
+
+            <button
+                type="button"
+                class="a4d-menu-toggle"
+                id="a4d-menu-toggle"
+                aria-label="Menu openen"
+                aria-controls="a4d-nav-links"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <ul class="nav-links" id="a4d-nav-links">
+                <li>
+                    <a href="Dashboard.html" class="active">
+                        Dashboard
+                    </a>
+                </li>
+                <li><a href="routes.html">Routes</a></li>
+                <li><a href="reglement.html">Reglement</a></li>
+                <li><a href="handboek.html">Handboek</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main class="a4d-dashboard">
+
+        <!-- Dashboard titel -->
+        <div class="a4d-page-heading">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Overzicht voor beheerders</p>
+            </div>
+
+            <div class="a4d-event-actions">
+
+                <label class="a4d-year-picker">
+                    <span>Evenement:</span>
+
+                    <select
+                        id="a4d-event-select"
+                        aria-label="Kies evenement">
+                        <option value="2027">
+                            2027 (huidig)
+                        </option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </label>
+
+                <button
+                    type="button"
+                    id="a4d-new-event-btn"
+                    class="a4d-new-event-btn">
+                    + Nieuw evenement
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Evenement informatie -->
+        <section class="a4d-event-card">
+
+            <div class="a4d-event-info">
+
+                <p class="a4d-eyebrow" id="a4d-event-eyebrow">
+                    HUIDIGE AVOND4DAAGSE
+                </p>
+
+                <h2 id="a4d-event-title">
+                    Avond4daagse Den Haag 2027
+                </h2>
+
+                <div class="a4d-event-details">
+
+                    <div>
+                        <span>Datum</span>
+                        <strong id="a4d-event-date">
+                            12 t/m 15 mei 2027
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Locatie</span>
+                        <strong id="a4d-event-location">
+                            Den Haag
+                        </strong>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="a4d-event-image">
+                <img
+                    src="../images/dashboard-event.png"
+                    alt="Deelnemers aan de Avond4daagse">
+            </div>
+
+        </section>
+
+        <!-- Statistieken -->
+        <section
+            class="a4d-stats"
+            aria-label="Evenementstatistieken">
+
+            <article class="a4d-stat-card">
+                <span class="a4d-stat-icon">👥</span>
+                <div>
+                    <p>Deelnemers</p>
+                    <strong>320</strong>
+                </div>
+            </article>
+
+            <article class="a4d-stat-card">
+                <span class="a4d-stat-icon">€</span>
+                <div>
+                    <p>Opbrengst</p>
+                    <strong>€ 12.450</strong>
+                </div>
+            </article>
+
+            <article class="a4d-stat-card">
+                <span class="a4d-stat-icon">👥</span>
+                <div>
+                    <p>Vrijwilligers</p>
+                    <strong>32</strong>
+                </div>
+            </article>
+
+            <article class="a4d-stat-card">
+                <span class="a4d-stat-icon">◷</span>
+                <div>
+                    <p>Openstaande shifts</p>
+                    <strong>8</strong>
+                </div>
+            </article>
+
+            <article class="a4d-stat-card">
+                <span class="a4d-stat-icon">✓</span>
+                <div>
+                    <p>Openstaande taken</p>
+                    <strong>5</strong>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Website beheren en geschiedenis -->
+        <div class="a4d-content-grid">
+
+            <section class="a4d-panel">
+
+                <h2>Website aanpassen</h2>
+
+                <p>
+                    Beheer de zichtbare informatie
+                    op de publieke website.
+                </p>
+
+                <!-- Evenementfoto -->
+                <div class="a4d-setting-row">
+
+                    <span class="a4d-setting-icon">▣</span>
+
+                    <div class="a4d-setting-text">
+                        <strong>Evenementfoto</strong>
+                        <span>
+                            Upload een eigen foto voor de homepage.
+                        </span>
+                    </div>
+
+                    <a
+                        href="#"
+                        id="a4d-photo-button"
+                        class="a4d-outline-button">
+                        Wijzigen
+                    </a>
+
+                </div>
+
+                <!-- Huisstijl -->
+                <div class="a4d-setting-row">
+
+                    <span class="a4d-setting-icon">◉</span>
+
+                    <div class="a4d-setting-text">
+                        <strong>Huisstijl</strong>
+                        <span>
+                            Beheer kleuren, logo en stijlelementen.
+                        </span>
+                    </div>
+
+                    <a
+                        href="#"
+                        id="a4d-style-button"
+                        class="a4d-outline-button">
+                        Wijzigen
+                    </a>
+
+                </div>
+
+                <!-- Sponsoren -->
+                <div class="a4d-setting-row">
+
+                    <span class="a4d-setting-icon">◇</span>
+
+                    <div class="a4d-setting-text">
+                        <strong>Sponsoren</strong>
+                        <span>
+                            Upload en beheer logo's van sponsoren.
+                        </span>
+                    </div>
+
+                    <a
+                        href="#"
+                        id="a4d-sponsor-button"
+                        class="a4d-outline-button">
+                        Beheren
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!-- Geschiedenis -->
+            <section class="a4d-panel">
+
+                <h2>Geschiedenis</h2>
+
+                <p>
+                    Eerdere edities van de Avond4daagse Den Haag.
+                </p>
+
+                <div class="a4d-table-wrapper">
+
+                    <table class="a4d-history-table">
+
+                        <thead>
+                            <tr>
+                                <th>Jaar</th>
+                                <th>Datum</th>
+                                <th>Deelnemers</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>2026</td>
+                                <td>18 t/m 21 mei</td>
+                                <td>642</td>
+                            </tr>
+                            <tr>
+                                <td>2025</td>
+                                <td>20 t/m 23 mei</td>
+                                <td>587</td>
+                            </tr>
+                            <tr>
+                                <td>2024</td>
+                                <td>21 t/m 24 mei</td>
+                                <td>531</td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td>17 t/m 20 mei</td>
+                                <td>498</td>
+                            </tr>
+                            <tr>
+                                <td>2022</td>
+                                <td>16 t/m 19 mei</td>
+                                <td>466</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Gegevens vorig jaar -->
+        <section class="a4d-copy-panel">
+
+            <div>
+                <h2>Gegevens van vorig jaar overnemen</h2>
+
+                <p>
+                    Maak een nieuw evenement op basis van een
+                    vorige editie. Routes, sponsoren, huisstijl
+                    en instellingen worden overgenomen.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="a4d-primary-button"
+                disabled
+                title="Deze functie wordt later gekoppeld">
+                Gegevens van 2026 overnemen
+            </button>
+
+        </section>
+
+    </main>
+
+    <!-- Popup: Nieuw evenement -->
+    <dialog
+        id="a4d-event-dialog"
+        class="a4d-event-dialog">
+
+        <form
+            id="a4d-event-form"
+            class="a4d-event-form">
+
+            <h2>Nieuw evenement aanmaken</h2>
+
+            <p>
+                Vul de gegevens van de nieuwe Avond4daagse in.
+            </p>
+
+            <label for="a4d-new-year">Jaar</label>
+            <input
+                id="a4d-new-year"
+                type="number"
+                min="2020"
+                max="2100"
+                value="2028"
+                required>
+
+            <label for="a4d-new-start">Startdatum</label>
+            <input
+                id="a4d-new-start"
+                type="date"
+                required>
+
+            <label for="a4d-new-end">Einddatum</label>
+            <input
+                id="a4d-new-end"
+                type="date"
+                required>
+
+            <label for="a4d-new-location">Locatie</label>
+            <input
+                id="a4d-new-location"
+                type="text"
+                value="Den Haag"
+                maxlength="100"
+                required>
+
+            <p
+                id="a4d-form-error"
+                class="a4d-form-error"
+                role="alert"></p>
+
+            <div class="a4d-form-buttons">
+
+                <button
+                    type="button"
+                    id="a4d-cancel-event">
+                    Annuleren
+                </button>
+
+                <button
+                    type="submit"
+                    class="a4d-save-event">
+                    Evenement aanmaken
+                </button>
+
+            </div>
+
+        </form>
+    </dialog>
+
+    <!-- Popup: Website aanpassen -->
+    <dialog
+        id="a4d-tools-dialog"
+        class="a4d-tools-dialog"
+        aria-labelledby="a4d-tool-title">
+
+        <h2 id="a4d-tool-title"></h2>
+
+        <div id="a4d-tool-content"></div>
+
+        <button
+            type="button"
+            id="a4d-tool-close"
+            class="a4d-tool-close">
+            Sluiten
+        </button>
+
+    </dialog>
+
+    <!-- JavaScript staat in dezelfde pages-map -->
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
