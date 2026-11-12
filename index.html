@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Avond4daagse</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -14,23 +13,29 @@
 
     <!-- Navigatie -->
     <header>
-        <nav>
-            <a href="index.html" class="logo">
-                Avond4daagse
-            </a>
+        <nav class="main-nav">
+            <div class="nav-top">
+                <a href="/index.html" class="logo">
+                    Avond4daagse
+                </a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="info-main-menu" aria-label="Menu openen">
+                    ☰
+                </button>
+            </div>
 
-            <ul class="nav-links">
-                <li><a href="#">Routes</a></li>
+            <ul class="nav-links" id="main-menu">
+                <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
                 <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="#">Handboek</a></li>
-                <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
+                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
+                <li><a href="/clientapp/src/pages/contact.html">Contact</a></li>
                 <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
                 <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
                 <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="/index.html" class="active">Home</a></li>
             </ul>
         </nav>
     </header>
+
 
 
     <!-- MAIN -->
@@ -64,17 +69,17 @@
         <label for="location">Locatie</label>
 
         <select id="location" name="location">
-            <option value="">Selecteer een locatie</option>
-            <option value="den-haag">Den Haag</option>
-            <option value="rotterdam">Rotterdam</option>
-            <option value="leiden">Leiden</option>
-            <option value="delft">Delft</option>
-        </select>
+    <option value="">Selecteer een Avond4daagse</option>
+    <option value="1">Den Haag Centrum</option>
+    <option value="2">Den Haag Scheveningen</option>
+    <option value="3">Leiden</option>
+    <option value="4">Rotterdam</option>
+    <option value="5">Delft</option>
+</select> 
+
     </div>
 
-    <button type="submit" class="search-button">
-        Zoeken →
-    </button>
+    
 
 </form>
 <!-- ZOEKRESULTATEN -->
@@ -379,75 +384,116 @@
 
     </footer>
 <script>
-    const events = [
+    const evenementen = [
         {
-            location: "den-haag",
-            name: "Avond4daagse Den Haag",
-            organisation: "Stichting Avond4daagse Den Haag",
-            date: "2 t/m 5 juni 2027",
-            place: "Den Haag"
+            id: 1,
+            locatie: "den-haag",
+            naam: "Avond4daagse Den Haag Centrum",
+            organisatie: "Stichting Avond4daagse Den Haag Centrum",
+            datum: "2 t/m 5 juni 2027",
+            plaats: "Den Haag"
         },
         {
-            location: "leiden",
-            name: "Avond4daagse Leiden",
-            organisation: "Stichting Avond4daagse Leiden",
-            date: "8 t/m 11 juni 2027",
-            place: "Leiden"
+            id: 2,
+            locatie: "den-haag",
+            naam: "Avond4daagse Scheveningen",
+            organisatie: "Stichting Avond4daagse Scheveningen",
+            datum: "15 t/m 18 juni 2027",
+            plaats: "Den Haag"
         },
         {
-            location: "rotterdam",
-            name: "Avond4daagse Rotterdam",
-            organisation: "Avond4daagse Rotterdam",
-            date: "15 t/m 18 juni 2027",
-            place: "Rotterdam"
+            id: 3,
+            locatie: "leiden",
+            naam: "Avond4daagse Leiden",
+            organisatie: "Stichting Avond4daagse Leiden",
+            datum: "8 t/m 11 juni 2027",
+            plaats: "Leiden"
         },
         {
-            location: "delft",
-            name: "Avond4daagse Delft",
-            organisation: "Stichting Avond4daagse Delft",
-            date: "21 t/m 24 juni 2027",
-            place: "Delft"
+            id: 4,
+            locatie: "rotterdam",
+            naam: "Avond4daagse Rotterdam",
+            organisatie: "Avond4daagse Rotterdam",
+            datum: "15 t/m 18 juni 2027",
+            plaats: "Rotterdam"
+        },
+        {
+            id: 5,
+            locatie: "delft",
+            naam: "Avond4daagse Delft",
+            organisatie: "Stichting Avond4daagse Delft",
+            datum: "21 t/m 24 juni 2027",
+            plaats: "Delft"
         }
     ];
 
-    const searchForm = document.querySelector(".event-search");
-    const locationSelect = document.getElementById("location");
-    const resultsSection = document.getElementById("event-results");
-    const eventList = document.getElementById("event-list");
+    const zoekFormulier = document.querySelector(".event-search");
+    const locatieSelectie = document.getElementById("location");
+    const resultatenSectie = document.getElementById("event-results");
+    const evenementenLijst = document.getElementById("event-list");
 
-    searchForm.addEventListener("submit", function(event) {
+    locatieSelectie.addEventListener("change", function(event) {
         event.preventDefault();
 
-        const selectedLocation = locationSelect.value;
+        const geselecteerdeLocatie = locatieSelectie.value;
 
-        if (selectedLocation === "") {
+        if (geselecteerdeLocatie === "") {
             alert("Selecteer eerst een locatie.");
             return;
         }
 
-        const matchingEvents = events.filter(function(eventItem) {
-            return eventItem.location === selectedLocation;
+        const overeenkomendeEvenementen = evenementen.filter(function(evenement) {
+            return evenement.id === Number(geselecteerdeLocatie);
         });
 
-        eventList.innerHTML = "";
+        evenementenLijst.innerHTML = "";
 
-        matchingEvents.forEach(function(eventItem) {
-            eventList.innerHTML += `
+        overeenkomendeEvenementen.forEach(function(evenement) {
+            evenementenLijst.innerHTML += `
                 <div class="event-card">
-                    <h3>${eventItem.name}</h3>
-                    <p><strong>Organisatie:</strong> ${eventItem.organisation}</p>
-                    <p><strong>Datum:</strong> ${eventItem.date}</p>
-                    <p><strong>Locatie:</strong> ${eventItem.place}</p>
+                    <h3>${evenement.naam}</h3>
 
-                    <a href="evenement.html?location=${eventItem.location}" class="event-details-button">
-    Bekijk evenement →
-</a>
+                    <p>
+                        <strong>Organisatie:</strong>
+                        ${evenement.organisatie}
+                    </p>
+
+                    <p>
+                        <strong>Datum:</strong>
+                        ${evenement.datum}
+                    </p>
+
+                    <p>
+                        <strong>Locatie:</strong>
+                        ${evenement.plaats}
+                    </p>
+
+                    <a
+                        href="/clientapp/src/pages/evenement.html?id=${evenement.id}"
+                        class="event-details-button"
+                    >
+                        Bekijk evenement →
+                    </a>
                 </div>
             `;
         });
 
-        resultsSection.hidden = false;
+        resultatenSectie.hidden = false;
     });
+</script>
+
+<script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+            navToggle.setAttribute("aria-expanded", isOpen);
+            navToggle.textContent = isOpen ? "✕" : "☰";
+            navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+        });
+    }
 </script>
 </body>
 
