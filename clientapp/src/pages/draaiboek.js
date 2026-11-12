@@ -4,7 +4,8 @@
    - Template en lijsten (statussen, bestuursleden, evenementen)
    - Opslag
    - Weergave
-   - Acties: toevoegen, wijzigen, verwijderen, verplaatsen, template herstellen */
+   - Acties: toevoegen, wijzigen, verwijderen, verplaatsen, template herstellen
+   Elke actie past eerst `tasks` aan, slaat op en tekent daarna het bord opnieuw met render(). */
 
 // template en lijsten
 const STATUS = [
@@ -38,7 +39,9 @@ const TEMPLATE_TASKS = [
     { status: "klaar", daysUntilDeadline: 3, title: "Bezemwagen laten vertrekken", description: "Achter de laatste deelnemers." },
 ];
 
-// geeft de datum van vandaag + dagen als "jjjj-mm-dd" (het formaat van <input type="date">)
+/* geeft de datum van vandaag + dagen als "jjjj-mm-dd" (het formaat van <input type="date">).
+   setDate() rolt vanzelf door naar de volgende maand (30 jan + 5 = 4 feb).
+   pad() maakt van 4 -> "04". Geen toISOString(), want die rekent in UTC en kan een dag verschuiven. */
 function dateFromToday(days) {
     const date = new Date();
     date.setDate(date.getDate() + days);
@@ -46,6 +49,10 @@ function dateFromToday(days) {
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
+/* maakt van elke template-taak een echte taak.
+   { daysUntilDeadline, ...task } haalt daysUntilDeadline eruit en stopt de rest in `task`,
+   zodat het niet wordt opgeslagen. ...task staat als laatste, zodat de template-waarden
+   de standaardwaarden overschrijven. */
 function createTemplate() {
     return TEMPLATE_TASKS.map(({ daysUntilDeadline, ...task }, index) => ({
         id: index + 1,
@@ -59,6 +66,7 @@ function createTemplate() {
 // opslag (voor nu localStorage, met fallback indien niet beschikbaar)
 const STORAGE_KEY = "draaiboek-tasks-v3";
 
+// taken met een onbekende status worden weggefilterd, die zouden in geen enkele kolom verschijnen
 function loadTasks() {
     try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -90,7 +98,7 @@ const resetButton = document.getElementById("reset-template");
 const taskDialog = document.getElementById("taak-dialog");
 const taskForm = document.getElementById("taak-form");
 const taskHeading = document.getElementById("taak-dialog-titel");
-const idEl = document.getElementById("taak-id");
+const idEl = document.getElementById("taak-id"); // leeg = nieuwe taak, gevuld = bewerken
 const titleEl = document.getElementById("taak-titel");
 const descriptionEl = document.getElementById("taak-omschrijving");
 const deadlineEl = document.getElementById("taak-deadline");
@@ -103,7 +111,7 @@ const confirmDialog = document.getElementById("bevestig-dialog");
 const confirmText = document.getElementById("bevestig-tekst");
 const confirmYes = document.getElementById("bevestig-ja");
 
-// tekstvelden die niet leeg of alleen spaties mogen zijn
+// tekstvelden die niet leeg of alleen spaties mogen zijn (`required` keurt alleen spaties goed)
 const requiredTextFields = [
     { el: titleEl, message: "Vul een titel in." },
     { el: descriptionEl, message: "Vul een omschrijving in." },
@@ -117,6 +125,7 @@ function makeElement(tag, className, text) {
     return el;
 }
 
+// data wordt data-attributen, bijvoorbeeld: { action: "edit", id: 3 } wordt data-action="edit" data-id="3"
 function makeButton(text, className, data, ariaLabel) {
     const button = makeElement("button", className, text);
     button.type = "button";
@@ -125,6 +134,7 @@ function makeButton(text, className, data, ariaLabel) {
     return button;
 }
 
+// "Jan de Vries" wordt "JV", "Voorzitter" wordt "V"
 function getInitials(name) {
     const parts = name.trim().split(/\s+/);
     const first = parts[0][0];
@@ -132,7 +142,7 @@ function getInitials(name) {
     return (first + last).toUpperCase();
 }
 
-// "2026-12-01" wordt "1 dec 2026"
+// "2026-12-01" wordt "1 dec 2026" (zelf opknippen, want new Date("2026-12-01") leest het als UTC)
 function formatDate(isoDate) {
     const [year, month, day] = isoDate.split("-").map(Number);
     return new Date(year, month - 1, day).toLocaleDateString("nl-NL", {
@@ -194,6 +204,8 @@ function makeTask(task) {
     return item;
 }
 
+/* sorteert op deadline; "jjjj-mm-dd" sorteert als tekst ook op datum.
+   Bij gelijke deadline geeft localeCompare 0, dan beslist || op id */
 function makeColumn(status) {
     const columnTasks = tasks
         .filter((task) => task.status === status.id)
@@ -254,6 +266,7 @@ function render(focusSelector) {
     }
 }
 
+// melding verdwijnt na 5 sec; een oude timer wordt eerst gestopt zodat die de nieuwe melding niet wist
 let messageTimer;
 function showMessage(text) {
     boardStatusEl.textContent = text;
@@ -265,6 +278,7 @@ function showMessage(text) {
 
 // acties
 const findTask = (id) => tasks.find((task) => task.id === id);
+// hoogste id + 1; de 0 zorgt dat een leeg bord bij id 1 begint
 const nextId = () => Math.max(0, ...tasks.map((task) => task.id)) + 1;
 
 function fillSelects() {
@@ -275,8 +289,8 @@ function fillSelects() {
 }
 
 /* kiest een waarde in een keuzelijst; staat de waarde er niet (meer) in,
-dan wordt die tijdelijk toegevoegd zodat er bij opslaan niets verloren gaat */
-
+   dan wordt die tijdelijk toegevoegd zodat er bij opslaan niets verloren gaat.
+   Tijdelijke opties van een vorige keer worden eerst verwijderd. */
 function setSelectValue(select, value) {
     select.querySelectorAll("option[data-temporary]").forEach((option) => option.remove());
     if (value && !Array.from(select.options).some((option) => option.value === value)) {
@@ -287,6 +301,7 @@ function setSelectValue(select, value) {
     select.value = value;
 }
 
+// bij toevoegen wordt alleen { status } meegegeven, de rest krijgt de standaardwaarden
 function openForm({
     id = "",
     title = "",
@@ -308,6 +323,8 @@ function openForm({
     taskDialog.showModal();
 }
 
+/* toont de bevestigingsdialoog en geeft een Promise die true/false oplevert (gebruik met await).
+   De knop "ja" zet returnValue via <form method="dialog">; { once: true } haalt de listener daarna weg */
 function confirmAction(text, buttonText) {
     confirmText.textContent = text;
     confirmYes.textContent = buttonText;
@@ -322,6 +339,7 @@ function confirmAction(text, buttonText) {
     });
 }
 
+// verwijdert na bevestiging; de focus gaat daarna naar de toevoegknop van dezelfde kolom
 async function deleteTask(id) {
     const task = findTask(id);
     const confirmed = await confirmAction(`Taak "${task.title}" verwijderen?`, "Verwijderen");
@@ -333,6 +351,7 @@ async function deleteTask(id) {
     showMessage(`Taak "${task.title}" verwijderd.`);
 }
 
+// zet de taak in een andere kolom; de focus blijft op de status-keuzelijst van die taak
 function moveTask(id, statusId) {
     const task = findTask(id);
     task.status = statusId;
@@ -342,7 +361,8 @@ function moveTask(id, statusId) {
     showMessage(`Taak "${task.title}" verplaatst naar ${statusName}.`);
 }
 
-// kliks op het bord (1 listener voor alle knoppen)
+/* kliks op het bord (1 listener voor alle knoppen, omdat render() de knoppen steeds vervangt).
+   closest() zoekt de knop met data-action waarop geklikt is */
 boardEl.addEventListener("click", (e) => {
     const button = e.target.closest("button[data-action]");
     if (!button) return;
@@ -359,11 +379,12 @@ boardEl.addEventListener("change", (e) => {
     }
 });
 
-// slaat het formulier op (toevoegen of wijzigen)
+// foutmelding wissen zodra er getypt wordt, anders blijft het veld ongeldig
 requiredTextFields.forEach(({ el }) => {
     el.addEventListener("input", () => el.setCustomValidity(""));
 });
 
+// slaat het formulier op (toevoegen of wijzigen)
 taskForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
