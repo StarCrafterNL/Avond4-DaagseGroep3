@@ -10,24 +10,29 @@
 </head>
 <body class="info-page finance-page">
   
-    <header>
-        <nav>
-            <a href="/index.html" class="logo">
-                Avond4daagse
-            </a>
+    <header class="site-header">
+    <div class="nav">
+      <div class="nav-top">
+        <a href="/index.html" class="logo">
+          Avond4daagse
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="finance-main-menu" aria-label="Menu openen">
+          ☰
+        </button>
+      </div>
 
-            <ul class="nav-links">
-                <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
-                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
-                <li><a href="/clientapp/src/pages/contact.html" class="active">Contact</a></li>
-                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
-                <li><a href="/clientapp/src/pages/inlogpagina.html">Login</a></li>
-                <li><a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a></li>
-                <li><a href="/clientapp/src/pages/homepage.html" class="active">Home</a></li>
-            </ul>
-        </nav>
-    </header>
+      <nav class="main-nav" id="finance-main-menu" aria-label="Hoofdnavigatie">
+        <a href="/clientapp/src/pages/routes.html">Routes</a>
+        <a href="/clientapp/src/pages/reglement.html">Reglement</a>
+        <a href="/clientapp/src/pages/handboek.html">Handboek</a>
+        <a href="/clientapp/src/pages/contact.html">Contact</a>
+        <a href="/clientapp/src/pages/privacy.html">Privacy</a>
+        <a href="/clientapp/src/pages/inlogpagina.html">Login</a>
+        <a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a>
+        <a href="/index.html">Home</a>
+      </nav>
+    </div>
+  </header>
 
   <main class="finance-container">
     <div class="page-heading">
