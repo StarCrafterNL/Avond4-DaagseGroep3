@@ -90,6 +90,7 @@ function saveTasks() {
 let tasks = loadTasks();
 
 // elementen
+const openColumns = new Set();
 const boardEl = document.getElementById("board");
 const boardStatusEl = document.getElementById("board-status");
 const resetButton = document.getElementById("reset-template");
@@ -210,17 +211,37 @@ function makeColumn(status) {
         .filter((task) => task.status === status.id)
         .sort((a, b) => a.deadline.localeCompare(b.deadline) || a.id - b.id);
 
+    const isOpen = openColumns.has(status.id);
+
     const column = makeElement("section", "column");
+    if (!isOpen) column.classList.add("is-collapsed");
     column.setAttribute("aria-labelledby", `kop-${status.id}`);
+
+    const toggleButton = makeElement("button", "column__toggle");
+    toggleButton.type = "button";
+    toggleButton.setAttribute("aria-expanded", String(isOpen));
+    toggleButton.addEventListener("click", () => {
+        if (window.innerWidth > 420) return;
+
+        const nowCollapsed = column.classList.toggle("is-collapsed");
+        toggleButton.setAttribute("aria-expanded", String(!nowCollapsed));
+        if (nowCollapsed) {
+            openColumns.delete(status.id);
+        } else {
+            openColumns.add(status.id);
+        }
+    });
 
     const heading = makeElement("h2", "column__title", status.name);
     heading.id = `kop-${status.id}`;
+    toggleButton.append(heading);
+
     const count = makeElement(
         "p",
         "column__count",
         `${columnTasks.length} ${columnTasks.length === 1 ? "taak" : "taken"}`
     );
-    column.append(heading, count);
+    column.append(toggleButton, count);
 
     if (columnTasks.length > 0) {
         const list = makeElement("ul", "tasks");

@@ -32,16 +32,23 @@
         <section class="hoofd-inhoud">
             
             <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
-            <nav class="navigatie">
+            <!-- Het navigatiemenu -->
+            <div class="nav-wrapper">
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="login-main-menu" aria-label="Menu openen">
+                ☰
+            </button>
+
+            <nav class="navigatie" id="login-main-menu" aria-label="Hoofdnavigatie">
                 <a href="/clientapp/src/pages/routes.html">Routes</a>
-                <a href="/clientapp/src/pages/reglement.html" aria-current="page">Reglement</a>
-                <a href="/clientapp/src/pages/draaiboek.html">Handboek</a>
+                <a href="/clientapp/src/pages/reglement.html">Reglement</a>
+                <a href="/clientapp/src/pages/handboek.html">Handboek</a>
                 <a href="/clientapp/src/pages/contact.html">Contact</a>
                 <a href="/clientapp/src/pages/privacy.html">Privacy</a>
-                <a href="/clientapp/src/pages/inlogpagina.html">Login</a>
+                <a href="/clientapp/src/pages/inlogpagina.html" aria-current="page">Login</a>
                 <a href="/clientapp/src/pages/aanmeldpagina.html">Aanmelden</a>
                 <a href="/index.html">Home</a>
             </nav>
+            </div>
 
 
             <h2>Inloggen</h2>
@@ -72,6 +79,20 @@
             </p>
         </section>
      </main>
+     <script>
+        const navToggle = document.querySelector(".nav-toggle");
+        const navMenu = document.querySelector(".navigatie");
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener("click", function () {
+                const isOpen = navMenu.classList.toggle("open");
+                navToggle.setAttribute("aria-expanded", isOpen);
+                navToggle.textContent = isOpen ? "✕" : "☰";
+                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+            });
+        }
+    </script>
+
 
 </body>
 </html>

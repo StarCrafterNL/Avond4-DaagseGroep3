@@ -70,6 +70,29 @@ nav {
 }
 
 
+
+
+/* Actief evenement */
+
+#active-event {
+    padding: 9px 12px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    color: #2f6b45;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#active-event:focus {
+    outline: 3px solid #f4c95d;
+    outline-offset: 2px;
+}
+
+
+
 /* Navigatie */
 
 .nav-links {
@@ -1709,4 +1732,94 @@ button {
         max-width: 100%;
         overflow-wrap: break-word;
     }
+
+}
+/* Standaard verborgen boven 420px */
+.nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Standaard verborgen boven 420px */
+.nav-toggle {
+    display: none !important;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+    outline: 3px solid #f4c95d;
+    outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+
+    .main-nav,
+    nav {
+        padding: 15px 20px;
+        gap: 0;
+    }
+
+    .nav-top {
+        width: 100%;
+    }
+
+    .nav-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-top: 15px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .home-sponsor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .important-card {
+        flex-direction: column;
+    }
+
+    .sponsors {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section h1 {
+        font-size: 28px;
+    }
+
 }
