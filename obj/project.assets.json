@@ -4749,23 +4749,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\grego\\.nuget\\packages\\": {},
+    "C:\\Users\\vigo_\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\grego\\Desktop\\Avond4Daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
+      "projectUniqueName": "C:\\Users\\vigo_\\OneDrive\\Documenten\\project avond4daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
       "projectName": "Avond4-DaagseGroep3",
-      "projectPath": "C:\\Users\\grego\\Desktop\\Avond4Daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
-      "packagesPath": "C:\\Users\\grego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\grego\\Desktop\\Avond4Daagse\\Avond4-DaagseGroep3\\obj\\",
+      "projectPath": "C:\\Users\\vigo_\\OneDrive\\Documenten\\project avond4daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
+      "packagesPath": "C:\\Users\\vigo_\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vigo_\\OneDrive\\Documenten\\project avond4daagse\\Avond4-DaagseGroep3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\grego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vigo_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4834,6 +4834,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.20, 9.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[9.0.20, 9.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.20, 9.0.20]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[9.0.20, 9.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
