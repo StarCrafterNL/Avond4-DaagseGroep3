@@ -1,0 +1,228 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f7f8f6;
+    color: #202720;
+}
+
+.contactvragen-page {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 64px 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 36px;
+}
+
+.page-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #47704e;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.page-header h1 {
+    margin: 0 0 10px;
+    font-size: 2.5rem;
+    line-height: 1.1;
+}
+
+.page-header p {
+    margin: 0;
+    color: #667066;
+    font-size: 1rem;
+}
+
+.back-link {
+    flex-shrink: 0;
+    padding: 11px 17px;
+    border: 1px solid #d7ddd7;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #334336;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    background: #f0f3f0;
+}
+
+.contactvragen-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contactvraag-card {
+    padding: 24px;
+    border: 1px solid #e0e4e0;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.card-header h2 {
+    margin: 0 0 5px;
+    font-size: 1.15rem;
+}
+
+.email {
+    margin: 0;
+    color: #5f6a60;
+    font-size: 0.95rem;
+}
+
+.datum {
+    margin: 18px 0 12px;
+    color: #818881;
+    font-size: 0.85rem;
+}
+
+.bericht {
+    padding: 16px 18px;
+    border-left: 3px solid #47704e;
+    border-radius: 0 6px 6px 0;
+    background: #f5f7f4;
+}
+
+.bericht p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.status {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.status-open {
+    background: #fff1c9;
+    color: #725500;
+}
+
+.status-beantwoord {
+    background: #dcefe0;
+    color: #286039;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.button-primary,
+.button-secondary {
+    min-width: 120px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button-primary {
+    border: 1px solid #47704e;
+    background: #47704e;
+    color: #ffffff;
+}
+
+.button-primary:hover {
+    background: #385c3e;
+}
+
+.button-secondary {
+    border: 1px solid #d4d9d4;
+    background: #ffffff;
+    color: #334336;
+}
+
+.button-secondary:hover {
+    background: #f2f4f2;
+}
+
+@media (max-width: 700px) {
+
+    .contactvragen-page {
+        width: min(100% - 32px, 1100px);
+        padding: 40px 0;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .card-header {
+        gap: 12px;
+    }
+
+    .card-footer {
+        justify-content: stretch;
+    }
+
+    .button-primary,
+    .button-secondary {
+        width: 100%;
+    }
+}
+.antwoord-formulier {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e4e0;
+}
+
+.antwoord-formulier label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.antwoord-formulier textarea {
+    width: 100%;
+    min-height: 130px;
+    padding: 14px;
+    border: 1px solid #ccd3cc;
+    border-radius: 7px;
+    background: #ffffff;
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.antwoord-formulier textarea:focus {
+    outline: 2px solid #47704e;
+    outline-offset: 2px;
+}
+
+.antwoord-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+}

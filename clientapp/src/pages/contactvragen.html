@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contactvragen - Avond4daagse</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/contactvragen.css">
+</head>
+
+<body>
+
+    <main class="contactvragen-page">
+
+        <header class="page-header">
+            <div>
+                <span class="page-label">Evenementbeheer</span>
+                <h1>Contactvragen</h1>
+                <p>
+                    Bekijk en beheer de vragen van bezoekers voor dit evenement.
+                </p>
+            </div>
+
+            <a href="/clientapp/src/pages/Dashboard.html" class="back-link">
+                Terug naar dashboard
+            </a>
+        </header>
+
+
+        <section class="contactvragen-overview">
+
+            <!-- Tijdelijke voorbeelddata voor de vormgeving -->
+
+            <!-- Contactvraag 1 -->
+            <article class="contactvraag-card">
+
+                <div class="card-header">
+                    <div>
+                        <h2>Sophie de Vries</h2>
+                        <p class="email">sophie@example.nl</p>
+                    </div>
+
+                    <span class="status status-open">
+                        Open
+                    </span>
+                </div>
+
+                <p class="datum">
+                    12 november 2026 · 14:20
+                </p>
+
+                <div class="bericht">
+                    <p>
+                        Hallo, vanaf welke leeftijd kunnen kinderen deelnemen
+                        aan de Avond4daagse?
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <button
+                        type="button"
+                        class="button-primary antwoord-openen">
+                        Beantwoorden
+                    </button>
+                </div>
+
+                <div class="antwoord-formulier" hidden>
+
+                    <label>
+                        Antwoord aan Sophie de Vries
+                    </label>
+
+                    <textarea
+                        rows="5"
+                        placeholder="Schrijf hier je antwoord..."></textarea>
+
+                    <div class="antwoord-actions">
+
+                        <button
+                            type="button"
+                            class="button-secondary antwoord-annuleren">
+                            Annuleren
+                        </button>
+
+                        <button
+                            type="button"
+                            class="button-primary antwoord-verzenden">
+                            Verzenden
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Contactvraag 2 -->
+            <article class="contactvraag-card">
+
+                <div class="card-header">
+                    <div>
+                        <h2>Mark Jansen</h2>
+                        <p class="email">mark@example.nl</p>
+                    </div>
+
+                    <span class="status status-open">
+                        Open
+                    </span>
+                </div>
+
+                <p class="datum">
+                    11 november 2026 · 10:45
+                </p>
+
+                <div class="bericht">
+                    <p>
+                        Waar kan ik meer informatie vinden over de verschillende
+                        afstanden van het evenement?
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <button
+                        type="button"
+                        class="button-primary antwoord-openen">
+                        Beantwoorden
+                    </button>
+                </div>
+
+                <div class="antwoord-formulier" hidden>
+
+                    <label>
+                        Antwoord aan Mark Jansen
+                    </label>
+
+                    <textarea
+                        rows="5"
+                        placeholder="Schrijf hier je antwoord..."></textarea>
+
+                    <div class="antwoord-actions">
+
+                        <button
+                            type="button"
+                            class="button-secondary antwoord-annuleren">
+                            Annuleren
+                        </button>
+
+                        <button
+                            type="button"
+                            class="button-primary antwoord-verzenden">
+                            Verzenden
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Contactvraag 3 -->
+            <article class="contactvraag-card">
+
+                <div class="card-header">
+                    <div>
+                        <h2>Emma Bakker</h2>
+                        <p class="email">emma@example.nl</p>
+                    </div>
+
+                    <span class="status status-beantwoord">
+                        Beantwoord
+                    </span>
+                </div>
+
+                <p class="datum">
+                    9 november 2026 · 09:15
+                </p>
+
+                <div class="bericht">
+                    <p>
+                        Ik heb een vraag over mijn deelname aan de Avond4daagse.
+                        Kunnen jullie contact met mij opnemen?
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <button
+                        type="button"
+                        class="button-secondary">
+                        Bekijken
+                    </button>
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // Open antwoordformulier
+        const antwoordKnoppen =
+            document.querySelectorAll(".antwoord-openen");
+
+        antwoordKnoppen.forEach(function (knop) {
+
+            knop.addEventListener("click", function () {
+
+                const kaart =
+                    knop.closest(".contactvraag-card");
+
+                const formulier =
+                    kaart.querySelector(".antwoord-formulier");
+
+                formulier.hidden = false;
+                knop.hidden = true;
+
+            });
+
+        });
+
+
+        // Antwoord annuleren
+        const annuleerKnoppen =
+            document.querySelectorAll(".antwoord-annuleren");
+
+        annuleerKnoppen.forEach(function (knop) {
+
+            knop.addEventListener("click", function () {
+
+                const kaart =
+                    knop.closest(".contactvraag-card");
+
+                const formulier =
+                    kaart.querySelector(".antwoord-formulier");
+
+                const antwoordKnop =
+                    kaart.querySelector(".antwoord-openen");
+
+                formulier.hidden = true;
+                antwoordKnop.hidden = false;
+
+            });
+
+        });
+
+
+        // Antwoord verzenden
+        const verzendKnoppen =
+            document.querySelectorAll(".antwoord-verzenden");
+
+        verzendKnoppen.forEach(function (knop) {
+
+            knop.addEventListener("click", function () {
+
+                const kaart =
+                    knop.closest(".contactvraag-card");
+
+                const tekstvak =
+                    kaart.querySelector("textarea");
+
+                if (tekstvak.value.trim() === "") {
+
+                    alert("Schrijf eerst een antwoord.");
+                    return;
+
+                }
+
+                alert(
+                    "Dit is een voorbeeld. Het antwoord wordt nog niet echt verzonden."
+                );
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
