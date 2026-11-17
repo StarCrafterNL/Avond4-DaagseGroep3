@@ -7,7 +7,7 @@
 
     <title>Evenement | Avond4daagse</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../../../css/style.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <header class="site-header">
         <nav class="main-nav">
             <div class="nav-top">
-                <a href="/index.html" class="logo">
+                <a href="../../../index.html" class="logo">
                     Avond4daagse
                 </a>
                 <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="evenement-main-menu" aria-label="Menu openen">
@@ -31,13 +31,13 @@
 </select>
             <ul class="nav-links">
 
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/clientapp/src/pages/routes.html">Routes</a></li>
-                <li><a href="/clientapp/src/pages/aanmeldpagina.html">Inschrijven</a></li>
-                <li><a href="/clientapp/src/pages/handboek.html">Handboek</a></li>
-                <li><a href="/clientapp/src/pages/reglement.html">Reglement</a></li>
-                <li><a id="contact-link" href="/clientapp/src/pages/contact.html">Contact</a></li>
-                <li><a href="/clientapp/src/pages/privacy.html">Privacy</a></li>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="routes.html">Routes</a></li>
+                <li><a href="aanmeldpagina.html">Inschrijven</a></li>
+                <li><a href="handboek.html">Handboek</a></li>
+                <li><a href="reglement.html">Reglement</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
             </ul>
         </nav>
     </header>
@@ -154,10 +154,6 @@ actieveEvenementSelectie.addEventListener("change", function() {
 });
 
     if (geselecteerdEvenement) {
-
-        document.getElementById("contact-link").href =
-    `/clientapp/src/pages/contact.html?id=${evenementId}`;
-    
         document.getElementById("event-name").textContent =
             geselecteerdEvenement.naam;
 
