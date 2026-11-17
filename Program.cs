@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Avond4DaagseEfCore.Data;
+using Avond4DaagseEfCore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,22 +13,40 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// 3. Beveiligde cookie-configuratie 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.SameSite = SameSiteMode.Strict;
-});
+// 3. Cookie Authenticatie & Autorisatie (RBAC)
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/GeenToegang";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = builder.Environment.IsDevelopment()
+            ? CookieSecurePolicy.SameAsRequest
+            : CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+    });
 
-// Cookie policy voor algemene sessies/cookies
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
-    options.Secure = CookieSecurePolicy.Always;
-});
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+// Standaard rollen seeden in de database
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    if (!db.Rollen.Any())
+    {
+        db.Rollen.AddRange(
+            new Rol { Naam = "Deelnemer" },
+            new Rol { Naam = "Beheerder" },
+            new Rol { Naam = "Penningmeester" },
+            new Rol { Naam = "Routebeheerder" },
+            new Rol { Naam = "Voorzitter" },
+            new Rol { Naam = "Scholen" }
+        );
+        db.SaveChanges();
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -35,11 +55,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// 4. Forceer HTTPS voor veilige dataoverdracht 
 app.UseHttpsRedirection();
-app.UseCookiePolicy();
-
 app.UseRouting();
+
+// 4. Eerst authenticatie (wie ben je?), daarna autorisatie (wat mag je?)
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
