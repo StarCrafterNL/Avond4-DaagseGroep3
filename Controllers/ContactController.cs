@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Avond4DaagseEfCore.Data;
 using Avond4DaagseEfCore.Models;
 
@@ -27,5 +28,25 @@ public class ContactController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok();
+    }
+
+    [HttpGet("evenement/{evenementId}")]
+    public async Task<IActionResult> GetContactVragen(int evenementId)
+    {
+        var contactVragen = await _context.ContactVragen
+            .Where(contactVraag => contactVraag.EvenementId == evenementId)
+            .OrderByDescending(contactVraag => contactVraag.Datum)
+            .Select(contactVraag => new
+            {
+                contactVraag.Id,
+                contactVraag.Naam,
+                contactVraag.Email,
+                contactVraag.Bericht,
+                contactVraag.Datum,
+                contactVraag.EvenementId
+            })
+            .ToListAsync();
+
+        return Ok(contactVragen);
     }
 }

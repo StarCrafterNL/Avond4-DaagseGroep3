@@ -11,5 +11,5 @@ public class ContactVraag
     public string Bericht { get; set; } = string.Empty;
     public DateTime Datum { get; set; } = DateTime.UtcNow;
 
-    public Evenement Evenement { get; set; } = null!;
+    public Evenement? Evenement { get; set; }
 }
