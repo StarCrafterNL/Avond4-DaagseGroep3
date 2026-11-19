@@ -34,40 +34,7 @@ a {
    2. HEADER EN NAVIGATIE
    ========================================================= */
 
-.site-header,
-header {
-    width: 100%;
-
-    background-color: #2f6b45;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-}
-
-.main-nav,
-nav {
-    width: 100%;
-    max-width: 1200px;
-    min-height: 75px;
-
-    margin: 0 auto;
-    padding: 0 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-/* Logo */
-
-.logo {
-    color: #ffffff;
-
-    font-size: 24px;
-    font-weight: bold;
-
-    text-decoration: none;
-}
+/* De header en navigatie staan in site-nav.css */
 
 
 
@@ -92,49 +59,6 @@ nav {
 }
 
 
-
-/* Navigatie */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-
-    gap: 25px;
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    display: inline-block;
-
-    padding: 9px 0;
-
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 600;
-
-    text-decoration: none;
-}
-
-.nav-links a:hover {
-    opacity: 0.8;
-}
-
-
-/* Actieve pagina */
-
-.nav-links a.active {
-    border-bottom: 3px solid #ffffff;
-}
 
 
 /* =========================================================
@@ -1172,21 +1096,6 @@ a.home-info-card:hover {
 
 @media (max-width: 900px) {
 
-    .main-nav,
-    nav {
-        padding: 0 22px;
-    }
-
-
-    .nav-links {
-        gap: 16px;
-
-        flex-wrap: wrap;
-
-        justify-content: flex-end;
-    }
-
-
     .page-container {
         grid-template-columns: 180px 1fr;
 
@@ -1203,30 +1112,6 @@ a.home-info-card:hover {
    ========================================================= */
 
 @media (max-width: 700px) {
-
-    /* Navigatie */
-
-    .main-nav,
-    nav {
-        padding: 20px;
-
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: 20px;
-    }
-
-
-    .nav-links {
-        width: 100%;
-
-        flex-wrap: wrap;
-
-        justify-content: flex-start;
-
-        gap: 12px 20px;
-    }
-
 
     /* Homepage hero */
 
@@ -1405,13 +1290,6 @@ a.home-info-card:hover {
    ========================================================= */
 
 @media (max-width: 420px) {
-
-    .nav-links {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
 
     .hero-content h1 {
         font-size: 36px;
@@ -1830,73 +1708,7 @@ button {
 }
 .a4d-panel h2 { font-size: 23px; margin-bottom: 6px; }
 
-/* Standaard verborgen boven 420px */
-.nav-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Standaard verborgen boven 420px */
-.nav-toggle {
-    display: none !important;
-    background: transparent;
-    border: 2px solid #ffffff;
-    border-radius: 6px;
-    color: #ffffff;
-    font-size: 22px;
-    line-height: 1;
-    padding: 6px 10px;
-    cursor: pointer;
-}
-
-.nav-toggle:focus-visible {
-    outline: 3px solid #f4c95d;
-    outline-offset: 3px;
-}
-
 @media (max-width: 420px) {
-
-    .main-nav,
-    nav {
-        padding: 15px 20px;
-        gap: 0;
-    }
-
-    .nav-top {
-        width: 100%;
-    }
-
-    .nav-toggle {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        margin-top: 15px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links li {
-        width: 100%;
-    }
-
-    .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 10px 0;
-    }
 
     .hero-content h1 {
         font-size: 36px;
@@ -2138,23 +1950,6 @@ button {
         padding: 28px 22px 48px;
     }
 
-    /* Navigation can wrap instead of overflowing */
-    .a4d-dashboard-page .site-header .main-nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        padding: 16px 22px;
-        height: auto;
-    }
-
-    .a4d-dashboard-page .site-header .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px 20px;
-    }
-
     /* Statistics: 3 columns */
     .a4d-dashboard-page .a4d-stats {
         display: grid;
@@ -2191,34 +1986,6 @@ button {
 
     .a4d-dashboard-page .a4d-dashboard {
         padding: 22px 16px 36px;
-    }
-
-    /* Header and navigation */
-    .a4d-dashboard-page .site-header .main-nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-        padding: 16px 12px;
-    }
-
-    .a4d-dashboard-page .site-header .logo {
-        text-align: center;
-        font-size: 21px;
-    }
-
-    .a4d-dashboard-page .site-header .nav-links {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 16px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .a4d-dashboard-page .site-header .nav-links a {
-        font-size: 13px;
-        padding: 7px 0;
     }
 
     /* Dashboard heading */
@@ -2508,86 +2275,6 @@ button {
 
     .a4d-event-dialog {
         padding: 20px;
-    }
-}
-
-
-/* DASHBOARD NAVIGATION */
-
-/* Desktop: hide hamburger */
-body.a4d-dashboard-page .site-header .a4d-menu-toggle {
-    display: none !important;
-}
-
-/* Mobile and tablet */
-@media (max-width: 700px) {
-
-    body.a4d-dashboard-page .site-header .main-nav.a4d-mobile-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        gap: 12px;
-        padding: 16px 20px;
-    }
-
-    body.a4d-dashboard-page .site-header .main-nav .logo {
-        max-width: calc(100% - 80px);
-        font-size: 21px;
-        line-height: 1.2;
-        text-align: left;
-    }
-
-    /* Show hamburger on mobile */
-    body.a4d-dashboard-page .site-header .a4d-menu-toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 56px;
-        height: 56px;
-        padding: 0;
-        background: transparent;
-        color: white;
-        border: 3px solid white;
-        border-radius: 10px;
-        font-size: 30px;
-        line-height: 1;
-        cursor: pointer;
-    }
-
-    /* Hide navigation links by default */
-    body.a4d-dashboard-page .site-header .main-nav.a4d-mobile-nav .nav-links {
-        display: none !important;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        margin: 0;
-        padding: 10px 0;
-    }
-
-    /* Show links when hamburger is clicked */
-    body.a4d-dashboard-page .site-header .main-nav.a4d-mobile-nav .nav-links.is-open {
-        display: flex !important;
-    }
-
-    body.a4d-dashboard-page .site-header .nav-links li {
-        width: 100%;
-    }
-
-    body.a4d-dashboard-page .site-header .nav-links a {
-        display: block;
-        padding: 13px 12px;
-        color: white;
-        font-size: 16px;
-        text-decoration: none;
-    }
-
-    body.a4d-dashboard-page .site-header .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 6px;
     }
 }
 

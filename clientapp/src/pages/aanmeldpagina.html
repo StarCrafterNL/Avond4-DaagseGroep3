@@ -7,31 +7,27 @@
 
     <title>Aanmelden | Avond4daagse</title>
     <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/site-nav.css">
     <script src="mobile-nav.js" defer></script>
 </head>
 
 <body>
 
     <!-- Navigatie -->
-    <header>
-        <nav>
+    <header class="site-header">
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
             <div class="nav-top">
-                <a href="../../../index.html" class="logo">
-                    Avond4daagse
-                </a>
-                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="aanmelden-main-menu" aria-label="Menu openen">
-                    ☰
-                </button>
+                <a href="../../../index.html" class="logo">Avond4daagse</a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menu openen">☰</button>
             </div>
-
-            <ul class="nav-links" id="aanmelden-main-menu">
+            <ul class="nav-links" id="main-menu">
                 <li><a href="routes.html">Routes</a></li>
                 <li><a href="reglement.html">Reglement</a></li>
                 <li><a href="handboek.html">Handboek</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="privacy.html">Privacy</a></li>
                 <li><a href="inlogpagina.html">Login</a></li>
-                <li><a href="aanmeldpagina.html" class="active">Aanmelden</a></li>
+                <li><a href="aanmeldpagina.html" class="active" aria-current="page">Aanmelden</a></li>
                 <li><a href="../../../index.html">Home</a></li>
             </ul>
         </nav>

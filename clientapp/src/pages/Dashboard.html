@@ -9,35 +9,21 @@
 
     <!-- Bestaande stylesheet -->
     <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/site-nav.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 
 <body class="a4d-dashboard-page">
 
     <!-- Navigatie -->
     <header class="site-header">
-        <nav class="main-nav a4d-mobile-nav"
-             aria-label="Hoofdnavigatie">
-
-            <a href="../../../index.html" class="logo">
-                Avond4daagse Den Haag
-            </a>
-
-            <button
-                type="button"
-                class="a4d-menu-toggle"
-                id="a4d-menu-toggle"
-                aria-label="Menu openen"
-                aria-controls="a4d-nav-links"
-                aria-expanded="false">
-                ☰
-            </button>
-
-            <ul class="nav-links" id="a4d-nav-links">
-                <li>
-                    <a href="dashboard.html" class="active">
-                        Dashboard
-                    </a>
-                </li>
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
+            <div class="nav-top">
+                <a href="../../../index.html" class="logo">Avond4daagse</a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menu openen">☰</button>
+            </div>
+            <ul class="nav-links" id="main-menu">
+                <li><a href="dashboard.html" class="active" aria-current="page">Dashboard</a></li>
                 <li><a href="routes.html">Routes</a></li>
                 <li><a href="reglement.html">Reglement</a></li>
                 <li><a href="handboek.html">Handboek</a></li>
@@ -45,7 +31,6 @@
                 <li><a href="privacy.html">Privacy</a></li>
                 <li><a href="inlogpagina.html">Login</a></li>
             </ul>
-
         </nav>
     </header>
 

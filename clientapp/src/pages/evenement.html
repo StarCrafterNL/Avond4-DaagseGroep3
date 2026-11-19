@@ -8,30 +8,26 @@
     <title>Evenement | Avond4daagse</title>
 
     <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/site-nav.css">
     <script src="mobile-nav.js" defer></script>
 </head>
 
 <body>
 
     <header class="site-header">
-        <nav class="main-nav">
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
             <div class="nav-top">
-                <a href="../../../index.html" class="logo">
-                    Avond4daagse
-                </a>
-                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="evenement-main-menu" aria-label="Menu openen">
-                    ☰
-                </button>
+                <a href="../../../index.html" class="logo">Avond4daagse</a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menu openen">☰</button>
             </div>
-<select id="active-event">
-    <option value="1">Den Haag Centrum</option>
-    <option value="2">Den Haag Scheveningen</option>
-    <option value="3">Leiden</option>
-    <option value="4">Rotterdam</option>
-    <option value="5">Delft</option>
-</select>
-            <ul class="nav-links">
-
+            <select id="active-event">
+                <option value="1">Den Haag Centrum</option>
+                <option value="2">Den Haag Scheveningen</option>
+                <option value="3">Leiden</option>
+                <option value="4">Rotterdam</option>
+                <option value="5">Delft</option>
+            </select>
+            <ul class="nav-links" id="main-menu">
                 <li><a href="../../../index.html">Home</a></li>
                 <li><a href="routes.html">Routes</a></li>
                 <li><a href="aanmeldpagina.html">Inschrijven</a></li>

@@ -1,14 +1,21 @@
-/* =========================================================
+/*
    NAVIGATIE - gedeeld door alle pagina's
+
    Opbouw van de HTML:
+
    header.site-header
      nav.main-nav
        div.nav-top   (logo + menuknop)
        ul.nav-links  (de links, id="main-menu")
-   Laad dit bestand na de stylesheet van de pagina, zodat deze
-   regels voorgaan op algemene regels zoals ".info-page a".
+
+   Wordt geïmporteerd in main.scss (routes, handboek, draaiboek) en
+   in site-nav.scss (los bestand voor pagina's zonder main.css).
+
+   Altijd als laatste importeren, zodat deze regels voorgaan op
+   algemene regels zoals ".info-page a".
+   
    Het openen/sluiten op mobiel gebeurt in mobile-nav.js.
-   ========================================================= */
+*/
 
 .site-header,
 .site-header * {
