@@ -7,6 +7,7 @@
 
     <title>Avond4daagse</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="clientapp/src/pages/mobile-nav.js" defer></script>
 </head>
 
 <body>
@@ -480,20 +481,6 @@
 
         resultatenSectie.hidden = false;
     });
-</script>
-
-<script>
-    const navToggle = document.querySelector(".nav-toggle");
-    const navLinks = document.querySelector(".nav-links");
-
-    if (navToggle && navLinks) {
-        navToggle.addEventListener("click", function () {
-            const isOpen = navLinks.classList.toggle("open");
-            navToggle.setAttribute("aria-expanded", isOpen);
-            navToggle.textContent = isOpen ? "✕" : "☰";
-            navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-        });
-    }
 </script>
 </body>
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../../css/basis.css">
     <link rel="stylesheet" href="../../../css/formulier.css">
     <link rel="stylesheet" href="../../../css/navigatie.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 <body>
 
@@ -79,20 +80,5 @@
             </p>
         </section>
      </main>
-     <script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const navMenu = document.querySelector(".navigatie");
-
-        if (navToggle && navMenu) {
-            navToggle.addEventListener("click", function () {
-                const isOpen = navMenu.classList.toggle("open");
-                navToggle.setAttribute("aria-expanded", isOpen);
-                navToggle.textContent = isOpen ? "✕" : "☰";
-                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-            });
-        }
-    </script>
-
-
 </body>
 </html>

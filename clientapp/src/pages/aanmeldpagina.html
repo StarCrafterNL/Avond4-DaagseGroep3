@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Aanmelden | Avond4daagse</title>
-
     <link rel="stylesheet" href="../../../css/style.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 
 <body>
@@ -220,19 +220,6 @@
         </div>
 
     </footer>
-    <script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const navLinks = document.querySelector(".nav-links");
-
-        if (navToggle && navLinks) {
-            navToggle.addEventListener("click", function () {
-                const isOpen = navLinks.classList.toggle("open");
-                navToggle.setAttribute("aria-expanded", isOpen);
-                navToggle.textContent = isOpen ? "✕" : "☰";
-                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-            });
-        }
-    </script>
 </body>
 
 </html>

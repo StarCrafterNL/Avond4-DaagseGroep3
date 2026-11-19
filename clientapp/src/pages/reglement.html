@@ -9,6 +9,7 @@
     <title>Reglement | Avond4daagse</title>
 
     <link rel="stylesheet" href="../../../css/info-pages.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 
 <body class="info-page">
@@ -164,18 +165,4 @@
     </footer>
 
 </body>
-
-<script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const mainNav = document.querySelector(".main-nav");
-
-        if (navToggle && mainNav) {
-            navToggle.addEventListener("click", function () {
-                const isOpen = mainNav.classList.toggle("open");
-                navToggle.setAttribute("aria-expanded", isOpen);
-                navToggle.textContent = isOpen ? "✕" : "☰";
-                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-            });
-        }
-    </script>
 </html>

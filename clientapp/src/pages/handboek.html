@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Handboek</title>
     <link rel="stylesheet" href="../../../css/main.css" />
+    <script src="mobile-nav.js" defer></script>
   </head>
   <body class="info-page">
     <header class="site-header">
@@ -60,18 +61,5 @@
         </section>
       </div>
     </main>
-    <script>
-      const navToggle = document.querySelector(".nav-toggle");
-      const mainNav = document.querySelector(".main-nav");
-
-      if (navToggle && mainNav) {
-        navToggle.addEventListener("click", function () {
-          const isOpen = mainNav.classList.toggle("open");
-          navToggle.setAttribute("aria-expanded", isOpen);
-          navToggle.textContent = isOpen ? "✕" : "☰";
-          navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-        });
-      }
-    </script>
   </body>
 </html>
