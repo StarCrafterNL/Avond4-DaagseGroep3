@@ -1,0 +1,165 @@
+@using Avond4DaagseEfCore.Models
+@model IEnumerable<Avond4DaagseEfCore.Models.Route>
+
+@{
+    ViewData["Title"] = "Routes koppelen aan evenement";
+    var evenementen = ViewBag.Evenementen as List<Evenement> ?? new List<Evenement>();
+}
+
+<div class="container mt-4">
+    <h2>Route-beheer: Routes koppelen aan evenement &amp; dagen</h2>
+    <p class="text-muted">Alleen gekoppelde routes zijn zichtbaar voor deelnemers.</p>
+
+    @if (TempData["Succes"] != null)
+    {
+        <div class="alert alert-success">@TempData["Succes"]</div>
+    }
+    @if (TempData["Fout"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Fout"]</div>
+    }
+
+    <table class="table table-bordered align-middle mt-3">
+        <thead class="table-light">
+            <tr>
+                <th>Route</th>
+                <th>Huidig gekoppeld evenement</th>
+                <th>Huidige dagen</th>
+                <th>Koppeling instellen / wijzigen</th>
+                <th>Ontkoppelen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var route in Model)
+            {
+                var gekoppeldEvenementId = route.EvenementDagen.Select(d => d.EvenementId).FirstOrDefault();
+                var gekozenEvenementId = gekoppeldEvenementId != 0
+                    ? gekoppeldEvenementId
+                    : (evenementen.FirstOrDefault()?.Id ?? 0);
+                var gekoppeldeDagIds = route.EvenementDagen.Select(d => d.Id).ToHashSet();
+
+                <tr>
+                    <td>
+                        <strong>@route.Titel</strong><br />
+                        <small class="text-muted">@route.AfstandKm km — Start: @route.StartLocatie</small>
+                    </td>
+                    <td>
+                        @if (route.EvenementDagen.Any())
+                        {
+                            <span class="badge bg-primary">@route.EvenementDagen.First().Evenement?.Naam</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Niet gekoppeld (verborgen)</span>
+                        }
+                    </td>
+                    <td>
+                        @if (route.EvenementDagen.Any())
+                        {
+                            <ul class="mb-0 ps-3">
+                                @foreach (var dag in route.EvenementDagen.OrderBy(d => d.DagNummer))
+                                {
+                                    <li>Dag @dag.DagNummer (@dag.Datum.ToString("dd-MM-yyyy"))</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span class="text-muted">—</span>
+                        }
+                    </td>
+                    <td>
+                        @if (!evenementen.Any())
+                        {
+                            <span class="text-danger">Geen evenementen beschikbaar.</span>
+                        }
+                        else
+                        {
+                            <form method="post" action="/Beheer/KoppelRoute" class="koppel-form">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="routeId" value="@route.Id" />
+
+                                <div class="mb-2">
+                                    <label class="form-label mb-1"><strong>Evenement:</strong></label>
+                                    <select name="evenementId" class="form-select form-select-sm evenement-select" data-route-id="@route.Id">
+                                        @foreach (var ev in evenementen)
+                                        {
+                                            if (ev.Id == gekozenEvenementId)
+                                            {
+                                                <option value="@ev.Id" selected>@ev.Naam</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@ev.Id">@ev.Naam</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label mb-1"><strong>Dagen:</strong></label>
+                                    @foreach (var ev in evenementen)
+                                    {
+                                        <div class="dagen-groep" data-route-id="@route.Id" data-evenement-id="@ev.Id">
+                                            @foreach (var dag in ev.Dagen.OrderBy(d => d.DagNummer))
+                                            {
+                                                var isChecked = gekoppeldeDagIds.Contains(dag.Id);
+                                                <div class="form-check">
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           name="dagIds"
+                                                           value="@dag.Id"
+                                                           id="r@(route.Id)_d@(dag.Id)"
+                                                           @(isChecked ? "checked" : "") />
+                                                    <label class="form-check-label" for="r@(route.Id)_d@(dag.Id)">
+                                                        Dag @dag.DagNummer (@dag.Datum.ToString("dd-MM-yyyy"))
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+
+                                <button type="submit" class="btn btn-sm btn-success">Opslaan / Wijzigen</button>
+                            </form>
+                        }
+                    </td>
+                    <td>
+                        @if (route.EvenementDagen.Any())
+                        {
+                            <form method="post" action="/Beheer/OntkoppelRoute">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="routeId" value="@route.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Verwijder koppeling</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">—</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function filterDagenVoorRoute(routeId, selectedEvenementId) {
+        document.querySelectorAll(`.dagen-groep[data-route-id="${routeId}"]`).forEach(groep => {
+            const actief = groep.dataset.evenementId === selectedEvenementId;
+            groep.style.display = actief ? 'block' : 'none';
+            groep.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.disabled = !actief;
+                if (!actief) cb.checked = false;
+            });
+        });
+    }
+
+    document.querySelectorAll('.evenement-select').forEach(select => {
+        filterDagenVoorRoute(select.dataset.routeId, select.value);
+        select.addEventListener('change', function () {
+            filterDagenVoorRoute(this.dataset.routeId, this.value);
+        });
+    });
+</script>

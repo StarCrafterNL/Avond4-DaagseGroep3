@@ -25,4 +25,5 @@ public class AppDbContext : DbContext
     public DbSet<Betaling> Betalingen => Set<Betaling>();
     public DbSet<ContactVraag> ContactVragen => Set<ContactVraag>();
     public DbSet<Evenement> Evenementen => Set<Evenement>();
+    public DbSet<EvenementDag> EvenementDagen => Set<EvenementDag>();
 }
