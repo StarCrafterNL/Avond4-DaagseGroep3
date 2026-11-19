@@ -6,9 +6,28 @@
     <title>Inloggen</title>
     <link rel="stylesheet" href="../../../css/basis.css">
     <link rel="stylesheet" href="../../../css/formulier.css">
-    <link rel="stylesheet" href="../../../css/navigatie.css">
+    <link rel="stylesheet" href="../../../css/site-nav.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 <body>
+
+    <header class="site-header">
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
+            <div class="nav-top">
+                <a href="../../../index.html" class="logo">Avond4daagse</a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menu openen">☰</button>
+            </div>
+            <ul class="nav-links" id="main-menu">
+                <li><a href="routes.html">Routes</a></li>
+                <li><a href="reglement.html">Reglement</a></li>
+                <li><a href="handboek.html">Handboek</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="inlogpagina.html" class="active" aria-current="page">Login</a></li>
+                <li><a href="../../../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
 
      <main class="form-container">
 
@@ -28,28 +47,8 @@
             <div class="sponsor-blokje">Sponsor</div>
         </aside>
 
-        <!-- RECHTS: hier komen de menu en het formulier -->
+        <!-- RECHTS: hier komt het formulier -->
         <section class="hoofd-inhoud">
-            
-            <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
-            <!-- Het navigatiemenu -->
-            <div class="nav-wrapper">
-                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="login-main-menu" aria-label="Menu openen">
-                ☰
-            </button>
-
-            <nav class="navigatie" id="login-main-menu" aria-label="Hoofdnavigatie">
-                <a href="routes.html">Routes</a>
-                <a href="reglement.html">Reglement</a>
-                <a href="handboek.html">Handboek</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="inlogpagina.html" aria-current="page">Login</a>
-                <a href="aanmeldpagina.html">Aanmelden</a>
-                <a href="../../../index.html">Home</a>
-            </nav>
-            </div>
-
 
             <h2>Inloggen</h2>
             <p class="form-welkom">Welkom terug! Log in met je gegevens.</p>
@@ -79,20 +78,5 @@
             </p>
         </section>
      </main>
-     <script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const navMenu = document.querySelector(".navigatie");
-
-        if (navToggle && navMenu) {
-            navToggle.addEventListener("click", function () {
-                const isOpen = navMenu.classList.toggle("open");
-                navToggle.setAttribute("aria-expanded", isOpen);
-                navToggle.textContent = isOpen ? "✕" : "☰";
-                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-            });
-        }
-    </script>
-
-
 </body>
 </html>

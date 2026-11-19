@@ -3,25 +3,14 @@
    ========================================================================== */
 
 /* De container staat op mobiel onder elkaar  */
-.form-container { 
-    position: relative;         /* nodig zodat de groene balk, het logo en het menu bovenaan kunnen staan */
+/* de groene balk met het menu staat nu in de gedeelde header (site-nav.css) */
+.form-container {
     width: 100%;
     min-height: 100vh;  /* dit zorgt ervoor dat het scherm altijd word gevuld. */
-    display: flex; 
+    display: flex;
     flex-direction: column;     /* hier word alles onder elkaar gezet op mobiel */
     gap: 20px;
-    padding: 150px 15px 40px;   /* de 150px bovenin is de ruimte voor de groene balk met logo en menu */
-}
-
-/* de groene balk bovenaan (logo en menu staan hier bovenop) */
-.form-container::before {
-    content: ""; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 130px;
-    background-color: #1f5f3a;
+    padding: 30px 15px 40px;
 }
 
 /* sponserbalk is nu een witte kaart en staat op mobiel onder het formulier met een grid van 3 kollomen zodat het mooi past */
@@ -39,13 +28,11 @@
     justify-items: center;
 }
 
-/* het logo staat bovenin de groene balk, in een ronde witte cirkel */
+/* het logo staat bovenin de zijbalk, in een ronde witte cirkel */
 .logo-sport {
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);   /* op mobiel in het midden */
-    width: 44px; 
+    grid-column: 1 / -1;           /* op mobiel een eigen rij boven de sponsoren */
+    margin: 0 auto;
+    width: 44px;
     height: 44px;
     background-color: #ffffff;
     padding: 8px;
@@ -210,11 +197,7 @@ button[type="submit"]:hover {
         grid-template-columns: 200px 1fr; /* eerste kolom is de zijbalk hier en 1fr vult de rest van de ruimte dan in. */
         align-items: start;
         gap: 30px;
-        padding: 130px max(30px, calc((100% - 1100px) / 2)) 40px; /* 130px = groene balk (90px) + ruimte, de max() houdt de inhoud netjes in het midden */
-    }
-
-    .form-container::before {
-        height: 90px;
+        padding: 40px max(30px, calc((100% - 1100px) / 2)); /* de max() houdt de inhoud netjes in het midden */
     }
 
     /* De balk wordt nu een verticale zijbalk */
@@ -228,9 +211,6 @@ button[type="submit"]:hover {
     }
 
     .logo-sport {
-        top: 18px;
-        left: max(30px, calc((100% - 1100px) / 2));  /* logo links in de groene balk */
-        transform: none;
         width: 54px;
         height: 54px;
     }
@@ -255,13 +235,11 @@ button[type="submit"]:hover {
     .form-container {
         grid-template-columns: 220px 1fr; /* Zijbalk krijgt iets meer ruimte */
         gap: 100px;
-        padding-top: 140px;
     }
 
     .logo-sport {
         width: 60px;
         height: 60px;
-        top: 15px;
     }
 
     .sponsor-blokje {
