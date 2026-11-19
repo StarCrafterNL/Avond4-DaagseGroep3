@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // 1. Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // 2. Database context (SQL Server)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -29,6 +31,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // Standaard rollen seeden in de database
 using (var scope = app.Services.CreateScope())
