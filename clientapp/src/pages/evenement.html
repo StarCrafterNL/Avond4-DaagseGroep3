@@ -23,11 +23,7 @@
                 </button>
             </div>
 <select id="active-event">
-    <option value="1">Den Haag Centrum</option>
-    <option value="2">Den Haag Scheveningen</option>
-    <option value="3">Leiden</option>
-    <option value="4">Rotterdam</option>
-    <option value="5">Delft</option>
+    <option value="">Evenementen laden...</option>
 </select>
             <ul class="nav-links">
 
@@ -45,7 +41,7 @@
 
     <main class="event-detail-main">
 
-        <a href="index.html" class="back-link">
+        <a href="/index.html" class="back-link">
             ← Terug naar evenementen
         </a>
 
@@ -90,7 +86,7 @@
             Schrijf je dan in voor het evenement.
         </p>
 
-        <a href="clientapp/src/pages/aanmeldpagina.html" class="event-details-button">
+        <a href="aanmeldpagina.html" class="event-details-button">
     Inschrijven →
 </a>
 
@@ -98,86 +94,167 @@
 
 </section>
     </main>
-<script>
-    const evenementen = [
-        {
-            id: 1,
-            naam: "Avond4daagse Den Haag Centrum",
-            organisatie: "Stichting Avond4daagse Den Haag Centrum",
-            datum: "2 t/m 5 juni 2027",
-            locatie: "Den Haag"
-        },
-        {
-            id: 2,
-            naam: "Avond4daagse Scheveningen",
-            organisatie: "Stichting Avond4daagse Scheveningen",
-            datum: "15 t/m 18 juni 2027",
-            locatie: "Den Haag"
-        },
-        {
-            id: 3,
-            naam: "Avond4daagse Leiden",
-            organisatie: "Stichting Avond4daagse Leiden",
-            datum: "8 t/m 11 juni 2027",
-            locatie: "Leiden"
-        },
-        {
-            id: 4,
-            naam: "Avond4daagse Rotterdam",
-            organisatie: "Avond4daagse Rotterdam",
-            datum: "15 t/m 18 juni 2027",
-            locatie: "Rotterdam"
-        },
-        {
-            id: 5,
-            naam: "Avond4daagse Delft",
-            organisatie: "Stichting Avond4daagse Delft",
-            datum: "21 t/m 24 juni 2027",
-            locatie: "Delft"
-        }
-    ];
 
+<script>
     const parameters = new URLSearchParams(window.location.search);
     const evenementId = Number(parameters.get("id"));
-    const geselecteerdEvenement = evenementen.find(function(evenement) {
-    return evenement.id === evenementId;
-});
+    const selectie = document.getElementById("active-event");
+    const main = document.querySelector(".event-detail-main");
 
-    const actieveEvenementSelectie = document.getElementById("active-event");
+    main.style.display = "none";
+    selectie.disabled = true;
 
-actieveEvenementSelectie.value = evenementId;
-actieveEvenementSelectie.addEventListener("change", function() {
-    const nieuwEvenementId = actieveEvenementSelectie.value;
+    function formatDatum(datum) {
+        if (!datum) return "Nog niet bekend";
 
-    window.location.href =
-        `/clientapp/src/pages/evenement.html?id=${nieuwEvenementId}`;
-});
-
-    if (geselecteerdEvenement) {
-        document.getElementById("event-name").textContent =
-            geselecteerdEvenement.naam;
-
-        document.getElementById("event-organisation").textContent =
-            geselecteerdEvenement.organisatie;
-
-        document.getElementById("event-date").textContent =
-            geselecteerdEvenement.datum;
-
-        document.getElementById("event-location").textContent =
-            geselecteerdEvenement.locatie;
+        return new Date(datum.substring(0, 10) + "T00:00:00")
+            .toLocaleDateString("nl-NL", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
     }
+
+    function toonMelding(bericht) {
+        main.replaceChildren();
+
+        const titel = document.createElement("h2");
+        titel.textContent = bericht;
+
+        const link = document.createElement("a");
+        link.href = "/index.html";
+        link.className = "back-link";
+        link.textContent = "Terug naar evenementen";
+
+        main.append(titel, link);
+        main.style.display = "";
+    }
+
+    async function laadEvenement() {
+        try {
+            const response = await fetch(
+                "/api/evenementen/publiek",
+                { cache: "no-store" }
+            );
+
+            if (!response.ok) {
+                throw new Error("Evenementen ophalen mislukt.");
+            }
+
+            const evenementen = await response.json();
+
+            selectie.replaceChildren(
+                new Option("Selecteer een evenement", "")
+            );
+
+            evenementen.forEach(evenement => {
+                selectie.add(
+                    new Option(evenement.naam, evenement.id)
+                );
+            });
+
+            selectie.disabled = evenementen.length === 0;
+
+            const evenement = evenementen.find(
+                e => e.id === evenementId
+            );
+
+            if (!evenement) {
+                toonMelding("Dit evenement is niet beschikbaar.");
+                return;
+            }
+
+            selectie.value = evenementId;
+
+            document.getElementById("event-name").textContent =
+                evenement.naam;
+
+            document.getElementById("event-organisation").textContent =
+                evenement.organisatie;
+
+            document.getElementById("event-date").textContent =
+                `${formatDatum(evenement.startDatum)} t/m ${
+                    formatDatum(evenement.eindDatum)
+                }`;
+
+            document.getElementById("event-location").textContent =
+                evenement.locatie;
+
+            const details = document.createElement("section");
+
+            const titel = document.createElement("h2");
+            titel.textContent = "Inschrijfperiode en afstanden";
+            details.appendChild(titel);
+
+            const periode = document.createElement("p");
+
+            periode.textContent =
+                `Inschrijven van ${
+                    formatDatum(evenement.inschrijvingOpen)
+                } t/m ${
+                    formatDatum(evenement.inschrijvingSluit)
+                }`;
+
+            details.appendChild(periode);
+
+            const lijst = document.createElement("ul");
+
+            evenement.afstanden.forEach(afstand => {
+                const item = document.createElement("li");
+
+                const prijs = Number(afstand.prijs)
+                    .toLocaleString("nl-NL", {
+                        style: "currency",
+                        currency: "EUR"
+                    });
+
+                item.textContent =
+                    `${afstand.afstandKm} km — ${prijs} — Starttijd: ${
+                        afstand.starttijd.substring(0, 5)
+                    }`;
+
+                lijst.appendChild(item);
+            });
+
+            details.appendChild(lijst);
+            main.appendChild(details);
+
+            main.style.display = "";
+
+        } catch (error) {
+            console.error(error);
+            toonMelding("Het evenement kon niet worden geladen.");
+        }
+    }
+
+    selectie.addEventListener("change", function () {
+        if (this.value) {
+            window.location.href =
+                `/clientapp/src/pages/evenement.html?id=${this.value}`;
+        }
+    });
+
+    // Bestaande mobiele navigatie
     const navToggle = document.querySelector(".nav-toggle");
     const navLinks = document.querySelector(".nav-links");
 
     if (navToggle && navLinks) {
         navToggle.addEventListener("click", function () {
             const isOpen = navLinks.classList.toggle("open");
+
             navToggle.setAttribute("aria-expanded", isOpen);
             navToggle.textContent = isOpen ? "✕" : "☰";
-            navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
+
+            navToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Menu sluiten" : "Menu openen"
+            );
         });
     }
+
+    laadEvenement();
 </script>
+
 
 </body>
 

@@ -9,6 +9,7 @@
 
     <!-- Bestaande stylesheet -->
     <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/dashboard-events.css">
 
 </head>
 
@@ -82,6 +83,14 @@
                     class="a4d-new-event-btn">
                     + Nieuw evenement
                 </button>
+
+<button type="button"
+        id="a4d-edit-event-btn"
+        class="a4d-outline-button"
+        disabled>
+    Evenement aanpassen
+</button>
+
 
             </div>
         </div>
@@ -331,73 +340,86 @@
 
     </main>
 
-    <!-- Popup: Nieuw evenement -->
-    <dialog
-        id="a4d-event-dialog"
-        class="a4d-event-dialog">
+   
+<!-- Popup: Evenement aanmaken en aanpassen - US 7.3 -->
+<dialog id="a4d-event-dialog" class="a4d-event-dialog">
 
-        <form
-            id="a4d-event-form"
-            class="a4d-event-form">
+    <form id="a4d-event-form" class="a4d-event-form">
 
-            <h2>Nieuw evenement aanmaken</h2>
+        <h2 id="a4d-form-title">Nieuw evenement aanmaken</h2>
 
-            <p>
-                Vul de gegevens van de nieuwe Avond4daagse in.
-            </p>
+        <p>Vul de gegevens van het evenement in.</p>
 
-            <label for="a4d-new-year">Jaar</label>
-            <input
-                id="a4d-new-year"
-                type="number"
-                min="2020"
-                max="2100"
-                value="2028"
-                required>
+        <label for="a4d-new-name">Evenementnaam *</label>
+        <input id="a4d-new-name"
+               type="text"
+               maxlength="150"
+               required>
 
-            <label for="a4d-new-start">Startdatum</label>
-            <input
-                id="a4d-new-start"
-                type="date"
-                required>
+        <label for="a4d-new-organisation">Organisatie</label>
+        <input id="a4d-new-organisation"
+               type="text"
+               maxlength="150">
 
-            <label for="a4d-new-end">Einddatum</label>
-            <input
-                id="a4d-new-end"
-                type="date"
-                required>
+        <label for="a4d-new-location">Locatie *</label>
+        <input id="a4d-new-location"
+               type="text"
+               maxlength="150"
+               required>
 
-            <label for="a4d-new-location">Locatie</label>
-            <input
-                id="a4d-new-location"
-                type="text"
-                value="Den Haag"
-                maxlength="100"
-                required>
+        <label for="a4d-new-start">Startdatum *</label>
+        <input id="a4d-new-start" type="date" required>
 
-            <p
-                id="a4d-form-error"
-                class="a4d-form-error"
-                role="alert"></p>
+        <label for="a4d-new-end">Einddatum *</label>
+        <input id="a4d-new-end" type="date" required>
 
-            <div class="a4d-form-buttons">
+        <h3>Inschrijfperiode</h3>
 
-                <button
-                    type="button"
-                    id="a4d-cancel-event">
-                    Annuleren
-                </button>
+        <label for="a4d-registration-open">Inschrijving opent</label>
+        <input id="a4d-registration-open" type="date">
 
-                <button
-                    type="submit"
-                    class="a4d-save-event">
-                    Evenement aanmaken
-                </button>
+        <label for="a4d-registration-close">Inschrijving sluit</label>
+        <input id="a4d-registration-close" type="date">
 
-            </div>
+        <h3>Afstanden, prijzen en starttijden</h3>
 
-        </form>
-    </dialog>
+        <div id="a4d-distance-list"></div>
+
+        <button type="button"
+                id="a4d-add-distance"
+                class="a4d-outline-button">
+            + Afstand toevoegen
+        </button>
+
+        <p id="a4d-form-error"
+           class="a4d-form-error"
+           role="alert"></p>
+
+        <div class="a4d-form-buttons">
+
+            <button type="button" id="a4d-cancel-event">
+                Annuleren
+            </button>
+
+            <button type="submit"
+                    id="a4d-save-draft"
+                    class="a4d-outline-button"
+                    value="concept">
+                Opslaan als concept
+            </button>
+
+            <button type="submit"
+                    id="a4d-publish-event"
+                    class="a4d-save-event"
+                    value="publiceren">
+                Publiceren
+            </button>
+
+        </div>
+
+    </form>
+</dialog>
+
 
     <!-- Popup: Website aanpassen -->
     <dialog
