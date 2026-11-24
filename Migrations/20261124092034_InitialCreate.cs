@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Avond4_DaagseGroep3.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAvond4DaagseTables : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,6 +57,23 @@ namespace Avond4_DaagseGroep3.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Deelnemers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Evenementen",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Organisatie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Locatie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EindDatum = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evenementen", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,6 +150,9 @@ namespace Avond4_DaagseGroep3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Deelnemers");
+
+            migrationBuilder.DropTable(
+                name: "Evenementen");
 
             migrationBuilder.DropTable(
                 name: "Gebruikers");

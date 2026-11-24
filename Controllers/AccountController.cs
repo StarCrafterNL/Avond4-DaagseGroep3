@@ -63,10 +63,41 @@ namespace Avond4Daagse.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return Content("Registratie gelukt! Inlogpagina (Kaart 1.2) komt hier.");
+            return Redirect("/clientapp/src/pages/inlogpagina.html");
         }
 
-        // Herbruikbare helper voor Kaart 1.2 om de rol in de sessie-cookie te zetten
+        [HttpPost("/verwerk-login")]
+        public async Task<IActionResult> VerwerkLogin(string email, string wachtwoord)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(wachtwoord))
+            {
+                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+            }
+
+            string schoonEmail = email.Trim().ToLower();
+            var gebruiker = await _context.Gebruikers
+                .FirstOrDefaultAsync(g => g.Email.ToLower() == schoonEmail);
+
+            if (gebruiker == null)
+            {
+                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+            }
+
+            string schoneHash = gebruiker.WachtwoordHash.Trim();
+            bool wachtwoordKlopt = schoneHash.StartsWith("$2")
+                ? PasswordService.Verify(wachtwoord, schoneHash)
+                : (schoneHash == wachtwoord);
+
+            if (!wachtwoordKlopt)
+            {
+                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+            }
+
+            await SignInGebruikerAsync(gebruiker);
+
+            return Redirect("/index.html");
+        }
+
         private async Task SignInGebruikerAsync(Gebruiker gebruiker)
         {
             var claims = new List<Claim>
@@ -80,14 +111,41 @@ namespace Avond4Daagse.Controllers
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true,
+                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30)
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal,
+                authProperties);
         }
 
-        [HttpGet]
+        [HttpGet("/api/huidige-gebruiker")]
+        public IActionResult HuidigeGebruiker()
+        {
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return Ok(new
+                {
+                    ingelogd = true,
+                    naam = User.FindFirstValue(ClaimTypes.Name),
+                    email = User.FindFirstValue(ClaimTypes.Email),
+                    rol = User.FindFirstValue(ClaimTypes.Role)
+                });
+            }
+
+            return Ok(new { ingelogd = false });
+        }
+
+        [HttpGet("/uitloggen")]
+        [HttpGet("/Account/Logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Content("Uitgelogd.");
+            return Redirect("/index.html");
         }
 
         [HttpGet]
@@ -97,7 +155,6 @@ namespace Avond4Daagse.Controllers
             return Content("403 Geen Toegang: Je hebt niet de juiste rol om deze pagina te openen.");
         }
 
-        // Alleen actief in Development om server-side rollen te testen voor DOD 1.4
         [HttpGet]
         public async Task<IActionResult> TestRol(string rol = "Deelnemer")
         {

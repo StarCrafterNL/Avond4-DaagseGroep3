@@ -12,14 +12,12 @@
 
      <main class="form-container">
 
-        <!-- LINKS: De Zijbalk voor de sponsooren -->
+        <!-- LINKS: De Zijbalk voor de sponsoren -->
         <aside class="zijbalk">
-            <!-- hier de hardloop foto geplaats -->
             <div class="logo-sport"> 
                 <img src="../../../image/hardloop.jpg" alt="Hardloop foto">
             </div> 
             
-            <!-- hier komen de sponsoren heb het alvast als placeholder gemaakt -->
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
             <div class="sponsor-blokje">Sponsor</div>
@@ -28,31 +26,31 @@
             <div class="sponsor-blokje">Sponsor</div>
         </aside>
 
-        <!-- RECHTS: hier komen de menu en het formulier -->
+        <!-- RECHTS: Het menu en het formulier -->
         <section class="hoofd-inhoud">
             
-            <!-- Het navigatiemenu dat gecenterd komt te sttaan  -->
-            <!-- Het navigatiemenu -->
             <div class="nav-wrapper">
                 <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="login-main-menu" aria-label="Menu openen">
-                ☰
-            </button>
+                    ☰
+                </button>
 
-            <nav class="navigatie" id="login-main-menu" aria-label="Hoofdnavigatie">
-                <a href="routes.html">Routes</a>
-                <a href="reglement.html">Reglement</a>
-                <a href="handboek.html">Handboek</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="inlogpagina.html" aria-current="page">Login</a>
-                <a href="aanmeldpagina.html">Aanmelden</a>
-                <a href="../../../index.html">Home</a>
-            </nav>
+                <nav class="navigatie" id="login-main-menu" aria-label="Hoofdnavigatie">
+                    <a href="routes.html">Routes</a>
+                    <a href="reglement.html">Reglement</a>
+                    <a href="handboek.html">Handboek</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="inlogpagina.html" aria-current="page">Login</a>
+                    <a href="aanmeldpagina.html">Aanmelden</a>
+                    <a href="../../../index.html">Home</a>
+                </nav>
             </div>
-
 
             <h2>Inloggen</h2>
             <p class="form-welkom">Welkom terug! Log in met je gegevens.</p>
+
+            <!-- Foutmelding voor het acceptatiecriterium -->
+            <p id="login-foutmelding" role="alert" style="color: #d93025; font-weight: bold; display: none; margin-bottom: 1rem;"></p>
 
             <!-- Het Inlogformulier -->
             <form action="/verwerk-login" method="POST"> 
@@ -79,6 +77,7 @@
             </p>
         </section>
      </main>
+
      <script>
         const navToggle = document.querySelector(".nav-toggle");
         const navMenu = document.querySelector(".navigatie");
@@ -91,8 +90,18 @@
                 navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
             });
         }
+
+        // Acceptatiecriterium: Exacte foutmelding bij onjuiste gegevens
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("error") === "ongeldig") {
+            const foutElement = document.getElementById("login-foutmelding");
+            foutElement.textContent = "Ongeldige combinatie van e-mailadres en wachtwoord";
+            foutElement.style.display = "block";
+        }
     </script>
 
+    <!-- Gedeeld sessie-script -->
+    <script src="/js/sessie.js"></script>
 
 </body>
 </html>

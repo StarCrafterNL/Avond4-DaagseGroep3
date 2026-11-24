@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Avond4_DaagseGroep3.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261110092212_AddAvond4DaagseTables")]
-    partial class AddAvond4DaagseTables
+    [Migration("20261124092034_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,6 +136,37 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContactVragen");
+                });
+
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.Evenement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EindDatum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Locatie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organisatie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDatum")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Evenementen");
                 });
 
             modelBuilder.Entity("Avond4DaagseEfCore.Models.Inschrijving", b =>

@@ -3,7 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Avond4DaagseEfCore.Data;
 using Avond4DaagseEfCore.Models;
 
-var builder = WebApplication.CreateBuilder(args);
+// Stelt de hoofdmap in als webmap (voor GitHub Pages compatibiliteit)
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = "."
+});
 
 // 1. Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,7 +28,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.SecurePolicy = builder.Environment.IsDevelopment()
             ? CookieSecurePolicy.SameAsRequest
             : CookieSecurePolicy.Always;
-        options.Cookie.SameSite = SameSiteMode.Strict;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.ExpireTimeSpan = TimeSpan.FromDays(30);
+        options.SlidingExpiration = true;
     });
 
 builder.Services.AddAuthorization();
@@ -56,17 +63,19 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Laadt index.html en alle mappen (css, js, image, clientapp) direct vanuit de hoofdmap
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 // 4. Eerst authenticatie (wie ben je?), daarna autorisatie (wat mag je?)
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
