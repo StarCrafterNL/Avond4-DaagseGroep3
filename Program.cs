@@ -46,6 +46,37 @@ using (var scope = app.Services.CreateScope())
         );
         db.SaveChanges();
     }
+
+    if (!db.Evenementen.Any())
+    {
+        var start = new DateTime(2026, 6, 2);
+        db.Evenementen.Add(new Evenement
+        {
+            Naam = "Avond4Daagse Den Haag 2026",
+            Organisatie = "Stichting Avond4Daagse",
+            Locatie = "Malieveld, Den Haag",
+            StartDatum = start,
+            EindDatum = start.AddDays(3),
+            Dagen = new List<EvenementDag>
+            {
+                new EvenementDag { DagNummer = 1, Datum = start },
+                new EvenementDag { DagNummer = 2, Datum = start.AddDays(1) },
+                new EvenementDag { DagNummer = 3, Datum = start.AddDays(2) },
+                new EvenementDag { DagNummer = 4, Datum = start.AddDays(3) }
+            }
+        });
+        db.SaveChanges();
+    }
+
+    if (!db.Routes.Any())
+    {
+        db.Routes.AddRange(
+            new Avond4DaagseEfCore.Models.Route { Titel = "5 km Parkroute", AfstandKm = 5, StartLocatie = "Malieveld Noord", RouteBestandPad = "/images/route-5km.pdf" },
+            new Avond4DaagseEfCore.Models.Route { Titel = "10 km Duinroute", AfstandKm = 10, StartLocatie = "Malieveld Zuid", RouteBestandPad = "/images/route-10km.pdf" },
+            new Avond4DaagseEfCore.Models.Route { Titel = "15 km Kustroute", AfstandKm = 15, StartLocatie = "Malieveld Hoofdingang", RouteBestandPad = "/images/route-15km.pdf" }
+        );
+        db.SaveChanges();
+    }
 }
 
 // Configure the HTTP request pipeline.
