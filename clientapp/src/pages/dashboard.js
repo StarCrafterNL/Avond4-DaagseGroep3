@@ -9,26 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1. MOBIELE NAVIGATIE
     // ==========================================
 
-    const menuButton = document.getElementById("a4d-menu-toggle");
-    const menuLinks = document.getElementById("a4d-nav-links");
-
-    if (menuButton && menuLinks) {
-        menuButton.addEventListener("click", function () {
-            const isOpen = menuLinks.classList.toggle("is-open");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            menuButton.setAttribute(
-                "aria-label",
-                isOpen ? "Menu sluiten" : "Menu openen"
-            );
-
-            menuButton.textContent = isOpen ? "✕" : "☰";
-        });
-    }
+    // staat in mobile-nav.js (gedeeld door alle pagina's)
 
     // ==========================================
     // 2. BROWSEROPSLAG

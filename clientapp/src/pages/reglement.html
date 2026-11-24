@@ -9,32 +9,29 @@
     <title>Reglement | Avond4daagse</title>
 
     <link rel="stylesheet" href="../../../css/info-pages.css">
+    <link rel="stylesheet" href="../../../css/site-nav.css">
+    <script src="mobile-nav.js" defer></script>
 </head>
 
 <body class="info-page">
 
     <!-- Navigatie -->
     <header class="site-header">
-        <div class="nav">
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
             <div class="nav-top">
-                <a href="../../../index.html" class="logo">
-                    Avond4daagse
-                </a>
-                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="info-main-menu" aria-label="Menu openen">
-                    ☰
-                </button>
+                <a href="../../../index.html" class="logo">Avond4daagse</a>
+                <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Menu openen">☰</button>
             </div>
-            <nav class="main-nav" id="info-main-menu" aria-label="Hoofdnavigatie">
-                <a href="routes.html">Routes</a>
-                <a href="reglement.html" aria-current="page">Reglement</a>
-                <a href="handboek.html">Handboek</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="inlogpagina.html">Login</a>
-                <a href="aanmeldpagina.html">Aanmelden</a>
-                <a href="../../../index.html">Home</a>
-            </nav>
-        </div>
+            <ul class="nav-links" id="main-menu">
+                <li><a href="routes.html">Routes</a></li>
+                <li><a href="reglement.html" class="active" aria-current="page">Reglement</a></li>
+                <li><a href="handboek.html">Handboek</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="inlogpagina.html">Login</a></li>
+                <li><a href="../../../index.html">Home</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Pagina Layout -->
@@ -164,18 +161,4 @@
     </footer>
 
 </body>
-
-<script>
-        const navToggle = document.querySelector(".nav-toggle");
-        const mainNav = document.querySelector(".main-nav");
-
-        if (navToggle && mainNav) {
-            navToggle.addEventListener("click", function () {
-                const isOpen = mainNav.classList.toggle("open");
-                navToggle.setAttribute("aria-expanded", isOpen);
-                navToggle.textContent = isOpen ? "✕" : "☰";
-                navToggle.setAttribute("aria-label", isOpen ? "Menu sluiten" : "Menu openen");
-            });
-        }
-    </script>
 </html>

@@ -1,0 +1,235 @@
+/*
+   NAVIGATIE - gedeeld door alle pagina's
+
+   Opbouw van de HTML:
+
+   header.site-header
+     nav.main-nav
+       div.nav-top   (logo + menuknop)
+       ul.nav-links  (de links, id="main-menu")
+
+   Wordt geïmporteerd in main.scss (routes, handboek, draaiboek) en
+   in site-nav.scss (los bestand voor pagina's zonder main.css).
+
+   Altijd als laatste importeren, zodat deze regels voorgaan op
+   algemene regels zoals ".info-page a".
+   
+   Het openen/sluiten op mobiel gebeurt in mobile-nav.js.
+*/
+
+.site-header,
+.site-header * {
+    box-sizing: border-box;
+}
+
+.site-header {
+    width: 100%;
+
+    background-color: #2f6b45;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+}
+
+.site-header .main-nav {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 75px;
+
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-header .nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.site-header .logo {
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.site-header .logo:focus-visible {
+    outline: 3px solid #f4c95d;
+    outline-offset: 4px;
+}
+
+
+/* Links */
+
+.site-header .nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.site-header .nav-links li {
+    margin: 0;
+    padding: 0;
+}
+
+.site-header .nav-links a {
+    display: inline-block;
+
+    padding: 9px 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.site-header .nav-links a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.site-header .nav-links a:focus-visible {
+    outline: 3px solid #f4c95d;
+    outline-offset: 3px;
+}
+
+
+/* Actieve pagina */
+
+.site-header .nav-links a.active,
+.site-header .nav-links a[aria-current="page"] {
+    border-bottom: 3px solid #ffffff;
+}
+
+
+/* Menuknop, alleen zichtbaar op kleine schermen */
+
+.site-header .nav-toggle {
+    display: none;
+
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1;
+
+    padding: 6px 10px;
+
+    cursor: pointer;
+}
+
+.site-header .nav-toggle:focus-visible {
+    outline: 3px solid #f4c95d;
+    outline-offset: 3px;
+}
+
+
+/* Tablet / kleine laptop */
+
+@media (max-width: 900px) {
+
+    .site-header .main-nav {
+        padding: 0 22px;
+    }
+
+    .site-header .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+
+/* Mobiel: logo boven, links eronder */
+
+@media (max-width: 700px) {
+
+    .site-header .main-nav {
+        padding: 20px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .site-header .nav-links {
+        width: 100%;
+
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        gap: 12px 20px;
+    }
+}
+
+
+/* Kleine telefoon: links ingeklapt achter de menuknop */
+
+@media (max-width: 420px) {
+
+    .site-header .main-nav {
+        padding: 15px 20px;
+        gap: 0;
+    }
+
+    .site-header .nav-top {
+        width: 100%;
+    }
+
+    .site-header .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .site-header .nav-links {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 4px;
+
+        margin-top: 15px;
+        padding-top: 12px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .site-header .nav-links.open {
+        display: flex;
+    }
+
+    .site-header .nav-links li {
+        width: 100%;
+    }
+
+    .site-header .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
