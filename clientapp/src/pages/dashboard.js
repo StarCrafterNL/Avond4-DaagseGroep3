@@ -63,72 +63,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // 3. EVENEMENTEN
     // ==========================================
 
-    const eventSelect =
-        document.getElementById("a4d-event-select");
+  const eventSelect = document.getElementById("a4d-event-select");
+    const eventDialog = document.getElementById("a4d-event-dialog");
+    const eventForm = document.getElementById("a4d-event-form");
+    const eventError = document.getElementById("a4d-form-error");
+    const eventTitle = document.getElementById("a4d-event-title");
+    const eventDate = document.getElementById("a4d-event-date");
+    const eventLocation = document.getElementById("a4d-event-location");
+    const eventEyebrow = document.getElementById("a4d-event-eyebrow");
 
-    const eventDialog =
-        document.getElementById("a4d-event-dialog");
+    const newButton = document.getElementById("a4d-new-event-btn");
+    const editButton = document.getElementById("a4d-edit-event-btn");
+    const distanceList = document.getElementById("a4d-distance-list");
 
-    const eventForm =
-        document.getElementById("a4d-event-form");
+    const field = id => document.getElementById(id);
 
-    const eventError =
-        document.getElementById("a4d-form-error");
+    let evenementen = [];
+    let editingId = null;
+    let backendReady = false;
+    let saving = false;
 
-    const eventTitle =
-        document.getElementById("a4d-event-title");
-
-    const eventDate =
-        document.getElementById("a4d-event-date");
-
-    const eventLocation =
-        document.getElementById("a4d-event-location");
-
-    const eventEyebrow =
-        document.getElementById("a4d-event-eyebrow");
-
-    // Voorbeeldgegevens
-    const defaultEvents = [
-        {
-            year: 2027,
-            start: "2027-05-12",
-            end: "2027-05-15",
-            location: "Den Haag"
-        },
-        {
-            year: 2026,
-            start: "2026-05-18",
-            end: "2026-05-21",
-            location: "Den Haag"
-        },
-        {
-            year: 2025,
-            start: "2025-05-20",
-            end: "2025-05-23",
-            location: "Den Haag"
-        }
-    ];
-
-    let customEvents = [];
-
-    try {
-        const savedEvents = JSON.parse(
-            readStorage(storage.events) || "[]"
-        );
-
-        if (Array.isArray(savedEvents)) {
-            customEvents = savedEvents;
-        }
-    } catch {
-        customEvents = [];
-    }
-
-    function allEvents() {
-        return [...defaultEvents, ...customEvents];
+    function dateOnly(value) {
+        return value ? value.slice(0, 10) : "";
     }
 
     function formatDate(value) {
-        return new Date(value + "T12:00:00")
+        return new Date(dateOnly(value) + "T12:00:00")
             .toLocaleDateString("nl-NL", {
                 day: "numeric",
                 month: "long",
@@ -137,187 +97,382 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function formatRange(start, end) {
-        const startDate = new Date(start + "T12:00:00");
-        const endDate = new Date(end + "T12:00:00");
+        return formatDate(start) + " t/m " + formatDate(end);
+    }
 
-        if (
-            startDate.getMonth() === endDate.getMonth() &&
-            startDate.getFullYear() === endDate.getFullYear()
-        ) {
-            return startDate.getDate() +
-                " t/m " + formatDate(end);
+    // Geselecteerd evenement tonen
+    function showEvent(id) {
+        const event = evenementen.find(
+            e => e.id === Number(id)
+        );
+
+        editButton.disabled = !event || !backendReady;
+
+        if (!event) {
+            eventTitle.textContent = "Geen evenement geselecteerd";
+            eventDate.textContent = "—";
+            eventLocation.textContent = "—";
+            eventEyebrow.textContent = "EVENEMENT";
+            return;
         }
 
-        return formatDate(start) +
-            " t/m " + formatDate(end);
-    }
-
-    function showEvent(year) {
-        const event = allEvents().find(
-            item => item.year === Number(year)
+        eventTitle.textContent = event.naam;
+        eventDate.textContent = formatRange(
+            event.startDatum, event.eindDatum
         );
+        eventLocation.textContent = event.locatie;
 
-        if (!event) return;
+        eventEyebrow.textContent = event.isGepubliceerd
+            ? "GEPUBLICEERD"
+            : "CONCEPT";
 
-        eventTitle.textContent =
-            "Avond4daagse " +
-            event.location + " " +
-            event.year;
-
-        eventDate.textContent =
-            formatRange(event.start, event.end);
-
-        eventLocation.textContent =
-            event.location;
-
-        eventEyebrow.textContent =
-            event.year === 2027
-                ? "HUIDIGE AVOND4DAAGSE"
-                : "GESELECTEERD EVENEMENT";
-
-        eventSelect.value = String(event.year);
+        eventSelect.value = String(event.id);
 
         saveStorage(
-            storage.selectedYear,
-            String(event.year)
+            "a4d-dashboard-selected-event",
+            String(event.id)
         );
     }
 
-    function refreshOptions() {
-        eventSelect.innerHTML = "";
+    // Eerdere edities tonen
+    function refreshHistory() {
+        const tbody = document.querySelector(
+            ".a4d-history-table tbody"
+        );
 
-        allEvents()
-            .sort((a, b) => b.year - a.year)
-            .forEach(function (event) {
-                const option =
-                    document.createElement("option");
+        if (!tbody) return;
 
-                option.value = event.year;
+        tbody.replaceChildren();
 
-                option.textContent =
-                    event.year === 2027
-                        ? "2027 (huidig)"
-                        : String(event.year);
+        const eerdereEdities = evenementen.filter(
+            e => dateOnly(e.eindDatum) <
+                new Date().toLocaleDateString("sv-SE")
+        );
+
+        eerdereEdities.forEach(event => {
+            const row = tbody.insertRow();
+
+            row.insertCell().textContent =
+                event.naam;
+
+            row.insertCell().textContent =
+                formatRange(event.startDatum, event.eindDatum);
+
+            // Deelnemers worden later gekoppeld
+            row.insertCell().textContent = "—";
+        });
+
+        if (!eerdereEdities.length) {
+            const cell = tbody.insertRow().insertCell();
+            cell.colSpan = 3;
+            cell.textContent = "Geen eerdere edities gevonden.";
+        }
+    }
+
+    // Evenementen ophalen uit SQL Server
+    async function loadEvents(selectedId = null) {
+        backendReady = false;
+        editButton.disabled = true;
+
+        try {
+            const response = await fetch("/api/evenementen", {
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+
+            if (!response.ok || response.redirected) {
+                throw new Error("Geen toegang tot de evenementen.");
+            }
+
+            const data = await response.json();
+
+            if (!Array.isArray(data)) {
+                throw new Error("Ongeldige evenementgegevens.");
+            }
+
+            evenementen = data;
+            backendReady = true;
+
+            eventSelect.replaceChildren();
+
+            evenementen.forEach(event => {
+                const option = document.createElement("option");
+
+                option.value = event.id;
+                option.textContent = event.naam +
+                    (event.isGepubliceerd ? "" : " (concept)");
 
                 eventSelect.appendChild(option);
             });
+
+            const preferredId = selectedId ||
+                readStorage("a4d-dashboard-selected-event");
+
+            const selected = evenementen.find(
+                e => e.id === Number(preferredId)
+            ) || evenementen[0];
+
+            showEvent(selected?.id);
+            refreshHistory();
+
+        } catch (error) {
+            eventEyebrow.textContent = "VOORBEELD / GEEN VERBINDING";
+            console.warn("Evenementen laden:", error);
+        }
     }
 
-    // Nieuw evenement popup openen
-    document.getElementById("a4d-new-event-btn")
-        .addEventListener("click", function () {
+    // Afstand toevoegen aan het formulier
+    function addDistance(afstand = {}) {
+        const row = document.createElement("div");
+        row.className = "a4d-distance-row";
 
-            eventError.textContent = "";
+        row.innerHTML = `
+            <label>Afstand (km)
+                <input type="number"
+                       class="distance-km"
+                       min="1" max="100"
+                       required>
+            </label>
 
-            const years = allEvents().map(e => e.year);
-            const nextYear = Math.min(
-                Math.max(...years) + 1,
-                2100
-            );
+            <label>Prijs (€)
+                <input type="number"
+                       class="distance-price"
+                       min="0" max="10000"
+                       step="0.01" required>
+            </label>
 
-            document.getElementById("a4d-new-year").value =
-                nextYear;
+            <label>Starttijd
+                <input type="time"
+                       class="distance-time"
+                       required>
+            </label>
 
-            eventDialog.showModal();
-        });
+            <button type="button"
+                    class="a4d-remove-distance">
+                Verwijderen
+            </button>
+        `;
 
-    // Popup sluiten
-    document.getElementById("a4d-cancel-event")
-        .addEventListener("click", function () {
-            eventDialog.close();
-        });
+        row.querySelector(".distance-km").value =
+            afstand.afstandKm ?? "";
 
-    // Nieuw evenement opslaan
-    eventForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+        row.querySelector(".distance-price").value =
+            afstand.prijs ?? "";
 
-        eventError.textContent = "";
+        row.querySelector(".distance-time").value =
+            afstand.starttijd?.slice(0, 5) || "18:00";
 
-        const year = Number(
-            document.getElementById("a4d-new-year").value
-        );
+        row.querySelector(".a4d-remove-distance")
+            .addEventListener("click", () => row.remove());
 
-        const start =
-            document.getElementById("a4d-new-start").value;
+        distanceList.appendChild(row);
+    }
 
-        const end =
-            document.getElementById("a4d-new-end").value;
-
-        const location =
-            document.getElementById("a4d-new-location")
-                .value.trim();
-
-        // Controleren of het jaar al bestaat
-        if (allEvents().some(event => event.year === year)) {
-            eventError.textContent =
-                "Er bestaat al een evenement voor dit jaar.";
-            return;
-        }
-
-        // Datums controleren
-        if (end < start) {
-            eventError.textContent =
-                "De einddatum moet na de startdatum liggen.";
-            return;
-        }
-
-        if (
-            Number(start.slice(0, 4)) !== year ||
-            Number(end.slice(0, 4)) !== year
-        ) {
-            eventError.textContent =
-                "De datums moeten binnen het gekozen jaar vallen.";
-            return;
-        }
-
-        if (!location) {
-            eventError.textContent =
-                "Vul een locatie in.";
-            return;
-        }
-
-        const newEvent = {
-            year: year,
-            start: start,
-            end: end,
-            location: location
-        };
-
-        const updatedEvents = [...customEvents, newEvent];
-
-        if (!saveStorage(
-            storage.events,
-            JSON.stringify(updatedEvents)
-        )) {
-            eventError.textContent =
-                "Opslaan in deze browser is niet gelukt.";
-            return;
-        }
-
-        customEvents = updatedEvents;
-
-        refreshOptions();
-        showEvent(year);
-
+    // Formulier openen voor nieuw of bestaand evenement
+    function openEventForm(event = null) {
         eventForm.reset();
-        eventDialog.close();
+        eventError.textContent = "";
+        distanceList.replaceChildren();
+
+        editingId = event?.id ?? null;
+
+        field("a4d-form-title").textContent = event
+            ? "Evenement aanpassen"
+            : "Nieuw evenement aanmaken";
+
+        if (event) {
+            field("a4d-new-name").value = event.naam;
+            field("a4d-new-organisation").value = event.organisatie;
+            field("a4d-new-location").value = event.locatie;
+
+            field("a4d-new-start").value =
+                dateOnly(event.startDatum);
+
+            field("a4d-new-end").value =
+                dateOnly(event.eindDatum);
+
+            field("a4d-registration-open").value =
+                dateOnly(event.inschrijvingOpen);
+
+            field("a4d-registration-close").value =
+                dateOnly(event.inschrijvingSluit);
+
+            (event.afstanden || []).forEach(addDistance);
+        }
+
+        if (!backendReady) {
+            eventError.textContent =
+                "Voorbeeldmodus: opslaan kan alleen via ASP.NET.";
+        }
+
+        eventDialog.showModal();
+    }
+
+    newButton.addEventListener("click", () => {
+        openEventForm();
     });
 
-    // Wisselen tussen evenementen
-    eventSelect.addEventListener("change", function () {
+    editButton.addEventListener("click", () => {
+        const event = evenementen.find(
+            e => e.id === Number(eventSelect.value)
+        );
+
+        if (event) openEventForm(event);
+    });
+
+    field("a4d-add-distance")
+        .addEventListener("click", () => addDistance());
+
+    field("a4d-cancel-event")
+        .addEventListener("click", () => {
+            if (!saving) eventDialog.close();
+        });
+
+    eventSelect.addEventListener("change", () => {
         showEvent(eventSelect.value);
     });
 
-    // Bestaand evenement laden
-    refreshOptions();
+    // Evenement opslaan of publiceren
+    eventForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-    const savedYear = readStorage(storage.selectedYear);
+        if (saving) return;
 
-    const initialYear = allEvents().some(
-        event => String(event.year) === savedYear
-    ) ? savedYear : "2027";
+        eventError.textContent = "";
 
-    showEvent(initialYear);
+        if (!backendReady) {
+            eventError.textContent =
+                "Open het dashboard via ASP.NET om op te slaan.";
+            return;
+        }
+
+        const publish =
+            e.submitter?.value === "publiceren";
+
+        const payload = {
+            naam: field("a4d-new-name").value.trim(),
+            organisatie: field("a4d-new-organisation").value.trim(),
+            locatie: field("a4d-new-location").value.trim(),
+
+            startDatum: field("a4d-new-start").value,
+            eindDatum: field("a4d-new-end").value,
+
+            inschrijvingOpen:
+                field("a4d-registration-open").value || null,
+
+            inschrijvingSluit:
+                field("a4d-registration-close").value || null,
+
+            isGepubliceerd: publish,
+
+            afstanden: Array.from(
+                distanceList.querySelectorAll(".a4d-distance-row")
+            ).map(row => ({
+                afstandKm: Number(
+                    row.querySelector(".distance-km").value
+                ),
+                prijs: Number(
+                    row.querySelector(".distance-price").value
+                ),
+                starttijd:
+                    row.querySelector(".distance-time").value + ":00"
+            }))
+        };
+
+        if (!payload.naam || !payload.locatie) {
+            eventError.textContent =
+                "Vul alle verplichte velden in.";
+            return;
+        }
+
+        if (payload.eindDatum < payload.startDatum) {
+            eventError.textContent =
+                "De einddatum mag niet voor de startdatum liggen.";
+            return;
+        }
+
+        const existing = evenementen.find(e => e.id === editingId);
+
+        if (existing?.isGepubliceerd && !publish) {
+            if (!confirm("Dit evenement terugzetten naar concept?")) {
+                return;
+            }
+        }
+
+        saving = true;
+
+        const submitButtons = eventForm.querySelectorAll(
+            'button[type="submit"]'
+        );
+
+        submitButtons.forEach(button => button.disabled = true);
+
+        try {
+            // Beveiligingstoken ophalen
+            const tokenResponse = await fetch("/api/dashboard/token", {
+                credentials: "same-origin",
+                cache: "no-store"
+            });
+
+            if (!tokenResponse.ok || tokenResponse.redirected) {
+                throw new Error("Geen toegang. Log opnieuw in.");
+            }
+
+            const tokenData = await tokenResponse.json();
+
+            const url = editingId
+                ? "/api/evenementen/" + editingId
+                : "/api/evenementen";
+
+            const response = await fetch(url, {
+                method: editingId ? "PUT" : "POST",
+                credentials: "same-origin",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": tokenData.token
+                },
+
+                body: JSON.stringify(payload)
+            });
+
+            if (response.redirected) {
+                throw new Error("Geen toegang. Log opnieuw in.");
+            }
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                const errors = result.errors
+                    ? Object.values(result.errors).flat().join(" ")
+                    : "";
+
+                throw new Error(
+                    errors || result.bericht ||
+                    "Opslaan mislukt. Controleer de gegevens."
+                );
+            }
+
+            eventDialog.close();
+            await loadEvents(result.id);
+
+        } catch (error) {
+            eventError.textContent = error.message;
+
+        } finally {
+            saving = false;
+            submitButtons.forEach(button => button.disabled = false);
+        }
+    });
+
+    // Voorkom sluiten tijdens opslaan
+    eventDialog.addEventListener("cancel", function (e) {
+        if (saving) e.preventDefault();
+    });
+
+    // Dashboard initialiseren
+    loadEvents();
+
 
     // ==========================================
     // 4. POPUP VOOR WEBSITE AANPASSEN

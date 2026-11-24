@@ -9,4 +9,15 @@ public class Evenement
     public DateTime StartDatum { get; set; }
     public DateTime EindDatum { get; set; }
     public ICollection<EvenementDag> Dagen { get; set; } = new List<EvenementDag>();
+
+ // US 7.3 - Inschrijfperiode
+    public DateTime? InschrijvingOpen { get; set; }
+    public DateTime? InschrijvingSluit { get; set; }
+
+    // US 7.3 - Publicatiestatus
+    public bool IsGepubliceerd { get; set; } = false;
+
+    // US 7.3 - Afstanden, prijzen en starttijden
+    public ICollection<EvenementAfstand> Afstanden { get; set; }
+        = new List<EvenementAfstand>();
 }

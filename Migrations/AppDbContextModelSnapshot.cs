@@ -146,6 +146,15 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.Property<DateTime>("EindDatum")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("InschrijvingOpen")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("InschrijvingSluit")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsGepubliceerd")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Locatie")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -164,6 +173,34 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Evenementen");
+                });
+
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementAfstand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AfstandKm")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EvenementId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Prijs")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<TimeSpan>("Starttijd")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EvenementId");
+
+                    b.ToTable("EvenementAfstanden");
                 });
 
             modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementDag", b =>
@@ -275,6 +312,17 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.ToTable("EvenementDagRoute");
                 });
 
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementAfstand", b =>
+                {
+                    b.HasOne("Avond4DaagseEfCore.Models.Evenement", "Evenement")
+                        .WithMany("Afstanden")
+                        .HasForeignKey("EvenementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Evenement");
+                });
+
             modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementDag", b =>
                 {
                     b.HasOne("Avond4DaagseEfCore.Models.Evenement", "Evenement")
@@ -303,6 +351,8 @@ namespace Avond4_DaagseGroep3.Migrations
 
             modelBuilder.Entity("Avond4DaagseEfCore.Models.Evenement", b =>
                 {
+                    b.Navigation("Afstanden");
+
                     b.Navigation("Dagen");
                 });
 #pragma warning restore 612, 618

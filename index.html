@@ -68,14 +68,9 @@
     <div class="search-field">
         <label for="location">Locatie</label>
 
-        <select id="location" name="location">
-    <option value="">Selecteer een Avond4daagse</option>
-    <option value="1">Den Haag Centrum</option>
-    <option value="2">Den Haag Scheveningen</option>
-    <option value="3">Leiden</option>
-    <option value="4">Rotterdam</option>
-    <option value="5">Delft</option>
-</select> 
+       <select id="location" name="location">
+    <option value="">Evenementen laden...</option>
+</select>
 
     </div>
 
@@ -383,103 +378,117 @@
         </div>
 
     </footer>
-<script>
-    const evenementen = [
-        {
-            id: 1,
-            locatie: "den-haag",
-            naam: "Avond4daagse Den Haag Centrum",
-            organisatie: "Stichting Avond4daagse Den Haag Centrum",
-            datum: "2 t/m 5 juni 2027",
-            plaats: "Den Haag"
-        },
-        {
-            id: 2,
-            locatie: "den-haag",
-            naam: "Avond4daagse Scheveningen",
-            organisatie: "Stichting Avond4daagse Scheveningen",
-            datum: "15 t/m 18 juni 2027",
-            plaats: "Den Haag"
-        },
-        {
-            id: 3,
-            locatie: "leiden",
-            naam: "Avond4daagse Leiden",
-            organisatie: "Stichting Avond4daagse Leiden",
-            datum: "8 t/m 11 juni 2027",
-            plaats: "Leiden"
-        },
-        {
-            id: 4,
-            locatie: "rotterdam",
-            naam: "Avond4daagse Rotterdam",
-            organisatie: "Avond4daagse Rotterdam",
-            datum: "15 t/m 18 juni 2027",
-            plaats: "Rotterdam"
-        },
-        {
-            id: 5,
-            locatie: "delft",
-            naam: "Avond4daagse Delft",
-            organisatie: "Stichting Avond4daagse Delft",
-            datum: "21 t/m 24 juni 2027",
-            plaats: "Delft"
-        }
-    ];
 
-    const zoekFormulier = document.querySelector(".event-search");
+<script>
+    let evenementen = [];
+
     const locatieSelectie = document.getElementById("location");
     const resultatenSectie = document.getElementById("event-results");
     const evenementenLijst = document.getElementById("event-list");
 
-    locatieSelectie.addEventListener("change", function(event) {
-        event.preventDefault();
+    function formatDatum(datum) {
+        return new Date(datum.substring(0, 10) + "T00:00:00")
+            .toLocaleDateString("nl-NL", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+    }
 
-        const geselecteerdeLocatie = locatieSelectie.value;
+    async function laadEvenementen() {
+        try {
+            const response = await fetch(
+                "/api/evenementen/publiek",
+                { cache: "no-store" }
+            );
 
-        if (geselecteerdeLocatie === "") {
-            alert("Selecteer eerst een locatie.");
+            if (!response.ok) {
+                throw new Error("Evenementen ophalen mislukt.");
+            }
+
+            evenementen = await response.json();
+
+            locatieSelectie.replaceChildren();
+
+            locatieSelectie.add(new Option(
+                evenementen.length
+                    ? "Selecteer een Avond4daagse"
+                    : "Geen gepubliceerde evenementen",
+                ""
+            ));
+
+            evenementen.forEach(evenement => {
+                locatieSelectie.add(new Option(
+                    `${evenement.naam} - ${evenement.locatie}`,
+                    evenement.id
+                ));
+            });
+
+        } catch (error) {
+            locatieSelectie.replaceChildren(
+                new Option("Evenementen niet beschikbaar", "")
+            );
+
+            console.error(error);
+        }
+    }
+
+    function voegDetailToe(card, label, waarde) {
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+
+        strong.textContent = label + ": ";
+
+        p.append(strong, document.createTextNode(waarde));
+        card.appendChild(p);
+    }
+
+    locatieSelectie.addEventListener("change", function () {
+        evenementenLijst.replaceChildren();
+
+        const evenement = evenementen.find(
+            e => e.id === Number(locatieSelectie.value)
+        );
+
+        if (!evenement) {
+            resultatenSectie.hidden = true;
             return;
         }
 
-        const overeenkomendeEvenementen = evenementen.filter(function(evenement) {
-            return evenement.id === Number(geselecteerdeLocatie);
-        });
+        const card = document.createElement("div");
+        card.className = "event-card";
 
-        evenementenLijst.innerHTML = "";
+        const titel = document.createElement("h3");
+        titel.textContent = evenement.naam;
+        card.appendChild(titel);
 
-        overeenkomendeEvenementen.forEach(function(evenement) {
-            evenementenLijst.innerHTML += `
-                <div class="event-card">
-                    <h3>${evenement.naam}</h3>
+        voegDetailToe(card, "Organisatie", evenement.organisatie);
 
-                    <p>
-                        <strong>Organisatie:</strong>
-                        ${evenement.organisatie}
-                    </p>
+        voegDetailToe(
+            card,
+            "Datum",
+            `${formatDatum(evenement.startDatum)} t/m ${
+                formatDatum(evenement.eindDatum)
+            }`
+        );
 
-                    <p>
-                        <strong>Datum:</strong>
-                        ${evenement.datum}
-                    </p>
+        voegDetailToe(card, "Locatie", evenement.locatie);
 
-                    <p>
-                        <strong>Locatie:</strong>
-                        ${evenement.plaats}
-                    </p>
+        const link = document.createElement("a");
 
-                    <a
-                        href="/clientapp/src/pages/evenement.html?id=${evenement.id}"
-                        class="event-details-button"
-                    >
-                        Bekijk evenement →
-                    </a>
-                </div>
-            `;
-        });
+        link.href =
+            `/clientapp/src/pages/evenement.html?id=${evenement.id}`;
+
+        link.className = "event-details-button";
+        link.textContent = "Bekijk evenement →";
+
+        card.appendChild(link);
+        evenementenLijst.appendChild(card);
 
         resultatenSectie.hidden = false;
     });
+
+    laadEvenementen();
 </script>
 
 <script>
