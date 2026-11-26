@@ -8,4 +8,5 @@ public class Evenement
     public string Locatie { get; set; } = string.Empty;
     public DateTime StartDatum { get; set; }
     public DateTime EindDatum { get; set; }
+    public ICollection<EvenementDag> Dagen { get; set; } = new List<EvenementDag>();
 }

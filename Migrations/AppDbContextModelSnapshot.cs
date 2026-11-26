@@ -171,6 +171,30 @@ namespace Avond4_DaagseGroep3.Migrations
                     b.ToTable("Evenementen");
                 });
 
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementDag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DagNummer")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EvenementId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EvenementId");
+
+                    b.ToTable("EvenementDagen");
+                });
+
             modelBuilder.Entity("Avond4DaagseEfCore.Models.Inschrijving", b =>
                 {
                     b.Property<int>("Id")
@@ -250,6 +274,52 @@ namespace Avond4_DaagseGroep3.Migrations
                         .IsRequired();
 
                     b.Navigation("Evenement");
+                });
+
+            modelBuilder.Entity("EvenementDagRoute", b =>
+                {
+                    b.Property<int>("EvenementDagenId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoutesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EvenementDagenId", "RoutesId");
+
+                    b.HasIndex("RoutesId");
+
+                    b.ToTable("EvenementDagRoute");
+                });
+
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.EvenementDag", b =>
+                {
+                    b.HasOne("Avond4DaagseEfCore.Models.Evenement", "Evenement")
+                        .WithMany("Dagen")
+                        .HasForeignKey("EvenementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Evenement");
+                });
+
+            modelBuilder.Entity("EvenementDagRoute", b =>
+                {
+                    b.HasOne("Avond4DaagseEfCore.Models.EvenementDag", null)
+                        .WithMany()
+                        .HasForeignKey("EvenementDagenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Avond4DaagseEfCore.Models.Route", null)
+                        .WithMany()
+                        .HasForeignKey("RoutesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Avond4DaagseEfCore.Models.Evenement", b =>
+                {
+                    b.Navigation("Dagen");
                 });
 #pragma warning restore 612, 618
         }

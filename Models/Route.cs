@@ -7,4 +7,5 @@ public class Route
     public int AfstandKm { get; set; }
     public string StartLocatie { get; set; } = string.Empty;
     public string? RouteBestandPad { get; set; }
+    public ICollection<EvenementDag> EvenementDagen { get; set; } = new List<EvenementDag>();
 }

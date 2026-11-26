@@ -1,0 +1,7 @@
+SELECT TOP (1000) [Id]
+      ,[Naam]
+      ,[Email]
+      ,[WachtwoordHash]
+      ,[Rol]
+      ,[AangemaaktOp]
+  FROM [Avond4DaagseDb].[dbo].[Gebruikers]
