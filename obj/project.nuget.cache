@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FttgBmsQIMc=",
+  "dgSpecHash": "dvOlf8+abik=",
   "success": true,
-  "projectFilePath": "C:\\Users\\vigo_\\OneDrive\\Documenten\\project avond4daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
+  "projectFilePath": "c:\\Users\\vigo_\\OneDrive\\Documenten\\project avond4daagse\\Avond4-DaagseGroep3\\Avond4-DaagseGroep3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vigo_\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\vigo_\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
