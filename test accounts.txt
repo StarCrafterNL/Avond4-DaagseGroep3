@@ -1,0 +1,4 @@
+Deelnemer: test@test.nl Test1234!
+Penningmeester: penningmeester@test.nl Test1234!
+Routebeheerder: route@test.nl Test1234!
+Hoofdbeheerder: bestuur@test.nl Test1234!

@@ -67,36 +67,64 @@ namespace Avond4Daagse.Controllers
         }
 
         [HttpPost("/verwerk-login")]
-        public async Task<IActionResult> VerwerkLogin(string email, string wachtwoord)
-        {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(wachtwoord))
-            {
-                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
-            }
+public async Task<IActionResult> VerwerkLogin(string email, string wachtwoord)
+{
+    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(wachtwoord))
+    {
+        return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+    }
 
-            string schoonEmail = email.Trim().ToLower();
-            var gebruiker = await _context.Gebruikers
-                .FirstOrDefaultAsync(g => g.Email.ToLower() == schoonEmail);
+    string schoonEmail = email.Trim().ToLower();
 
-            if (gebruiker == null)
-            {
-                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
-            }
+    // 1. Hardcoded accounts (werken altijd, ook zonder database)
+    var hardcodedAccounts = new List<Gebruiker>
+    {
+        new Gebruiker { Id = 1, Naam = "Tess Deelnemer", Email = "test@test.nl", Rol = "Deelnemer" },
+        new Gebruiker { Id = 2, Naam = "Piet Penningmeester", Email = "penningmeester@test.nl", Rol = "Penningmeester" },
+        new Gebruiker { Id = 3, Naam = "Rik Routebeheerder", Email = "route@test.nl", Rol = "Routebeheerder" },
+        new Gebruiker { Id = 4, Naam = "Bram Bestuurslid", Email = "bestuur@test.nl", Rol = "Hoofdbeheerder" }
+    };
 
-            string schoneHash = gebruiker.WachtwoordHash.Trim();
-            bool wachtwoordKlopt = schoneHash.StartsWith("$2")
-                ? PasswordService.Verify(wachtwoord, schoneHash)
-                : (schoneHash == wachtwoord);
+    var hardcodedMatch = hardcodedAccounts.FirstOrDefault(a => a.Email == schoonEmail);
+    if (hardcodedMatch != null && wachtwoord == "Test1234!")
+    {
+        await SignInGebruikerAsync(hardcodedMatch);
+        return RedirectNaarRolPagina(hardcodedMatch.Rol);
+    }
 
-            if (!wachtwoordKlopt)
-            {
-                return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
-            }
+    // 2. Reguliere controle in de SQL Server database
+    var gebruiker = await _context.Gebruikers
+        .FirstOrDefaultAsync(g => g.Email.ToLower() == schoonEmail);
 
-            await SignInGebruikerAsync(gebruiker);
+    if (gebruiker == null)
+    {
+        return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+    }
 
-            return Redirect("/index.html");
-        }
+    string schoneHash = gebruiker.WachtwoordHash.Trim();
+    bool wachtwoordKlopt = schoneHash.StartsWith("$2")
+        ? PasswordService.Verify(wachtwoord, schoneHash)
+        : (schoneHash == wachtwoord);
+
+    if (!wachtwoordKlopt)
+    {
+        return Redirect("/clientapp/src/pages/inlogpagina.html?error=ongeldig");
+    }
+
+    await SignInGebruikerAsync(gebruiker);
+    return RedirectNaarRolPagina(gebruiker.Rol);
+}
+
+private IActionResult RedirectNaarRolPagina(string rol)
+{
+    return rol switch
+    {
+        "Penningmeester" => Redirect("/clientapp/src/pages/penningmeester.html"),
+        "Routebeheerder" => Redirect("/clientapp/src/pages/routebeheerder.html"),
+        "Bestuurslid" or "Hoofdbeheerder" or "Beheerder" => Redirect("/clientapp/src/pages/Dashboard.html"),
+        _ => Redirect("/index.html")
+    };
+}
 
         private async Task SignInGebruikerAsync(Gebruiker gebruiker)
         {
